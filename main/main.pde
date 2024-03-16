@@ -1,14 +1,24 @@
 // aka testParse
+/* need controlP5 Library to run, tools => manage tools => libraries => controlP5 */
+import controlP5.*;
 import java.util.Scanner;
 
 Table table;
 Parse parser;
+ControlP5 cp5;
+Textlabel myTextlabel;
+Textarea myTextarea;
+Gui gui;
+
+
+
 String[] lines;
 int currentLineIndex = 0;
 Table dateTable;
 Table mKTCarrierTable;
 PImage bgImg;
 //PImage mouseImg;
+int tempSwitch = 1;  // <= temporary switch for different outputs, 0 = default, 1 = textbox
 
 //Interactive buttons//
 final int EVENT_BUTTON1 = 1;
@@ -18,11 +28,14 @@ final int EVENT_NULL = 0;
 ArrayList widgetList;
 
 void setup() {
-  parser = new Parse();
-  table = parser.createTable("flights2k.csv");
-
-  table.print();
   size(1407, 946);
+  parser = new Parse();
+  gui = new Gui();
+  table = parser.createTable("flights2k.csv");
+  cp5 = new ControlP5(this);                        
+  gui.textBox("results", 0, 0, 1407, 946,table);
+  
+ 
   bgImg = loadImage("bgImg.png");
   PFont myFont = loadFont("Phosphate-Solid-28.vlw");
   textFont(myFont);
@@ -38,21 +51,35 @@ void setup() {
   widgetList.add(widget1);
   widgetList.add(widget2);
   widgetList.add(widget3);
+  
 }
 
 //Example usage of Parse
 void draw() {
-  background(bgImg);
-  if (currentLineIndex < lines.length) {
-    if (currentLineIndex>0) {
-      fill(0);
-      text(lines[currentLineIndex], 20, 450);
-      delay(500);
+  background(0);
+  switch(tempSwitch)
+  {
+  case 0:
+    myTextlabel.hide();
+    myTextarea.hide();
+    background(bgImg);
+    if (currentLineIndex < lines.length) {
+      if (currentLineIndex>0) {
+        fill(0);
+        text(lines[currentLineIndex], 20, 450);
+        delay(500);
+      }
+      currentLineIndex++;
     }
-    currentLineIndex++;
-  }
-  for (int i = 0; i<widgetList.size(); i++) {
-    Widget aWidget = (Widget)widgetList.get(i);
-    aWidget.draw();
-  }
+    for (int i = 0; i<widgetList.size(); i++) {
+      Widget aWidget = (Widget)widgetList.get(i);
+      aWidget.draw();
+    }
+  break;
+  
+  case 1:
+  background(0);
+  break;
+
+  } 
 }
