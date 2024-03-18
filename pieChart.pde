@@ -1,3 +1,6 @@
+// experimenting with displaying data with pie charts 
+// sourses used: https://processing.org/examples/piechart.html
+
 int[] angles = { 30, 10, 45, 35, 60, 38, 75, 67 };
 color[] sliceColors = { 
   #8CDDFC, // blue
@@ -14,7 +17,7 @@ void setup() {
   size(640, 360);
   background(255);
   noStroke();
-  noLoop();  // Run once and stop
+  noLoop(); 
   
   PieChart pieChart = new PieChart(300, angles);
   pieChart.draw();
@@ -32,7 +35,7 @@ class PieChart {
   void draw() {
     float lastAngle = 0;
     for (int i = 0; i < data.length; i++) {
-      fill(sliceColors[i % sliceColors.length]); // Cycle through colors, modulo ensures it wraps around if more slices than colors
+      fill(sliceColors[i % sliceColors.length]);
       arc(width/2, height/2, diameter, diameter, lastAngle, lastAngle+radians(data[i]));
       lastAngle += radians(data[i]);
     }
