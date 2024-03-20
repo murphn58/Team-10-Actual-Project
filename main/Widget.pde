@@ -1,4 +1,4 @@
-// wideget class for buttons on screen - SADHBH
+// widget class for buttons on screen - ANNA
 
 class Widget {
   int x, y, width, height;

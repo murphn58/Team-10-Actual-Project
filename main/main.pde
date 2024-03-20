@@ -6,19 +6,12 @@ import java.util.Scanner;
 // YUE PAN
 Parse parser;
 Table table;
-ControlP5 cp5;
-Textlabel myTextlabel;
-Textarea myTextarea;
-Gui gui;
-int tempSwitch = 1;  // <= temporary switch for different outputs, 0 = default, 1 = textbox
-
 
 // NIAMH AND SADHBH
 Table dateTable;
 Table mKTCarrierTable;
 String[] lines;
 int currentLineIndex = 0;
-
 PImage bgImg;
 
 //Interactive buttons - SADHBH
@@ -36,9 +29,6 @@ void setup(){
   textFont(myFont);
   
   // YUE PAN
-  gui = new Gui();
-  cp5 = new ControlP5(this);                        
-  gui.textBox("results", 0, 0, 1407, 946,table);
   parser = new Parse();
   table = parser.createTable("flights2k.csv");
   table.print();
@@ -67,43 +57,19 @@ void draw(){
   PieChart airlinePieChart = new PieChart(mKTCarrierTable);
   airlinePieChart.draw(width/2, height/2, 800);
   
-  //// NIAMH AND SADHBH
-  //if (currentLineIndex < lines.length) {
-  //  if (currentLineIndex>0) {
-  //    fill(0);
-  //    text(lines[currentLineIndex], 40, 450);
-  //    delay(400);
-  //  }
-  //  currentLineIndex++;
-  //}
-  
-  //// Interactive buttons - SADHBH
-  //for (int i = 0; i<widgetList.size(); i++) {
-  //  Widget aWidget = (Widget)widgetList.get(i);
-  //  aWidget.draw();
-  //}
-  
-  switch(tempSwitch){
-  case 0:
-    myTextlabel.hide();
-    myTextarea.hide();
-    background(bgImg);
-    if (currentLineIndex < lines.length) {
-      if (currentLineIndex>0) {
-        fill(0);
-        text(lines[currentLineIndex], 20, 450);
-        delay(500);
-      }
-      currentLineIndex++;
+  // NIAMH AND SADHBH
+  if (currentLineIndex < lines.length) {
+    if (currentLineIndex>0) {
+      fill(0);
+      text(lines[currentLineIndex], 40, 450);
+      delay(400);
     }
-    for (int i = 0; i<widgetList.size(); i++) {
-      Widget aWidget = (Widget)widgetList.get(i);
-      aWidget.draw();
-    }
-    break;
+    currentLineIndex++;
+  }
   
-  case 1:
-    background(0);
-    break;
-  } 
+  // Interactive buttons - SADHBH
+  for (int i = 0; i<widgetList.size(); i++) {
+    Widget aWidget = (Widget)widgetList.get(i);
+    aWidget.draw();
+  }
 }
