@@ -69,4 +69,3 @@ void draw(){
     aWidget.draw();
   }
  }
-}
