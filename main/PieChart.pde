@@ -50,5 +50,10 @@ class PieChart {
       fill(0);                                                                                 // Set label color to black
       text(airline, labelX, labelY);
     }
+    
+    PFont pieChartLabel = loadFont("Phosphate-Solid-28.vlw");
+    textFont(pieChartLabel, 28);
+    fill(0);
+    text("No. of Flights from Each Airline", 480, 40);
   } 
 }

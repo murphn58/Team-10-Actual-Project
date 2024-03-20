@@ -1,6 +1,3 @@
-// need controlP5 Library to run, tools => manage tools => libraries => controlP5 - YUE PAN
-import controlP5.*;
-
 import java.util.Scanner;
 
 // YUE PAN
@@ -55,7 +52,7 @@ void draw(){
   
   // SADHBH
   PieChart airlinePieChart = new PieChart(mKTCarrierTable);
-  airlinePieChart.draw(width/2, height/2, 800);
+  airlinePieChart.draw(width/2, height/2, 400);
   
   // NIAMH AND SADHBH
   if (currentLineIndex < lines.length) {
