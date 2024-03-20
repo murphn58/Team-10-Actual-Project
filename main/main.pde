@@ -1,5 +1,4 @@
-
-import java.util.Scanner;
+Import java.util.Scanner;
 
 // YUE PAN
 Parse parser;
@@ -10,7 +9,8 @@ String[] lines;
 int currentLineIndex = 0;
 PImage bgImg;
 
-//Interactive buttons//
+
+//Interactive buttons - SADHBH
 final int EVENT_BUTTON1 = 1;
 final int EVENT_BUTTON2 = 2;
 final int EVENT_BUTTON3 = 3;
@@ -18,7 +18,6 @@ final int EVENT_BUTTON4 = 4;
 final int EVENT_BUTTON5 = 5;
 final int EVENT_BUTTON6 = 6;
 final int EVENT_NULL = 0;
-
 ArrayList<Widget> widgetList;
 
 void setup() {
@@ -37,6 +36,7 @@ void setup() {
   StoreData storeData = new StoreData();
   storeData.setup();
   
+  // Interactive buttons - ANNA
   Widget widget1, widget2, widget3, widget4, widget5, widget6;
   widget1 = new Widget(40, 40, 180, 40, "Airline", color(80, 142, 228), myFont, EVENT_BUTTON1);
   widget2 = new Widget(260, 40, 180, 40, "Destination", color(88, 224, 104), myFont, EVENT_BUTTON2);
@@ -77,7 +77,6 @@ void draw(){
     aWidget.draw();
   }
  }
-
 
 void mousePressed() {
   for (Widget widget : widgetList) {
