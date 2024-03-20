@@ -1,3 +1,5 @@
+// widget class for buttons on screen - ANNA
+
 class Widget {
   int x, y, width, height;
   String label;
