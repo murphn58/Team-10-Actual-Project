@@ -1,9 +1,11 @@
+// class to store data into subsets - NIAMH AND SADHBH
 class StoreData {
   
   void setup(){
     dateTable = new Table();
     mKTCarrierTable = new Table();
     
+    // SADHBH
     dateTable.addColumn("Flight Date");
     for(int i = 1; i < lines.length; i++){
       String[] partsBySpace = lines[i].split(" ");
@@ -13,6 +15,7 @@ class StoreData {
       }
     }
     
+    // NIAMH
     mKTCarrierTable.addColumn("MKT Carrier");
     for(int i2 = 1; i2 < lines.length; i2++){
       String[] partsByComma = lines[i2].split(",");
