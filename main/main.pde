@@ -1,5 +1,4 @@
-
-import java.util.Scanner;
+Import java.util.Scanner;
 
 // YUE PAN
 Parse parser;
@@ -15,8 +14,11 @@ PImage bgImg;
 final int EVENT_BUTTON1 = 1;
 final int EVENT_BUTTON2 = 2;
 final int EVENT_BUTTON3 = 3;
+final int EVENT_BUTTON4 = 4;
+final int EVENT_BUTTON5 = 5;
+final int EVENT_BUTTON6 = 6;
 final int EVENT_NULL = 0;
-ArrayList widgetList;
+ArrayList<Widget> widgetList;
 
 void setup() {
   size(1407, 946);
@@ -34,16 +36,22 @@ void setup() {
   StoreData storeData = new StoreData();
   storeData.setup();
   
-  // Interactive buttons - SADHBH
-  Widget widget1, widget2, widget3;
+  // Interactive buttons - ANNA
+  Widget widget1, widget2, widget3, widget4, widget5, widget6;
   widget1 = new Widget(40, 40, 180, 40, "Airline", color(80, 142, 228), myFont, EVENT_BUTTON1);
   widget2 = new Widget(260, 40, 180, 40, "Destination", color(88, 224, 104), myFont, EVENT_BUTTON2);
   widget3 = new Widget(480, 40, 180, 40, "Date", color(240, 188, 82), myFont, EVENT_BUTTON3);
-  widgetList = new ArrayList();
+  widget4 = new Widget(140, 600, 200, 55, "Pie Chart", color(143,194,211), myFont, EVENT_BUTTON4);
+  widget5 = new Widget(590, 600, 200, 55, "Line Graph", color(143,194,211), myFont, EVENT_BUTTON5);
+  widget6 = new Widget(1040, 600, 200, 55, "Bar Graph", color(143,194,211), myFont, EVENT_BUTTON6);
+  
+  widgetList = new ArrayList<Widget>();
   widgetList.add(widget1);
   widgetList.add(widget2);
   widgetList.add(widget3);
-  
+  widgetList.add(widget4);
+  widgetList.add(widget5);
+  widgetList.add(widget6);
 }
 
 void draw(){
@@ -69,4 +77,40 @@ void draw(){
     aWidget.draw();
   }
  }
+
+void mousePressed() {
+  for (Widget widget : widgetList) {
+    int event = widget.getEvent(mouseX, mouseY); 
+    switch (event) {
+      case EVENT_BUTTON1:
+        println("button 1!");
+        break;
+      case EVENT_BUTTON2:
+        println("button 2!");
+        break;
+      case EVENT_BUTTON3:
+        println("button 3!");
+        break;
+      case EVENT_BUTTON4:
+        println("button 4!");
+        break;
+      case EVENT_BUTTON5:
+        println("button 5!");
+        break;
+      case EVENT_BUTTON6:
+        println("button 6!");
+        break;
+    }
+  }
+}
+
+void mouseMoved() {
+  for (Widget widget : widgetList) {
+    int event = widget.getEvent(mouseX, mouseY);
+    if (event != EVENT_NULL) {
+      widget.mouseOver();
+    } else {
+      widget.mouseNotOver();
+    }
+  }
 }
