@@ -1,9 +1,16 @@
 // Niamh Murphy 20-21/03/24
+<<<<<<< Updated upstream
 //<<<<<<< HEAD
 import java.util.HashMap;
 
 //=======
 //>>>>>>> main
+=======
+
+import java.util.HashMap;
+
+
+>>>>>>> Stashed changes
 class LineGraph {
     HashMap<String, Integer> airlineCounts;
 
@@ -49,8 +56,12 @@ class LineGraph {
         
         float maxValue = getMaxValue();
         float labelStep = maxValue / 5; 
+<<<<<<< Updated upstream
         
 //=======
+=======
+
+>>>>>>> Stashed changes
        
 //>>>>>>> main
         for (int i = 0; i <= maxValue; i += labelStep) {
