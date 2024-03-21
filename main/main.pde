@@ -39,7 +39,6 @@ void setup(){
   StoreData storeData = new StoreData();
   storeData.setup();
   
-  // Interactive buttons - ANNA
   Widget widget1, widget2, widget3, widget4, widget5, widget6 ;
   widget1 = new Widget(40, 40, 180, 40, "Airline", color(80, 142, 228), myFont, EVENT_BUTTON1);
   widget2 = new Widget(260, 40, 180, 40, "Destination", color(88, 224, 104), myFont, EVENT_BUTTON2);
@@ -86,8 +85,8 @@ void draw(){
   }
 }
 
-void mousePressed(){
-  for (Widget widget : widgetList){
+void mousePressed() {
+  for (Widget widget : widgetList) {
     int event = widget.getEvent(mouseX, mouseY); 
     switch (event) {
       case EVENT_BUTTON1:
@@ -112,13 +111,12 @@ void mousePressed(){
   }
 }
 
-void mouseMoved(){
-  for(Widget widget : widgetList){
+void mouseMoved() {
+  for (Widget widget : widgetList) {
     int event = widget.getEvent(mouseX, mouseY);
-    if(event != EVENT_NULL){
+    if (event != EVENT_NULL) {
       widget.mouseOver();
-    }
-    else{
+    } else {
       widget.mouseNotOver();
     }
   }

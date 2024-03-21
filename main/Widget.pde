@@ -18,28 +18,27 @@ class Widget {
     this.widgetFont=widgetFont;
     labelColor= color(0);
     lineColor= color(0);
-  }
    
   void draw(){
     fill(widgetColor);
     stroke(lineColor);
     rect(x,y,width,height);
     fill(labelColor);
-    text(label, x+10, y+height-10);
+    text(label, x + 10, y + height - 10);
   }
   
-  void mouseOver(){
+  void mouseOver() { 
     labelColor = color(255);
     lineColor = color(255);
   }
   
-  void mouseNotOver(){
-    labelColor = color(0);
+  void mouseNotOver() {
+    labelColor = color(0); 
     lineColor = color(0);
   }
   
   int getEvent(int mX, int mY){
-     if(mX>x && mX < x+width && mY >y && mY <y+height){
+     if (mX > x && mX < x + width && mY > y && mY < y + height){
         return event;
      }
      return EVENT_NULL;
