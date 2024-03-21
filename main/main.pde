@@ -1,4 +1,5 @@
-
+import controlP5.*;
+import java.util.Scanner;
 // YUE PAN
 Parse parser;
 Table table;
@@ -7,6 +8,10 @@ Table mKTCarrierTable;
 String[] lines;
 int currentLineIndex = 0;
 PImage bgImg;
+ControlP5 cp5;
+Textlabel myTextlabel;
+Textarea myTextarea;
+Gui gui;
 Screen currentScreen, homeScreen, pieScreen;
 LineGraph lineGraph;
 
@@ -26,6 +31,7 @@ final int EVENT_NULL = 0;
 ArrayList<Widget> widgetList;
 
 void setup() {
+  cp5 = new ControlP5(this);      
   size(1407, 946);
   bgImg = loadImage("bgImg.png");
   PFont myFont = loadFont("Phosphate-Solid-28.vlw");
@@ -34,7 +40,8 @@ void setup() {
   // YUE PAN
   parser = new Parse();
   table = parser.createTable("flights2k.csv");
-  table.print();
+  gui = new Gui();                    
+  gui.textBox("results", 0, 50, 1407, 400,table);
   
   // NIAMH AND SADHBH
   lines = loadStrings("flights2k.csv");
@@ -82,7 +89,7 @@ void draw(){
     {
     case 0:
     // SADHBH
-    
+
     // NIAMH AND SADHBH
     if (currentLineIndex < lines.length) {
       if (currentLineIndex>0) {
@@ -102,6 +109,8 @@ void draw(){
       
       case 4:
       background(255);
+      myTextlabel.hide();
+      myTextarea.hide();
       PieChart airlinePieChart = new PieChart(mKTCarrierTable);
       airlinePieChart.draw(width/2, height/2, 400);
       Widget aWidget = (Widget)widgetList.get(widgetList.size() - 1);
@@ -110,6 +119,8 @@ void draw(){
       
       case 5:
       background(255);
+      myTextlabel.hide();
+      myTextarea.hide();
       // NIAMH  
       lineGraph = new LineGraph( airlineCounts);
       lineGraph.draw(40, 100, 1200, 500);
@@ -120,9 +131,14 @@ void draw(){
       case 6:
       background(255);
         // AOIFE
+      myTextlabel.hide();
+      myTextarea.hide();
       Widget cWidget = (Widget)widgetList.get(widgetList.size() - 1);
       cWidget.draw();
       barGraph.draw();
+      break;
+      
+      case -1:
       break;
       
     }

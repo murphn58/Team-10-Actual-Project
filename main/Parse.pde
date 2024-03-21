@@ -25,4 +25,62 @@ class Parse{
   return flightsPerDate;
   }
   
+   String getData(Table table){
+    String data = "";
+    for(TableRow row : table.rows())
+    {
+      for(int i = 0; i < row.getColumnCount(); i++)
+      {
+        data += row.getString(i) + ",";
+      }
+        data += "\n";
+    }
+    return data;
+  }
+  
+  int[] getColumnWidths(Table table){
+    int[] maxWidths = new int[table.getColumnCount()];
+    int minimumWidth = 6;
+     
+    for(TableRow row : table.rows())
+    {
+      for(int i = 0; i < row.getColumnCount(); i++)
+      {
+        maxWidths[i] = Math.max(maxWidths[i], (row.getString(i)).length());
+        if(maxWidths[i] < minimumWidth)
+        {
+          maxWidths[i] = minimumWidth;
+        }
+      }
+    }
+    
+    return maxWidths;
+  }
+  
+  String formatData(Table table)
+  {
+    int[] maxWidths = getColumnWidths(table);
+    
+    StringBuilder output = new StringBuilder();
+    
+    for(TableRow row : table.rows())
+    {
+      for(int i = 0; i < row.getColumnCount(); i++)
+      {
+        output.append(row.getString(i));
+         for(int j = (row.getString(i)).length(); j < maxWidths[i]; j++)
+         {
+           output.append(" ");
+         }
+        
+        if(i < row.getColumnCount() - 1)
+        {
+           output.append(" ");
+        }
+      }
+      output.append("\n");
+    }
+    
+    return output.toString();
+  }
 }
