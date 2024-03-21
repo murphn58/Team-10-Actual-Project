@@ -54,6 +54,11 @@ class PieChart {
     PFont pieChartLabel = loadFont("Phosphate-Solid-28.vlw");
     textFont(pieChartLabel, 28);
     fill(0);
-    text("No. of Flights from Each Airline", 480, 40);
+    text("No. of Flights from Each Airline", 480, 120);
+    
+    PFont pieChartKey = loadFont("Phosphate-Solid-28.vlw");
+    textFont(pieChartKey, 28);
+    fill(0);
+    text("AA = American  \nAS = Alaska  \nB6 = JetBlue \nDL = Delta \nF9 = Frontier \nG4 = Allegiant \nHA = Hawaiian \nNK = Spirit \nUA = United \nWN = Southwest", 120, 400);
   } 
 }
