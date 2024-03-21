@@ -12,6 +12,9 @@ int currentLineIndex = 0;
 PImage bgImg;
 LineGraph lineGraph;
 
+// AOIFE 20/3/24
+BarGraph barGraph;
+
 //Interactive buttons - SADHBH
 final int EVENT_BUTTON1 = 1;
 final int EVENT_BUTTON2 = 2;
@@ -54,6 +57,14 @@ void setup(){
   widgetList.add(widget4);
   widgetList.add(widget5);
   widgetList.add(widget6);
+  
+  // Extract dates and count flights for each date
+  HashMap<String, Integer> flightsPerDate = parser.extractDateAndCountFlights(table);
+
+  // Create a list of dates and flight counts for the bar graph - AOIFE 
+  ArrayList<String> dates = new ArrayList<String>(flightsPerDate.keySet());
+  ArrayList<Integer> flightCounts = new ArrayList<Integer>(flightsPerDate.values());
+  barGraph = new BarGraph(dates, flightCounts, 200, 600, 20, 400);
 }
 
 
@@ -68,6 +79,8 @@ void draw(){
   lineGraph = new LineGraph( airlineCounts);
   lineGraph.draw(40, 100, 1200, 500);
   
+  // AOIFE
+  barGraph.draw();
   //// NIAMH AND SADHBH
   //if (currentLineIndex < lines.length) {
   //  if (currentLineIndex>0) {
