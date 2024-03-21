@@ -20,7 +20,7 @@ final int EVENT_BUTTON4 = 4;
 final int EVENT_BUTTON5 = 5;
 final int EVENT_BUTTON6 = 6;
 final int EVENT_NULL = 0;
-ArrayList<Widget> widgetList;
+//ArrayList<Widget> widgetList;
 
 void setup(){
   // NIAMH AND SADHBH
@@ -69,14 +69,14 @@ void draw(){
   lineGraph.draw(40, 100, 1200, 500);
   
   //// NIAMH AND SADHBH
-  //if (currentLineIndex < lines.length) {
-  //  if (currentLineIndex>0) {
-  //    fill(0);
-  //    text(lines[currentLineIndex], 40, 450);
-  //    delay(400);
-  //  }
-  //  currentLineIndex++;
-  //}
+  if (currentLineIndex < lines.length) {
+    if (currentLineIndex>0) {
+      fill(0);
+      text(lines[currentLineIndex], 40, 450);
+      delay(400);
+    }
+    currentLineIndex++;
+  }
   
   // Interactive buttons - SADHBH
   for (int i = 0; i<widgetList.size(); i++) {

@@ -7,6 +7,8 @@ class Widget {
   color widgetColor, labelColor, lineColor;
   PFont widgetFont;
   
+  static final int EVENT_NULL = 0;
+  
   Widget(int x,int y, int width, int height, String label, color widgetColor, PFont widgetFont, int event){
     this.x=x; 
     this.y=y; 
