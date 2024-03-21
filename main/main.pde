@@ -1,14 +1,16 @@
-Import java.util.Scanner;
+import java.util.Scanner;
 
 // YUE PAN
 Parse parser;
 Table table;
+
+// NIAMH AND SADHBH
 Table dateTable;
 Table mKTCarrierTable;
 String[] lines;
 int currentLineIndex = 0;
 PImage bgImg;
-
+LineGraph lineGraph;
 
 //Interactive buttons - SADHBH
 final int EVENT_BUTTON1 = 1;
@@ -20,7 +22,8 @@ final int EVENT_BUTTON6 = 6;
 final int EVENT_NULL = 0;
 ArrayList<Widget> widgetList;
 
-void setup() {
+void setup(){
+  // NIAMH AND SADHBH
   size(1407, 946);
   bgImg = loadImage("bgImg.png");
   PFont myFont = loadFont("Phosphate-Solid-28.vlw");
@@ -36,16 +39,15 @@ void setup() {
   StoreData storeData = new StoreData();
   storeData.setup();
   
-  // Interactive buttons - ANNA
-  Widget widget1, widget2, widget3, widget4, widget5, widget6;
+  Widget widget1, widget2, widget3, widget4, widget5, widget6 ;
   widget1 = new Widget(40, 40, 180, 40, "Airline", color(80, 142, 228), myFont, EVENT_BUTTON1);
   widget2 = new Widget(260, 40, 180, 40, "Destination", color(88, 224, 104), myFont, EVENT_BUTTON2);
   widget3 = new Widget(480, 40, 180, 40, "Date", color(240, 188, 82), myFont, EVENT_BUTTON3);
-  widget4 = new Widget(140, 600, 200, 55, "Pie Chart", color(143,194,211), myFont, EVENT_BUTTON4);
-  widget5 = new Widget(590, 600, 200, 55, "Line Graph", color(143,194,211), myFont, EVENT_BUTTON5);
-  widget6 = new Widget(1040, 600, 200, 55, "Bar Graph", color(143,194,211), myFont, EVENT_BUTTON6);
+  widget4 = new Widget(700, 40, 180, 40, "PieChart", color(80, 142, 228), myFont, EVENT_BUTTON4);
+  widget5 = new Widget(920, 40, 180, 40, "Line Graph", color(88, 224, 104), myFont, EVENT_BUTTON5);
+  widget6 = new Widget(1140, 40, 180, 40, "Bar Graph", color(240, 188, 82), myFont, EVENT_BUTTON6);
   
-  widgetList = new ArrayList<Widget>();
+  widgetList = new ArrayList();
   widgetList.add(widget1);
   widgetList.add(widget2);
   widgetList.add(widget3);
@@ -54,29 +56,34 @@ void setup() {
   widgetList.add(widget6);
 }
 
+
 void draw(){
   background(bgImg);
   
   // SADHBH
   PieChart airlinePieChart = new PieChart(mKTCarrierTable);
-  airlinePieChart.draw(width/2, height/2, 400);
+  airlinePieChart.draw(width/2, height/2, 600);
   
-  // NIAMH AND SADHBH
-  if (currentLineIndex < lines.length) {
-    if (currentLineIndex>0) {
-      fill(0);
-      text(lines[currentLineIndex], 40, 450);
-      delay(400);
-    }
-    currentLineIndex++;
-  }
+  // NIAMH  
+  lineGraph = new LineGraph( airlineCounts);
+  lineGraph.draw(40, 100, 1200, 500);
+  
+  //// NIAMH AND SADHBH
+  //if (currentLineIndex < lines.length) {
+  //  if (currentLineIndex>0) {
+  //    fill(0);
+  //    text(lines[currentLineIndex], 40, 450);
+  //    delay(400);
+  //  }
+  //  currentLineIndex++;
+  //}
   
   // Interactive buttons - SADHBH
   for (int i = 0; i<widgetList.size(); i++) {
     Widget aWidget = (Widget)widgetList.get(i);
     aWidget.draw();
   }
- }
+}
 
 void mousePressed() {
   for (Widget widget : widgetList) {
