@@ -1,8 +1,5 @@
-<<<<<<< Updated upstream
-// widget class for buttons on screen - ANNA 20/3/24
+// widget class for buttons on screen - ANNA
 
-=======
->>>>>>> Stashed changes
 class Widget {
   int x, y, width, height;
   String label;
