@@ -1,4 +1,9 @@
 // Niamh Murphy 20-21/03/24
+<<<<<<< HEAD
+import java.util.HashMap;
+
+=======
+>>>>>>> main
 class LineGraph {
     HashMap<String, Integer> airlineCounts;
 
@@ -40,10 +45,18 @@ class LineGraph {
 
     void drawLabels(float x, float y, float w, float h) {
         fill(0);
+<<<<<<< HEAD
+        textAlign(CENTER, CENTER);
+        
+        float maxValue = getMaxValue();
+        float labelStep = maxValue / 5; 
+        
+=======
         
         float maxValue = getMaxValue();
         float labelStep = maxValue / 5; 
        
+>>>>>>> main
         for (int i = 0; i <= maxValue; i += labelStep) {
         float labelX = x - 10; 
         float labelY = y + h - map(i, 0, maxValue, 0, h);
