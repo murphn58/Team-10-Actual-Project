@@ -1,4 +1,7 @@
+//<<<<<<< Updated upstream
 
+//=======
+//>>>>>>> Stashed changes
 import java.util.Scanner;
 
 // YUE PAN
@@ -9,6 +12,7 @@ Table mKTCarrierTable;
 String[] lines;
 int currentLineIndex = 0;
 PImage bgImg;
+LineGraph lineGraph;
 
 
 //Interactive buttons - SADHBH
@@ -53,6 +57,11 @@ void draw(){
   PieChart airlinePieChart = new PieChart(mKTCarrierTable);
   airlinePieChart.draw(width/2, height/2, 400);
   
+  // Niamh 
+   lineGraph = new LineGraph( airlineCounts);
+   lineGraph.draw(40, 100, 1200, 500);
+  
+  
   // NIAMH AND SADHBH
   if (currentLineIndex < lines.length) {
     if (currentLineIndex>0) {
@@ -69,3 +78,43 @@ void draw(){
     aWidget.draw();
   }
  }
+//<<<<<<< Updated upstream
+//=======
+
+void mousePressed() {
+  for (Widget widget : widgetList) {
+    int event = widget.getEvent(mouseX, mouseY); 
+    switch (event) {
+      case EVENT_BUTTON1:
+        println("button 1!");
+        break;
+      case EVENT_BUTTON2:
+        println("button 2!");
+        break;
+      case EVENT_BUTTON3:
+        println("button 3!");
+        break;
+      case EVENT_BUTTON4:
+        println("button 4!");
+        break;
+      case EVENT_BUTTON5:
+        println("button 5!");
+        break;
+      case EVENT_BUTTON6:
+        println("button 6!");
+        break;
+    }
+  }
+}
+
+void mouseMoved() {
+  for (Widget widget : widgetList) {
+    int event = widget.getEvent(mouseX, mouseY);
+    if (event != EVENT_NULL) {
+      widget.mouseOver();
+    } else {
+      widget.mouseNotOver();
+    }
+  }
+}
+//>>>>>>> Stashed changes
