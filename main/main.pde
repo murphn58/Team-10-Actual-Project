@@ -20,7 +20,7 @@ final int EVENT_BUTTON4 = 4;
 final int EVENT_BUTTON5 = 5;
 final int EVENT_BUTTON6 = 6;
 final int EVENT_NULL = 0;
-//ArrayList<Widget> widgetList;
+ArrayList<Widget> widgetList;
 
 void setup(){
   // NIAMH AND SADHBH

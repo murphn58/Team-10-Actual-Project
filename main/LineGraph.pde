@@ -46,7 +46,6 @@ class LineGraph {
     void drawLabels(float x, float y, float w, float h) {
         fill(0);
 //<<<<<<< HEAD
-        textAlign(CENTER, CENTER);
         
         float maxValue = getMaxValue();
         float labelStep = maxValue / 5; 
