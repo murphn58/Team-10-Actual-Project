@@ -1,4 +1,4 @@
-// YUE PAN
+
 class Parse{
   Table table;
   
@@ -9,4 +9,5 @@ class Parse{
     table = loadTable(fileName, "header");
     return table;
   }
+
 }

@@ -1,15 +1,15 @@
+
 import java.util.Scanner;
 
 // YUE PAN
 Parse parser;
 Table table;
-
-// NIAMH AND SADHBH
 Table dateTable;
 Table mKTCarrierTable;
 String[] lines;
 int currentLineIndex = 0;
 PImage bgImg;
+
 
 //Interactive buttons - SADHBH
 final int EVENT_BUTTON1 = 1;
@@ -18,8 +18,7 @@ final int EVENT_BUTTON3 = 3;
 final int EVENT_NULL = 0;
 ArrayList widgetList;
 
-void setup(){
-  // NIAMH AND SADHBH
+void setup() {
   size(1407, 946);
   bgImg = loadImage("bgImg.png");
   PFont myFont = loadFont("Phosphate-Solid-28.vlw");
@@ -44,8 +43,8 @@ void setup(){
   widgetList.add(widget1);
   widgetList.add(widget2);
   widgetList.add(widget3);
+  
 }
-
 
 void draw(){
   background(bgImg);
@@ -69,4 +68,5 @@ void draw(){
     Widget aWidget = (Widget)widgetList.get(i);
     aWidget.draw();
   }
+ }
 }
