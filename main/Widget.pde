@@ -1,4 +1,4 @@
-// widget class for buttons on screen - ANNA
+// widget class for buttons on screen - ANNA 20/3/24
 
 class Widget {
   int x, y, width, height;

@@ -10,6 +10,7 @@ Table mKTCarrierTable;
 String[] lines;
 int currentLineIndex = 0;
 PImage bgImg;
+LineGraph lineGraph;
 
 //Interactive buttons - SADHBH
 final int EVENT_BUTTON1 = 1;
@@ -63,6 +64,10 @@ void draw(){
   // SADHBH
   PieChart airlinePieChart = new PieChart(mKTCarrierTable);
   airlinePieChart.draw(width/2, height/2, 600);
+  
+  // NIAMH  
+  lineGraph = new LineGraph( airlineCounts);
+  lineGraph.draw(40, 100, 1200, 500);
   
   //// NIAMH AND SADHBH
   //if (currentLineIndex < lines.length) {
