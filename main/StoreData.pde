@@ -1,4 +1,4 @@
-// class to store data into subsets - NIAMH AND SADHBH 13/3/24
+// class to store data into subsets - NIAMH AND SADHBH
 class StoreData {
   
   void setup(){
