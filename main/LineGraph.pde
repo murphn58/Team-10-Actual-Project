@@ -1,5 +1,4 @@
 // Niamh Murphy 20-21/03/24
-
 class LineGraph {
     HashMap<String, Integer> airlineCounts;
 
@@ -44,7 +43,7 @@ class LineGraph {
         
         float maxValue = getMaxValue();
         float labelStep = maxValue / 5; 
-        
+       
         for (int i = 0; i <= maxValue; i += labelStep) {
         float labelX = x - 10; 
         float labelY = y + h - map(i, 0, maxValue, 0, h);
