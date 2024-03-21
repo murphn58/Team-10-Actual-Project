@@ -1,12 +1,10 @@
-//<<<<<<< Updated upstream
-
-//=======
-//>>>>>>> Stashed changes
 import java.util.Scanner;
 
 // YUE PAN
 Parse parser;
 Table table;
+
+// NIAMH AND SADHBH
 Table dateTable;
 Table mKTCarrierTable;
 String[] lines;
@@ -14,15 +12,18 @@ int currentLineIndex = 0;
 PImage bgImg;
 LineGraph lineGraph;
 
-
 //Interactive buttons - SADHBH
 final int EVENT_BUTTON1 = 1;
 final int EVENT_BUTTON2 = 2;
 final int EVENT_BUTTON3 = 3;
+final int EVENT_BUTTON4 = 4;
+final int EVENT_BUTTON5 = 5;
+final int EVENT_BUTTON6 = 6;
 final int EVENT_NULL = 0;
-ArrayList widgetList;
+ArrayList<Widget> widgetList;
 
-void setup() {
+void setup(){
+  // NIAMH AND SADHBH
   size(1407, 946);
   bgImg = loadImage("bgImg.png");
   PFont myFont = loadFont("Phosphate-Solid-28.vlw");
@@ -38,48 +39,51 @@ void setup() {
   StoreData storeData = new StoreData();
   storeData.setup();
   
-  // Interactive buttons - SADHBH
-  Widget widget1, widget2, widget3;
+  Widget widget1, widget2, widget3, widget4, widget5, widget6 ;
   widget1 = new Widget(40, 40, 180, 40, "Airline", color(80, 142, 228), myFont, EVENT_BUTTON1);
   widget2 = new Widget(260, 40, 180, 40, "Destination", color(88, 224, 104), myFont, EVENT_BUTTON2);
   widget3 = new Widget(480, 40, 180, 40, "Date", color(240, 188, 82), myFont, EVENT_BUTTON3);
+  widget4 = new Widget(700, 40, 180, 40, "PieChart", color(80, 142, 228), myFont, EVENT_BUTTON4);
+  widget5 = new Widget(920, 40, 180, 40, "Line Graph", color(88, 224, 104), myFont, EVENT_BUTTON5);
+  widget6 = new Widget(1140, 40, 180, 40, "Bar Graph", color(240, 188, 82), myFont, EVENT_BUTTON6);
+  
   widgetList = new ArrayList();
   widgetList.add(widget1);
   widgetList.add(widget2);
   widgetList.add(widget3);
-  
+  widgetList.add(widget4);
+  widgetList.add(widget5);
+  widgetList.add(widget6);
 }
+
 
 void draw(){
   background(bgImg);
   
   // SADHBH
   PieChart airlinePieChart = new PieChart(mKTCarrierTable);
-  airlinePieChart.draw(width/2, height/2, 400);
+  airlinePieChart.draw(width/2, height/2, 600);
   
-  // Niamh 
-   lineGraph = new LineGraph( airlineCounts);
-   lineGraph.draw(40, 100, 1200, 500);
+  // NIAMH  
+  lineGraph = new LineGraph( airlineCounts);
+  lineGraph.draw(40, 100, 1200, 500);
   
-  
-  // NIAMH AND SADHBH
-  if (currentLineIndex < lines.length) {
-    if (currentLineIndex>0) {
-      fill(0);
-      text(lines[currentLineIndex], 40, 450);
-      delay(400);
-    }
-    currentLineIndex++;
-  }
+  //// NIAMH AND SADHBH
+  //if (currentLineIndex < lines.length) {
+  //  if (currentLineIndex>0) {
+  //    fill(0);
+  //    text(lines[currentLineIndex], 40, 450);
+  //    delay(400);
+  //  }
+  //  currentLineIndex++;
+  //}
   
   // Interactive buttons - SADHBH
   for (int i = 0; i<widgetList.size(); i++) {
     Widget aWidget = (Widget)widgetList.get(i);
     aWidget.draw();
   }
- }
-//<<<<<<< Updated upstream
-//=======
+}
 
 void mousePressed() {
   for (Widget widget : widgetList) {
@@ -117,4 +121,3 @@ void mouseMoved() {
     }
   }
 }
-//>>>>>>> Stashed changes
