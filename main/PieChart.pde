@@ -52,9 +52,9 @@ class PieChart {
     }
     
     PFont pieChartLabel = loadFont("Phosphate-Solid-28.vlw");
-    textFont(pieChartLabel, 28);
+    textFont(pieChartLabel, 40);
     fill(0);
-    text("No. of Flights from Each Airline", 480, 120);
+    text("No. of Flights from Each Airline", 380, 880);
     
     PFont pieChartKey = loadFont("Phosphate-Solid-28.vlw");
     textFont(pieChartKey, 28);
