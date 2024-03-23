@@ -41,7 +41,7 @@ void setup() {
   parser = new Parse();
   table = parser.createTable("flights2k.csv");
   gui = new Gui();                    
-  gui.textBox("results", 0, 50, 1407, 400,table);
+  gui.textBox("results", 0, 100, 1407, 400,table);
   
   // NIAMH AND SADHBH
   lines = loadStrings("flights2k.csv");
@@ -91,20 +91,23 @@ void draw(){
     // SADHBH
 
     // NIAMH AND SADHBH
-    if (currentLineIndex < lines.length) {
-      if (currentLineIndex>0) {
-        fill(0);
-        text(lines[currentLineIndex], 40, 450);
-        delay(400);
-      }
-      currentLineIndex++;
-    }
+    //if (currentLineIndex < lines.length) {
+    //  if (currentLineIndex>0) {
+      //  fill(0);
+       // text(lines[currentLineIndex], 40, 450);
+       // delay(400);
+     // }
+     // currentLineIndex++;
+   // }
     
     // Interactive buttons - SADHBH
     for (int i = 0; i<widgetList.size(); i++) {
       Widget aWidget = (Widget)widgetList.get(i);
       aWidget.draw();
     }
+      myTextlabel.show();
+      myTextarea.show();
+      rect(0, 100, 1407, 400);fill(0);
       break;
       
       case 4:
