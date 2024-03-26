@@ -13,6 +13,7 @@ class LineGraph {
         drawAxes(x, y, w, h);
         drawLines(x, y, w, h);
         drawLabels(x, y, w, h);
+        text("Number of flights per airline", 550, 30);
     }
 
     void drawAxes(float x, float y, float w, float h) {
