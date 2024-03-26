@@ -2,9 +2,19 @@
 class LineGraph {
     HashMap<String, Integer> airlineCounts;
 
-    LineGraph(HashMap<String, Integer> airlineCounts) {
-        this.airlineCounts = airlineCounts;
+    LineGraph(Table mKTCarrierTable) {
+          airlineCounts = new HashMap<>();                                                           // initializes 'airlineCounts' HashMap. 
+          countAirlines(mKTCarrierTable);                                                            // calls countAirlines() method.
+
     }
+    
+     // Method to count occurrences of each airline in table provided
+  void countAirlines(Table mKTCarrierTable){
+    for(TableRow row : mKTCarrierTable.rows()) {                                               // iterates through each row of table.
+      String airline = row.getString("MKT Carrier");                                           // retrieves String of current row, representing airline name.
+      airlineCounts.put(airline, airlineCounts.getOrDefault(airline, 0) + 1);                  // increments count of airline in airlineCounts HashMap, if airline not present, it initializes count to 1. 
+    }
+  }
 
     void draw(float x, float y, float w, float h) {
         drawAxes(x, y, w, h);

@@ -2,10 +2,8 @@
 
 import java.util.HashMap;                                                                      // a collection class in Java that stores items in key/value pairs.
 
-// made global so can be used for line graph.
-HashMap<String, Integer> airlineCounts;                                                        // declares HashMap to store airline names (keys), and corresponding counts (values) as integers.
-
 class PieChart { 
+  HashMap<String, Integer> airlineCounts;  // declares HashMap to store airline names (keys), and corresponding counts (values) as integers.
   HashMap<String, Integer> airlineColors;                                                      // declares HashMap to store airline names (keys), and corresponding colors as integers. 
   
   PieChart(Table mKTCarrierTable) {                                                           
