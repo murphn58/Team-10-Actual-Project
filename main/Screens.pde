@@ -55,4 +55,8 @@ class Screen{
       {
        return screenWidgets;
       }
+<<<<<<< Updated upstream
 }      
+=======
+}
+>>>>>>> Stashed changes
