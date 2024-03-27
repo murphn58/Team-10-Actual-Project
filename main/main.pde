@@ -133,4 +133,18 @@ void mouseMoved() {
       widget.mouseNotOver();
     }
   }
+<<<<<<< Updated upstream
 }
+=======
+}
+void showTextbox(String name, int x, int y) {
+  cp5.addTextfield(name)
+     .setPosition(x, y) 
+     .setSize(200, 20)
+     .setAutoClear(false) // dis
+     .setFocus(true);  // ready for input upon bein disaplayed
+}
+void hideTextbox(String name) {
+  cp5.remove(name); // Remove the textfield by its name
+}
+>>>>>>> Stashed changes
