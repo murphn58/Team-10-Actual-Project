@@ -64,7 +64,18 @@ void setup(){
   // Create a list of dates and flight counts for the bar graph - AOIFE 
   ArrayList<String> dates = new ArrayList<String>(flightsPerDate.keySet());
   ArrayList<Integer> flightCounts = new ArrayList<Integer>(flightsPerDate.values());
+<<<<<<< Updated upstream
   barGraph = new BarGraph(dates, flightCounts, 200, 600, 20, 400);
+=======
+  barGraph = new BarGraph(table, 10, 600, 20, 400);
+  query = new Query(table);
+  
+  // Niamh 27/03/24
+  mouseImg = loadImage("plane.png"); // load image to replace mouse
+  mouseImg.resize(80, 0); // choose size of plane image
+  noCursor(); // remove default mouse
+
+>>>>>>> Stashed changes
 }
 
 
