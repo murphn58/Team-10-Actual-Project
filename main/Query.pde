@@ -9,7 +9,31 @@ class Query{
   Table getTable(){
     return returnTable;
   }
-  
+    void searchDates(String input) throws Exception// expects "MM/DD/YY-MM/DD/YY" in form of "start-end"
+  {
+    String[] dateArray = input.split("-", 2);
+    Date startDate = new SimpleDateFormat("MM/dd/yy").parse(dateArray[0]);
+    Date endDate = new SimpleDateFormat("MM/dd/yy").parse(dateArray[1]);
+    
+    Date rowDate = null;
+    Table tempTable = this.returnTable.copy();
+    tempTable.clearRows();
+    
+    for(TableRow row : returnTable.rows())
+    {
+       if(row.getString(0) != "")
+       {
+         rowDate = new SimpleDateFormat("MM/dd/yyyy HH:mm").parse(row.getString(0));
+
+         if(rowDate.before(startDate) == false && rowDate.after(endDate) == false)
+         {
+           tempTable.addRow(row);
+         }
+       }
+    }
+    
+    this.returnTable = tempTable;
+  }
   void searchStates(String input){   // changes the attached returnTable, expected "D:INPUT" or "O:INPUT" for destination or origin, can tell the difference between airport/state, abbreviations, full location name, and WAC
     // 
     int targetColumn = 0;
