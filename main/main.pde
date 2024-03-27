@@ -67,7 +67,7 @@ void setup() {
   widget4 = new Widget(140, 600, 200, 55, "Pie Chart", color(143,194,211), myFont, EVENT_BUTTON4);
   widget5 = new Widget(590, 600, 200, 55, "Line Graph", color(143,194,211), myFont, EVENT_BUTTON5);
   widget6 = new Widget(1040, 600, 200, 55, "Bar Graph", color(143,194,211), myFont, EVENT_BUTTON6);
-  homeWidget = new Widget(1250, 850, 65, 40, "Home", color(200, 50, 100), myFont, HOME_BUTTON);
+  homeWidget = new Widget(1250, 750, 65, 40, "Home", color(200, 50, 100), myFont, HOME_BUTTON);
   submitWidget = new Widget(705, 45, 80, 30, "Submit", color( 100,0,200), myFont, SUBMIT_BUTTON);
   resetWidget = new Widget(825, 45, 80, 30, "Reset", color(255), myFont, RESET_BUTTON);
   
