@@ -10,6 +10,7 @@ Table mKTCarrierTable;
 String[] lines;
 int currentLineIndex = 0;
 PImage bgImg;
+PImage mouseImg; // declare a variable for the mouse image
 ControlP5 cp5;
 Textlabel myTextlabel;
 Textarea myTextarea;
@@ -95,6 +96,12 @@ void setup() {
   barGraph = new BarGraph(dates, flightCounts, 200, 600, 20, 400);
 
   query = new Query(table);
+  
+  // Niamh 27/03/24
+  mouseImg = loadImage("plane.png"); // load image to replace mouse
+  mouseImg.resize(80, 0); // choose size of plane image
+  noCursor(); // remove default mouse
+
 }
 
 void draw(){
@@ -150,6 +157,11 @@ void draw(){
       break;
       
     }
+     // Niamh 27/03/24
+    float imgX = mouseX - mouseImg.width / 2; // image follows x-value of mouse
+    float imgY = mouseY - mouseImg.height / 2; // image follows y-value of mouse
+    image(mouseImg, imgX, imgY); // draw plane image where mouseX and mouseY are
+
  }
 
 //BUTTONS + TEXTBOX - ANNA 
