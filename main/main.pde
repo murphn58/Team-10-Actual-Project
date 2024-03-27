@@ -17,6 +17,11 @@ Gui gui;
 Screen currentScreen, homeScreen, pieScreen;
 LineGraph lineGraph;
 
+ // TEXTBOX - ANNA 
+boolean isAirlineTextboxVisible = false;
+boolean isDestinationTextboxVisible = false;
+boolean isDateTextboxVisible = false;
+
 // AOIFE 20/3/24
 BarGraph barGraph;
 
@@ -149,18 +154,37 @@ void draw(){
     }
  }
 
+//BUTTONS + TEXTBOX - ANNA 
 void mousePressed() {
   for (Widget widget : widgetList) {
     int event = widget.getEvent(mouseX, mouseY); 
     switch (event) {
       case EVENT_BUTTON1:
-        println("button 1!");
+        println("airline");
+        if (isAirlineTextboxVisible) {
+          hideTextbox("search airlines");
+        } else {
+          showTextbox("search airlines", 40, 80);
+        }
+        isAirlineTextboxVisible = !isAirlineTextboxVisible; // Toggle the visibility status
         break;
       case EVENT_BUTTON2:
-        println("button 2!");
+        println("destination");
+        if (isDestinationTextboxVisible) {
+          hideTextbox("search destination");
+        } else {
+          showTextbox("search destination", 260, 80);
+        }
+        isDestinationTextboxVisible = !isDestinationTextboxVisible; // Toggle the visibility status
         break;
       case EVENT_BUTTON3:
-        println("button 3!");
+        println("date");
+        if (isDateTextboxVisible) {
+          hideTextbox("search date");
+        } else {
+          showTextbox("search date", 480, 80);
+        }
+        isDateTextboxVisible = !isDateTextboxVisible; // Toggle the visibility status
         break;
       case EVENT_BUTTON4:
         tempSwitch = 4;
@@ -180,7 +204,6 @@ void mousePressed() {
     }
   }
 }
-
 void mouseMoved() {
   for (Widget widget : widgetList) {
     int event = widget.getEvent(mouseX, mouseY);
@@ -190,4 +213,14 @@ void mouseMoved() {
       widget.mouseNotOver();
     }
   }
+}
+void showTextbox(String name, int x, int y) { 
+  cp5.addTextfield(name)
+     .setPosition(x, y) 
+     .setSize(200, 20)
+     .setAutoClear(false) // Disables automatic clearing of the text field
+     .setFocus(true);  // ready for input upon bein disaplayed
+}
+void hideTextbox(String name) {
+  cp5.remove(name); // Remove the textfield by its name
 }
