@@ -9,31 +9,7 @@ class Query{
   Table getTable(){
     return returnTable;
   }
-    void searchDates(String input) throws Exception// expects "MM/DD/YY-MM/DD/YY" in form of "start-end"
-  {
-    String[] dateArray = input.split("-", 2);
-    Date startDate = new SimpleDateFormat("MM/dd/yy").parse(dateArray[0]);
-    Date endDate = new SimpleDateFormat("MM/dd/yy").parse(dateArray[1]);
-    
-    Date rowDate = null;
-    Table tempTable = this.returnTable.copy();
-    tempTable.clearRows();
-    
-    for(TableRow row : returnTable.rows())
-    {
-       if(row.getString(0) != "")
-       {
-         rowDate = new SimpleDateFormat("MM/dd/yyyy HH:mm").parse(row.getString(0));
-
-         if(rowDate.before(startDate) == false && rowDate.after(endDate) == false)
-         {
-           tempTable.addRow(row);
-         }
-       }
-    }
-    
-    this.returnTable = tempTable;
-  }
+  
   void searchStates(String input){   // changes the attached returnTable, expected "D:INPUT" or "O:INPUT" for destination or origin, can tell the difference between airport/state, abbreviations, full location name, and WAC
     // 
     int targetColumn = 0;
@@ -95,13 +71,13 @@ class Query{
       {
         if(row.getString("ARR_TIME").equals("") == false && row.getString("CRS_ARR_TIME").equals("") == false)
         {
-          int actualArrivalTime = Integer.parseInt(row.getString("ARR_TIME"));
+          int actualArrivalTime = Integer.parseInt(row.getString("ARR_TIME"));                                // reading the String time and making it into an int so it can be sorted using sort()
           int plannedArrivalTime = Integer.parseInt(row.getString("CRS_ARR_TIME"));
           
           int difference = actualArrivalTime - plannedArrivalTime;
           if(difference < 0)
           {
-            if(actualArrivalTime < 500 && plannedArrivalTime >= 2200)    // if the difference changed days
+            if(actualArrivalTime < 500 && plannedArrivalTime >= 2200)    // if the difference changed days, as in if the planned arrival time is the day before the actual arrival time
             {
               difference = actualArrivalTime + 2400 - plannedArrivalTime;
             }
@@ -129,13 +105,22 @@ class Query{
     return tempReturnTable;
   }
   
-  void sortByAirline(String airlinePrefix){
-    
-    returnTable = filterTable(returnTable, airlinePrefix, 1); // tries states
+  // Ella
+ void reset(){
+   // if reset button is pressed
+   // resets the table attached to query to the original query
+   
    
  }
- void reset(){
-   returnTable = table;
-  }
+ 
+ void sortByAirline(String airlinePrefix){
+    
+    returnTable = filterTable(returnTable, airlinePrefix, 1); // tries states
+
+   
+   // this only sorts the new table
+   
+ }
+  
   
 }
