@@ -1,8 +1,10 @@
 import controlP5.*;
 import java.util.Scanner;
 // YUE PAN
+Query query;
 Parse parser;
 Table table;
+Table tempTable;
 Table dateTable;
 Table mKTCarrierTable;
 String[] lines;
@@ -28,6 +30,8 @@ final int EVENT_BUTTON5 = 5;
 final int EVENT_BUTTON6 = 6;
 final int HOME_BUTTON   = 7;
 final int EVENT_NULL = 0;
+final int SUBMIT_BUTTON = 8;
+
 ArrayList<Widget> widgetList;
 
 void setup() {
@@ -79,6 +83,12 @@ void setup() {
   ArrayList<String> dates = new ArrayList<String>(flightsPerDate.keySet());
   ArrayList<Integer> flightCounts = new ArrayList<Integer>(flightsPerDate.values());
   barGraph = new BarGraph(dates, flightCounts, 200, 600, 20, 400);
+
+
+  // declare query
+  // read in data from text boxes
+  query = new Query(table);
+ // query.searchStates("O:NY");
 
 }
 
@@ -172,6 +182,17 @@ void mousePressed() {
       case HOME_BUTTON:
         tempSwitch = 0;
         break;
+      case SUBMIT_BUTTON:
+      //if text has changed
+    //  if(airline !- airline)
+     // QUERY.KFKF
+      
+     // if(
+      
+      
+      
+        //
+        // needs to call query
     }
   }
 }
