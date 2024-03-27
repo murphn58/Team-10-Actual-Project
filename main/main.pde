@@ -6,6 +6,14 @@ Table mKTCarrierTable;
 String[] lines;
 int currentLineIndex = 0;
 PImage bgImg;
+<<<<<<< Updated upstream
+=======
+PImage mouseImg; // declare a variable for the mouse image
+ControlP5 cp5;
+Textlabel myTextlabel;
+Textarea myTextarea;
+Gui gui;
+>>>>>>> Stashed changes
 Screen currentScreen, homeScreen, pieScreen;
 LineGraph lineGraph;
 
@@ -71,7 +79,10 @@ void setup() {
   ArrayList<String> dates = new ArrayList<String>(flightsPerDate.keySet());
   ArrayList<Integer> flightCounts = new ArrayList<Integer>(flightsPerDate.values());
   barGraph = new BarGraph(dates, flightCounts, 200, 600, 20, 400);
-
+  
+  mouseImg = loadImage("plane.png"); 
+  mouseImg.resize(80, 0);
+  noCursor();
 }
 
 void draw(){
@@ -125,6 +136,10 @@ void draw(){
       break;
       
     }
+    //Niamh
+    float imgX = mouseX - mouseImg.width / 2;
+    float imgY = mouseY - mouseImg.height / 2;
+    image(mouseImg, imgX, imgY);
  }
 
 void mousePressed() {
