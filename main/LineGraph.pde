@@ -32,7 +32,6 @@ class LineGraph {
         float maxValue = getMaxValue();
         
         stroke(255, 0, 0);
-        strokeWeight(2);
         noFill();
         beginShape();
         int i = 0;

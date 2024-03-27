@@ -1,5 +1,4 @@
 // Pie Chart for Airlines - SADHBH 18/3/24
-
 import java.util.HashMap;                                                                      // a collection class in Java that stores items in key/value pairs.
 
 class PieChart { 
