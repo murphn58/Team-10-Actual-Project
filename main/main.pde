@@ -206,17 +206,29 @@ void mousePressed() {        // determines which box has been pressed
       case EVENT_BUTTON4:
         tempSwitch = 4;
         println("button 4!");
+<<<<<<< Updated upstream
         hideAllTextbox();
+=======
+        hideAllTextBoxes();
+>>>>>>> Stashed changes
         break;
       case EVENT_BUTTON5:
         tempSwitch = 5;
         println("button 5!");
+<<<<<<< Updated upstream
          hideAllTextbox();
+=======
+        hideAllTextBoxes();
+>>>>>>> Stashed changes
         break;
       case EVENT_BUTTON6:
         tempSwitch = 6;
         println("button 6!");
+<<<<<<< Updated upstream
          hideAllTextbox();
+=======
+        hideAllTextBoxes();
+>>>>>>> Stashed changes
         break;
       case HOME_BUTTON:
         tempSwitch = 0;
@@ -252,7 +264,11 @@ void mousePressed() {        // determines which box has been pressed
       //ELLA
       case RESET_BUTTON:
         query.reset();
+<<<<<<< Updated upstream
         hideAllTextbox();
+=======
+        hideAllTextBoxes();
+>>>>>>> Stashed changes
         String output = parser.formatData(query.getTable());
         myTextarea.setText(output);
         break;
@@ -280,6 +296,7 @@ void showTextbox(String name, int x, int y) {
 void hideTextbox(String name) {
   cp5.remove(name); // Remove the textfield by its name
 }
+<<<<<<< Updated upstream
 void hideAllTextbox(){
   hideTextbox("search date");
          hideTextbox("search airlines");
@@ -288,3 +305,24 @@ void hideAllTextbox(){
          isDestinationTextboxVisible = !isDestinationTextboxVisible;
          isAirlineTextboxVisible = !isAirlineTextboxVisible; 
 }
+=======
+void hideAllTextBoxes() {
+    if(isAirlineTextboxVisible== true)
+    {
+       hideTextbox("search airlines");
+       isAirlineTextboxVisible = !isAirlineTextboxVisible;
+    }
+    if(isDestinationTextboxVisible ==true)
+    {
+       hideTextbox("search airport");
+       isDestinationTextboxVisible = !isDestinationTextboxVisible;
+    }
+    if( isDateTextboxVisible == true)
+    {
+        hideTextbox("search date");
+        isDateTextboxVisible = !isDateTextboxVisible;
+    }
+}
+
+          
+>>>>>>> Stashed changes
