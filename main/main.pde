@@ -17,8 +17,15 @@ Gui gui;
 Screen currentScreen, homeScreen, pieScreen;
 LineGraph lineGraph;
 
+<<<<<<< Updated upstream
  // TEXTBOX - ANNA 
 boolean isAirlineTextboxVisible = false;
+=======
+String userInput;
+
+// search bar - ANNA 
+boolean isAirlineTextboxVisible = false;    // to track whether the textboxes are currently visible or not. 
+>>>>>>> Stashed changes
 boolean isDestinationTextboxVisible = false;
 boolean isDateTextboxVisible = false;
 
@@ -155,18 +162,28 @@ void draw(){
  }
 
 //BUTTONS + TEXTBOX - ANNA 
-void mousePressed() {
+void mousePressed() {        // determines which box has been pressed
   for (Widget widget : widgetList) {
+<<<<<<< Updated upstream
     int event = widget.getEvent(mouseX, mouseY); 
     switch (event) {
+=======
+    int submit =0;                                  
+    int event = widget.getEvent(mouseX, mouseY);     // determines if mouse is pressed within the bounds o f the widget and returns an event type.
+    switch (event) {               // handles different types of events. 
+>>>>>>> Stashed changes
       case EVENT_BUTTON1:
         println("airline");
-        if (isAirlineTextboxVisible) {
-          hideTextbox("search airlines");
+        if (isAirlineTextboxVisible) {    // checking isAirlineTextboxVisible 
+          hideTextbox("search airlines");     // if textbox is visible calls hideTextbox function
         } else {
-          showTextbox("search airlines", 40, 80);
+          showTextbox("search airlines", 40, 80);    // if false calls showTextbox function
         }
+<<<<<<< Updated upstream
         isAirlineTextboxVisible = !isAirlineTextboxVisible; // Toggle the visibility status
+=======
+        isAirlineTextboxVisible = !isAirlineTextboxVisible;         // Toggle the visibility status, negates current value.
+>>>>>>> Stashed changes
         break;
       case EVENT_BUTTON2:
         println("destination");
@@ -189,18 +206,57 @@ void mousePressed() {
       case EVENT_BUTTON4:
         tempSwitch = 4;
         println("button 4!");
+        hideAllTextbox();
         break;
       case EVENT_BUTTON5:
         tempSwitch = 5;
         println("button 5!");
+         hideAllTextbox();
         break;
       case EVENT_BUTTON6:
         tempSwitch = 6;
         println("button 6!");
+         hideAllTextbox();
         break;
       case HOME_BUTTON:
         tempSwitch = 0;
         break;
+<<<<<<< Updated upstream
+=======
+        //Ella
+      case SUBMIT_BUTTON:
+        if( isAirlineTextboxVisible ){
+          String input = cp5.get(Textfield.class,"search airlines").getText();
+          query.searchAirline(input);
+          String output = parser.formatData(query.getTable());
+          myTextarea.setText(output);
+        }
+        if(isDestinationTextboxVisible){
+          String input = cp5.get(Textfield.class,"search airport").getText();
+          query.searchStates(input);
+          String output = parser.formatData(query.getTable());
+          myTextarea.setText(output);
+        }
+        if(isDateTextboxVisible){
+          String input = cp5.get(Textfield.class,"search date").getText();
+          try{
+            query.searchDates(input);
+          }
+          catch(Exception e){
+          }
+          String output = parser.formatData(query.getTable());
+          myTextarea.setText(output);
+        }
+        break;
+      
+      //ELLA
+      case RESET_BUTTON:
+        query.reset();
+        hideAllTextbox();
+        String output = parser.formatData(query.getTable());
+        myTextarea.setText(output);
+        break;
+>>>>>>> Stashed changes
     }
   }
 }
@@ -215,7 +271,7 @@ void mouseMoved() {
   }
 }
 void showTextbox(String name, int x, int y) { 
-  cp5.addTextfield(name)
+  cp5.addTextfield(name)   //adding textfile using the ControlP5 library 
      .setPosition(x, y) 
      .setSize(200, 20)
      .setAutoClear(false) // Disables automatic clearing of the text field
@@ -223,4 +279,12 @@ void showTextbox(String name, int x, int y) {
 }
 void hideTextbox(String name) {
   cp5.remove(name); // Remove the textfield by its name
+}
+void hideAllTextbox(){
+  hideTextbox("search date");
+         hideTextbox("search airlines");
+         hideTextbox("search airport");
+         isDateTextboxVisible = !isDateTextboxVisible; 
+         isDestinationTextboxVisible = !isDestinationTextboxVisible;
+         isAirlineTextboxVisible = !isAirlineTextboxVisible; 
 }
