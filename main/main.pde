@@ -105,7 +105,7 @@ void setup() {
   
   // NIAMH 27/03/24
   mouseImg = loadImage("plane.png");   // load image to replace mouse
-  mouseImg.resize(80, 0);              // choose size of plane image
+  mouseImg.resize(40, 0);              // choose size of plane image
   noCursor();                          // remove default mouse
 }
 
