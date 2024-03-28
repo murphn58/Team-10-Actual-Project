@@ -24,11 +24,6 @@ LineGraph lineGraph;
 Query query;
 
  // TEXTBOX - ANNA 
-
-String userInput;
-
-// search bar - ANNA 
-boolean isAirlineTextboxVisible = false;
 String userInput;
 
 // search bar - ANNA 
@@ -111,7 +106,7 @@ void setup() {
   
   // NIAMH 27/03/24
   mouseImg = loadImage("plane.png");   // load image to replace mouse
-  mouseImg.resize(80, 0);              // choose size of plane image
+  mouseImg.resize(40, 0);              // choose size of plane image
   noCursor();                          // remove default mouse
 }
 
@@ -146,7 +141,7 @@ void draw(){
         aWidget.draw();
         break;
       
-      case 5:
+      case 5: //<>//
         background(bgImg); //<>//
         myTextlabel.hide();
         myTextarea.hide();
@@ -223,21 +218,18 @@ void mousePressed() {        // determines which box has been pressed
       case EVENT_BUTTON4:
         tempSwitch = 4;
         println("button 4!");
-        hideAllTextbox();
         hideAllTextBoxes();
         break;
       
       case EVENT_BUTTON5:
         tempSwitch = 5;
         println("button 5!");
-         hideAllTextbox();
         hideAllTextBoxes();
         break;
       
       case EVENT_BUTTON6:
         tempSwitch = 6;
         println("button 6!");
-         hideAllTextbox();
         hideAllTextBoxes();
         break;
         
@@ -274,16 +266,8 @@ void mousePressed() {        // determines which box has been pressed
       //ELLA
       case RESET_BUTTON:
         query.reset();
-        hideAllTextbox();
         hideAllTextBoxes();
 
-        String output = parser.formatData(query.getTable());
-        myTextarea.setText(output);
-        break;
-
-        hideTextbox("search airlines");
-        hideTextbox("search date");
-        hideTextbox("search airport");
         String output = parser.formatData(query.getTable());
         myTextarea.setText(output);
         break;
@@ -314,14 +298,6 @@ void hideTextbox(String name) {
   cp5.remove(name); // Remove the textfield by its name
 }
 
-void hideAllTextbox(){
-  hideTextbox("search date");
-         hideTextbox("search airlines");
-         hideTextbox("search airport");
-         isDateTextboxVisible = !isDateTextboxVisible; 
-         isDestinationTextboxVisible = !isDestinationTextboxVisible;
-         isAirlineTextboxVisible = !isAirlineTextboxVisible; 
-}
 
 void hideAllTextBoxes() {
     if(isAirlineTextboxVisible== true)
