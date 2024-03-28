@@ -133,15 +133,27 @@ void draw(){
       break;
       
       case 5:
+<<<<<<< Updated upstream
       background(255);
+=======
+      background(218, 218, 222);
+>>>>>>> Stashed changes
       myTextlabel.hide();
       myTextarea.hide();
-      // NIAMH  
+    
+      // NIAMH 27/3/24  
       lineGraph = new LineGraph(query);
       lineGraph.draw(40, 100, 1200, 500);
+<<<<<<< Updated upstream
       Widget bWidget = (Widget)widgetList.get(widgetList.size() - 3);
       bWidget.draw();
       break;
+=======
+    
+     Widget bWidget = (Widget)widgetList.get(widgetList.size() - 3);
+     bWidget.draw();
+      break;      
+>>>>>>> Stashed changes
       
       case 6:
       background(255);
