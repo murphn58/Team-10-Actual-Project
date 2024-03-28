@@ -68,15 +68,15 @@ void setup() {
   
   // Interactive buttons - ANNA
   Widget widget1, widget2, widget3, widget4, widget5, widget6, homeWidget, submitWidget, resetWidget;
-  widget1 = new Widget(40, 40, 180, 40, "Airline", color(80, 142, 228), myFont, EVENT_BUTTON1);
-  widget2 = new Widget(260, 40, 180, 40, "Airport", color(88, 224, 104), myFont, EVENT_BUTTON2);
-  widget3 = new Widget(480, 40, 180, 40, "Date", color(240, 188, 82), myFont, EVENT_BUTTON3);
-  widget4 = new Widget(140, 600, 200, 55, "Pie Chart", color(143,194,211), myFont, EVENT_BUTTON4);
-  widget5 = new Widget(590, 600, 200, 55, "Line Graph", color(143,194,211), myFont, EVENT_BUTTON5);
-  widget6 = new Widget(1040, 600, 200, 55, "Bar Graph", color(143,194,211), myFont, EVENT_BUTTON6);
+  widget1 = new Widget(40, 40, 180, 40, "Airline", color(33, 76, 180), myFont, EVENT_BUTTON1);
+  widget2 = new Widget(260, 40, 180, 40, "Airport", color(80, 142, 228), myFont, EVENT_BUTTON2);
+  widget3 = new Widget(480, 40, 180, 40, "Date", color(167, 195, 247), myFont, EVENT_BUTTON3);
+  widget4 = new Widget(140, 600, 200, 55, "Pie Chart", color(211, 190, 247), myFont, EVENT_BUTTON4);
+  widget5 = new Widget(590, 600, 200, 55, "Line Graph", color(164, 84, 245), myFont, EVENT_BUTTON5);
+  widget6 = new Widget(1040, 600, 200, 55, "Bar Graph", color(100, 0, 200), myFont, EVENT_BUTTON6);
   homeWidget = new Widget(1250, 750, 65, 40, "Home", color(200, 50, 100), myFont, HOME_BUTTON);
-  submitWidget = new Widget(705, 45, 80, 30, "Submit", color( 100,0,200), myFont, SUBMIT_BUTTON);
-  resetWidget = new Widget(825, 45, 80, 30, "Reset", color(255), myFont, RESET_BUTTON);
+  submitWidget = new Widget(1200, 45, 80, 30, "Submit", color(88, 224, 104), myFont, SUBMIT_BUTTON);
+  resetWidget = new Widget(1300, 45, 80, 30, "Reset", color(255, 0, 0), myFont, RESET_BUTTON);
   
   widgetList = new ArrayList<Widget>();
   widgetList.add(widget1);
@@ -128,7 +128,7 @@ void draw(){
         break;
       
       case 4:
-        background(218, 218, 222);
+        background(bgImg);
         myTextlabel.hide();
         myTextarea.hide();
       
@@ -141,18 +141,7 @@ void draw(){
         break;
       
       case 5:
-<<<<<<< Updated upstream
-      background(255);
-      myTextlabel.hide();
-      myTextarea.hide();
-      // NIAMH  
-      lineGraph = new LineGraph(query);
-      lineGraph.draw(40, 100, 1200, 500);
-      Widget bWidget = (Widget)widgetList.get(widgetList.size() - 3);
-      bWidget.draw();
-      break;
-=======
-        background(218, 218, 222);
+        background(bgImg); //<>//
         myTextlabel.hide();
         myTextarea.hide();
       
@@ -163,10 +152,9 @@ void draw(){
         Widget bWidget = (Widget)widgetList.get(widgetList.size() - 3);
         bWidget.draw();
         break;      
->>>>>>> Stashed changes
-      
+
       case 6:
-        background(218, 218, 222);
+        background(bgImg);
         myTextlabel.hide();
         myTextarea.hide();
      
