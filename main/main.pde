@@ -218,21 +218,18 @@ void mousePressed() {        // determines which box has been pressed
       case EVENT_BUTTON4:
         tempSwitch = 4;
         println("button 4!");
-        hideAllTextbox();
         hideAllTextBoxes();
         break;
       
       case EVENT_BUTTON5:
         tempSwitch = 5;
         println("button 5!");
-         hideAllTextbox();
         hideAllTextBoxes();
         break;
       
       case EVENT_BUTTON6:
         tempSwitch = 6;
         println("button 6!");
-         hideAllTextbox();
         hideAllTextBoxes();
         break;
         
@@ -269,7 +266,6 @@ void mousePressed() {        // determines which box has been pressed
       //ELLA
       case RESET_BUTTON:
         query.reset();
-        hideAllTextbox();
         hideAllTextBoxes();
 
         String output = parser.formatData(query.getTable());
@@ -302,14 +298,6 @@ void hideTextbox(String name) {
   cp5.remove(name); // Remove the textfield by its name
 }
 
-void hideAllTextbox(){
-  hideTextbox("search date");
-         hideTextbox("search airlines");
-         hideTextbox("search airport");
-         isDateTextboxVisible = !isDateTextboxVisible; 
-         isDestinationTextboxVisible = !isDestinationTextboxVisible;
-         isAirlineTextboxVisible = !isAirlineTextboxVisible; 
-}
 
 void hideAllTextBoxes() {
     if(isAirlineTextboxVisible== true)
