@@ -44,8 +44,9 @@ class LineGraph {
         float maxValue = getMaxValue();                                           
         
         stroke(255, 0, 0);                                                        // Colours line
-        strokeWeight(2);                                                          // Sets line width
+        //strokeWeight(2);                                                          // Sets line width
         noFill();                                                                 // Removes filling in under line
+
         beginShape();
         int i = 0;
         for (String airline : airlineCounts.keySet()) {
