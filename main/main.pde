@@ -2,15 +2,19 @@ import controlP5.*;
 import java.util.Scanner;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+
 // YUE PAN
 Parse parser;
 Table table;
+
 Table dateTable;
 Table mKTCarrierTable;
 String[] lines;
 int currentLineIndex = 0;
+
 PImage bgImg;
 PImage mouseImg; // declare a variable for the mouse image
+
 ControlP5 cp5;
 Textlabel myTextlabel;
 Textarea myTextarea;
@@ -18,8 +22,10 @@ Gui gui;
 Screen currentScreen, homeScreen, pieScreen;
 LineGraph lineGraph;
 Query query;
+
 String userInput;
- // TEXTBOX - ANNA 
+
+// search bar - ANNA 
 boolean isAirlineTextboxVisible = false;
 boolean isDestinationTextboxVisible = false;
 boolean isDateTextboxVisible = false;
@@ -28,11 +34,12 @@ boolean isDateTextboxVisible = false;
 BarGraph barGraph;
 
 int tempSwitch = 0;
+
 //Interactive buttons - SADHBH
 final int EVENT_BUTTON1 = 1;
 final int EVENT_BUTTON2 = 2;
 final int EVENT_BUTTON3 = 3;
-final int EVENT_BUTTON4 = 4;      //pie screen
+final int EVENT_BUTTON4 = 4;      
 final int EVENT_BUTTON5 = 5;
 final int EVENT_BUTTON6 = 6;
 final int HOME_BUTTON   = 7;
@@ -83,56 +90,58 @@ void setup() {
   widgetList.add(resetWidget);
   
   
-  // screens ELLA
+  // screens - ELLA
   pieScreen  = new Screen(color(0), widgetList);
   homeScreen = new Screen(widgetList);
   
-   // Extract dates and count flights for each date
+  // Extract dates and count flights for each date - AOIFE
   HashMap<String, Integer> flightsPerDate = parser.extractDateAndCountFlights(table);
-  
-    // Create a list of dates and flight counts for the bar graph - AOIFE 
+  // Create a list of dates and flight counts for the bar graph - AOIFE 
   ArrayList<String> dates = new ArrayList<String>(flightsPerDate.keySet());
   ArrayList<Integer> flightCounts = new ArrayList<Integer>(flightsPerDate.values());
   barGraph = new BarGraph(dates, flightCounts, 200, 600, 20, 400);
 
   query = new Query(table);
   
-  // Niamh 27/03/24
-  mouseImg = loadImage("plane.png"); // load image to replace mouse
-  mouseImg.resize(80, 0); // choose size of plane image
-  noCursor(); // remove default mouse
-
+  // NIAMH 27/03/24
+  mouseImg = loadImage("plane.png");   // load image to replace mouse
+  mouseImg.resize(80, 0);              // choose size of plane image
+  noCursor();                          // remove default mouse
 }
 
 void draw(){
     homeScreen.draw();
+    
     // ELLA and YUE
     switch(tempSwitch)
     {
-    case 0:
-    
-    // Interactive buttons - SADHBH
-    for (int i = 0; i<widgetList.size(); i++) {
-      Widget aWidget = (Widget)widgetList.get(i);
-      aWidget.draw();
-    }
-      myTextlabel.show();
-      myTextarea.show();
-      fill(0);
-      rect(0, 100, 1407, 400);fill(0);
-      break;
+      case 0:
+        // Interactive buttons - SADHBH
+        for (int i = 0; i<widgetList.size(); i++) {
+        Widget aWidget = (Widget)widgetList.get(i);
+        aWidget.draw();
+        }
+        myTextlabel.show();
+        myTextarea.show();
+        fill(0);
+        rect(0, 100, 1407, 400);fill(0);
+        break;
       
       case 4:
-      background(255);
-      myTextlabel.hide();
-      myTextarea.hide();
-      PieChart airlinePieChart = new PieChart(mKTCarrierTable);
-      airlinePieChart.draw(width/2, height/2, 400);
-      Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
-      aWidget.draw();
-      break;
+        background(218, 218, 222);
+        myTextlabel.hide();
+        myTextarea.hide();
+      
+        // creates pie chart based on user query - SADHBH 28/3/24
+        PieChart pieChart = new PieChart(query);
+        pieChart.draw(width/2, height/2, 600);
+      
+        Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
+        aWidget.draw();
+        break;
       
       case 5:
+<<<<<<< Updated upstream
       background(255);
       myTextlabel.hide();
       myTextarea.hide();
@@ -142,32 +151,46 @@ void draw(){
       Widget bWidget = (Widget)widgetList.get(widgetList.size() - 3);
       bWidget.draw();
       break;
+=======
+        background(218, 218, 222);
+        myTextlabel.hide();
+        myTextarea.hide();
+      
+        // NIAMH 27/3/24  
+        lineGraph = new LineGraph(query);
+        lineGraph.draw(40, 100, 1200, 500);
+      
+        Widget bWidget = (Widget)widgetList.get(widgetList.size() - 3);
+        bWidget.draw();
+        break;      
+>>>>>>> Stashed changes
       
       case 6:
-      background(255);
+        background(218, 218, 222);
+        myTextlabel.hide();
+        myTextarea.hide();
+     
         // AOIFE
-      myTextlabel.hide();
-      myTextarea.hide();
-      Widget cWidget = (Widget)widgetList.get(widgetList.size() - 3);
-      cWidget.draw();
-      barGraph.draw();
-      break;
+        barGraph.draw();
       
-      case -1:
-      break;
-      
-    }
-     // Niamh 27/03/24
-    float imgX = mouseX - mouseImg.width / 2; // image follows x-value of mouse
-    float imgY = mouseY - mouseImg.height / 2; // image follows y-value of mouse
-    image(mouseImg, imgX, imgY); // draw plane image where mouseX and mouseY are
+        Widget cWidget = (Widget)widgetList.get(widgetList.size() - 3);
+        cWidget.draw();
+        break;
 
+      case -1:
+        break;
+    }
+    
+    // NIAMH 27/3/24
+    float imgX = mouseX - mouseImg.width / 2;      // image follows x-value of mouse
+    float imgY = mouseY - mouseImg.height / 2;     // image follows y-value of mouse
+    image(mouseImg, imgX, imgY);                   // draw plane image where mouseX and mouseY are
  }
 
 //BUTTONS + TEXTBOX - ANNA 
 void mousePressed() {
   for (Widget widget : widgetList) {
-    int submit =0;                                                              // determines which box has been pressed
+    int submit =0;                                                  // determines which box has been pressed
     int event = widget.getEvent(mouseX, mouseY); 
     switch (event) {
       case EVENT_BUTTON1:
@@ -177,7 +200,7 @@ void mousePressed() {
         } else {
           showTextbox("search airlines", 40, 80);
         }
-        isAirlineTextboxVisible = !isAirlineTextboxVisible; // Toggle the visibility status
+        isAirlineTextboxVisible = !isAirlineTextboxVisible;         // Toggle the visibility status
         break;
       case EVENT_BUTTON2:
         println("airport");
@@ -186,7 +209,7 @@ void mousePressed() {
         } else {
           showTextbox("search airport", 260, 80);
         }
-        isDestinationTextboxVisible = !isDestinationTextboxVisible; // Toggle the visibility status
+        isDestinationTextboxVisible = !isDestinationTextboxVisible;  // Toggle the visibility status
         break;
       case EVENT_BUTTON3:
         println("date");                                                            
@@ -195,7 +218,7 @@ void mousePressed() {
         } else {
           showTextbox("search date", 480, 80);
         }
-        isDateTextboxVisible = !isDateTextboxVisible; // Toggle the visibility status
+        isDateTextboxVisible = !isDateTextboxVisible;                // Toggle the visibility status
         break;
       case EVENT_BUTTON4:
         tempSwitch = 4;
@@ -214,42 +237,43 @@ void mousePressed() {
         break;
         //Ella
       case SUBMIT_BUTTON:
-      if( isAirlineTextboxVisible ){
-        String input = cp5.get(Textfield.class,"search airlines").getText();
-        query.searchAirline(input);
-        String output = parser.formatData(query.getTable());
-        myTextarea.setText(output);
-
-      }
+        if( isAirlineTextboxVisible ){
+          String input = cp5.get(Textfield.class,"search airlines").getText();
+          query.searchAirline(input);
+          String output = parser.formatData(query.getTable());
+          myTextarea.setText(output);
+        }
         if(isDestinationTextboxVisible){
           String input = cp5.get(Textfield.class,"search airport").getText();
           query.searchStates(input);
           String output = parser.formatData(query.getTable());
           myTextarea.setText(output);
         }
-          if(isDateTextboxVisible){
+        if(isDateTextboxVisible){
           String input = cp5.get(Textfield.class,"search date").getText();
           try{
-          query.searchDates(input);
+            query.searchDates(input);
           }
           catch(Exception e){
           }
           String output = parser.formatData(query.getTable());
           myTextarea.setText(output);
-          }
-            break;
-            //Ella
-        case RESET_BUTTON:
-          query.reset();
-          hideTextbox("search airlines");
-          hideTextbox("search date");
-          hideTextbox("search airport");
-          String output = parser.formatData(query.getTable());
-          myTextarea.setText(output);
-          break;
+        }
+        break;
+      
+      //ELLA
+      case RESET_BUTTON:
+        query.reset();
+        hideTextbox("search airlines");
+        hideTextbox("search date");
+        hideTextbox("search airport");
+        String output = parser.formatData(query.getTable());
+        myTextarea.setText(output);
+        break;
     }
   }
 }
+
 void mouseMoved() {
   for (Widget widget : widgetList) {
     int event = widget.getEvent(mouseX, mouseY);
@@ -260,6 +284,7 @@ void mouseMoved() {
     }
   }
 }
+
 void showTextbox(String name, int x, int y) { 
   cp5.addTextfield(name)
      .setPosition(x, y) 
@@ -267,6 +292,7 @@ void showTextbox(String name, int x, int y) {
      .setAutoClear(false) // Disables automatic clearing of the text field
      .setFocus(true);  // ready for input upon bein disaplayed
 }
+
 void hideTextbox(String name) {
   cp5.remove(name); // Remove the textfield by its name
 }

@@ -31,9 +31,15 @@ class LineGraph {
     void drawLines(float x, float y, float w, float h) {
         float maxValue = getMaxValue();
         
+<<<<<<< Updated upstream
         stroke(255, 0, 0);
         strokeWeight(2);
         noFill();
+=======
+        stroke(255, 0, 0);                                                        // Colours line
+        //strokeWeight(2);                                                          // Sets line width
+        noFill();                                                                 // Removes filling in under line
+>>>>>>> Stashed changes
         beginShape();
         int i = 0;
         for (String airline : airlineCounts.keySet()) {
