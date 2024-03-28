@@ -39,6 +39,10 @@ final int HOME_BUTTON   = 7;
 final int EVENT_NULL = 0;
 final int SUBMIT_BUTTON = 8;
 final int RESET_BUTTON = 9;
+
+final int EVENT_BUTTON7 = 10;
+int currentPieChart;
+
 ArrayList<Widget> widgetList;
 
 void setup() {
@@ -60,16 +64,18 @@ void setup() {
   storeData.setup();
   
   // Interactive buttons - ANNA
-  Widget widget1, widget2, widget3, widget4, widget5, widget6, homeWidget, submitWidget, resetWidget;
+  Widget widget1, widget2, widget3, widget4, widget5, widget6, homeWidget, submitWidget, resetWidget, widget7;
   widget1 = new Widget(40, 40, 180, 40, "Airline", color(80, 142, 228), myFont, EVENT_BUTTON1);
   widget2 = new Widget(260, 40, 180, 40, "Airport", color(88, 224, 104), myFont, EVENT_BUTTON2);
   widget3 = new Widget(480, 40, 180, 40, "Date", color(240, 188, 82), myFont, EVENT_BUTTON3);
-  widget4 = new Widget(140, 600, 200, 55, "Pie Chart", color(143,194,211), myFont, EVENT_BUTTON4);
-  widget5 = new Widget(590, 600, 200, 55, "Line Graph", color(143,194,211), myFont, EVENT_BUTTON5);
-  widget6 = new Widget(1040, 600, 200, 55, "Bar Graph", color(143,194,211), myFont, EVENT_BUTTON6);
-  homeWidget = new Widget(1250, 750, 65, 40, "Home", color(200, 50, 100), myFont, HOME_BUTTON);
+  widget4 = new Widget(380, 600, 200, 55, "Airline Pie Chart", color(244,146,250), myFont, EVENT_BUTTON4);
+  widget5 = new Widget(680, 600, 200, 55, "Line Graph", color(244,146,250), myFont, EVENT_BUTTON5);
+  widget6 = new Widget(980, 600, 200, 55, "Bar Graph", color(244,146,250), myFont, EVENT_BUTTON6);
+  homeWidget = new Widget(1250, 680, 65, 40, "Home", color(200, 50, 100), myFont, HOME_BUTTON);
   submitWidget = new Widget(705, 45, 80, 30, "Submit", color( 100,0,200), myFont, SUBMIT_BUTTON);
   resetWidget = new Widget(825, 45, 80, 30, "Reset", color(255), myFont, RESET_BUTTON);
+  
+  widget7 = new Widget(80, 600, 200, 55, "Date Pie Chart", color(244,146,250), myFont, EVENT_BUTTON7);
   
   widgetList = new ArrayList<Widget>();
   widgetList.add(widget1);
@@ -82,15 +88,16 @@ void setup() {
   widgetList.add(submitWidget);
   widgetList.add(resetWidget);
   
+  widgetList.add(widget7);
   
   // screens ELLA
   pieScreen  = new Screen(color(0), widgetList);
   homeScreen = new Screen(widgetList);
   
-   // Extract dates and count flights for each date
+  // Extract dates and count flights for each date
   HashMap<String, Integer> flightsPerDate = parser.extractDateAndCountFlights(table);
   
-    // Create a list of dates and flight counts for the bar graph - AOIFE 
+  // Create a list of dates and flight counts for the bar graph - AOIFE 
   ArrayList<String> dates = new ArrayList<String>(flightsPerDate.keySet());
   ArrayList<Integer> flightCounts = new ArrayList<Integer>(flightsPerDate.values());
   barGraph = new BarGraph(dates, flightCounts, 200, 600, 20, 400);
@@ -122,17 +129,20 @@ void draw(){
       rect(0, 100, 1407, 400);fill(0);
       break;
       
-      case 4:
+    case 4:
       background(255);
       myTextlabel.hide();
       myTextarea.hide();
+      
+      currentPieChart = 1;
       PieChart airlinePieChart = new PieChart(mKTCarrierTable);
-      airlinePieChart.draw(width/2, height/2, 400);
+      airlinePieChart.draw(width/2, height/2, 600);
+      
       Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
       aWidget.draw();
       break;
       
-      case 5:
+    case 5:
       background(255);
       myTextlabel.hide();
       myTextarea.hide();
@@ -143,7 +153,7 @@ void draw(){
       bWidget.draw();
       break;
       
-      case 6:
+    case 6:
       background(255);
         // AOIFE
       myTextlabel.hide();
@@ -153,11 +163,25 @@ void draw(){
       barGraph.draw();
       break;
       
-      case -1:
+    case 7:
+      background(255);
+      myTextlabel.hide();
+      myTextarea.hide();
+      
+      currentPieChart = 2;
+      PieChart datePieChart = new PieChart(dateTable);
+      datePieChart.draw(width/2, height/2, 600);
+      
+      Widget dWidget = (Widget)widgetList.get(widgetList.size() - 3);
+      dWidget.draw();
+      break;
+      
+    case -1:
       break;
       
     }
-     // Niamh 27/03/24
+    
+    // Niamh 27/03/24
     float imgX = mouseX - mouseImg.width / 2; // image follows x-value of mouse
     float imgY = mouseY - mouseImg.height / 2; // image follows y-value of mouse
     image(mouseImg, imgX, imgY); // draw plane image where mouseX and mouseY are
@@ -197,6 +221,9 @@ void mousePressed() {
         }
         isDateTextboxVisible = !isDateTextboxVisible; // Toggle the visibility status
         break;
+      
+      
+      // bottom four buttons
       case EVENT_BUTTON4:
         tempSwitch = 4;
         println("button 4!");
@@ -209,44 +236,50 @@ void mousePressed() {
         tempSwitch = 6;
         println("button 6!");
         break;
+      case EVENT_BUTTON7:
+        tempSwitch = 7;
+        println("button 7!");
+        break;
+      
+      
       case HOME_BUTTON:
         tempSwitch = 0;
         break;
         //Ella
       case SUBMIT_BUTTON:
-      if( isAirlineTextboxVisible ){
-        String input = cp5.get(Textfield.class,"search airlines").getText();
-        query.searchAirline(input);
-        String output = parser.formatData(query.getTable());
-        myTextarea.setText(output);
-
-      }
+        if( isAirlineTextboxVisible ){
+          String input = cp5.get(Textfield.class,"search airlines").getText();
+          query.searchAirline(input);
+          String output = parser.formatData(query.getTable());
+          myTextarea.setText(output);
+        }
         if(isDestinationTextboxVisible){
           String input = cp5.get(Textfield.class,"search airport").getText();
           query.searchStates(input);
           String output = parser.formatData(query.getTable());
           myTextarea.setText(output);
         }
-          if(isDateTextboxVisible){
+        if(isDateTextboxVisible){
           String input = cp5.get(Textfield.class,"search date").getText();
           try{
-          query.searchDates(input);
+            query.searchDates(input);
           }
           catch(Exception e){
           }
           String output = parser.formatData(query.getTable());
           myTextarea.setText(output);
-          }
-            break;
-            //Ella
-        case RESET_BUTTON:
-          query.reset();
-          hideTextbox("search airlines");
-          hideTextbox("search date");
-          hideTextbox("search airport");
-          String output = parser.formatData(query.getTable());
-          myTextarea.setText(output);
-          break;
+        }
+        break;
+        
+      //ELLA
+      case RESET_BUTTON:
+        query.reset();
+        hideTextbox("search airlines");
+        hideTextbox("search date");
+        hideTextbox("search airport");
+        String output = parser.formatData(query.getTable());
+        myTextarea.setText(output);
+        break;
     }
   }
 }

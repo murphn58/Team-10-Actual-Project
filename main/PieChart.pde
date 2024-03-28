@@ -5,18 +5,24 @@ class PieChart {
   HashMap<String, Integer> airlineCounts;  // declares HashMap to store airline names (keys), and corresponding counts (values) as integers.
   HashMap<String, Integer> airlineColors;                                                      // declares HashMap to store airline names (keys), and corresponding colors as integers. 
   
-  PieChart(Table mKTCarrierTable) {                                                           
+  PieChart(Table dataTable) {                                                           
     airlineCounts = new HashMap<>();                                                           // initializes 'airlineCounts' HashMap. 
     airlineColors = new HashMap<>();                                                           // initializes 'airlineColors' HashMap.
-    countAirlines(mKTCarrierTable);                                                            // calls countAirlines() method.
+    countAirlines(dataTable);                                                                  // calls countAirlines() method.
     assignColors();                                                                            // calls assignColors() method.
   }
   
   // Method to count occurrences of each airline in table provided
-  void countAirlines(Table mKTCarrierTable){
-    for(TableRow row : mKTCarrierTable.rows()) {                                               // iterates through each row of table.
-      String airline = row.getString("MKT Carrier");                                           // retrieves String of current row, representing airline name.
-      airlineCounts.put(airline, airlineCounts.getOrDefault(airline, 0) + 1);                  // increments count of airline in airlineCounts HashMap, if airline not present, it initializes count to 1. 
+  void countAirlines(Table dataTable){
+    for(TableRow row : dataTable.rows()) {                                                     // iterates through each row of table.
+      if(currentPieChart == 1){
+        String airline = row.getString("MKT Carrier");                                         // retrieves String of current row, representing airline name.
+        airlineCounts.put(airline, airlineCounts.getOrDefault(airline, 0) + 1);                // increments count of airline in airlineCounts HashMap, if airline not present, it initializes count to 1. 
+      }
+      else{
+        String airline = row.getString("Flight Date");                                         // retrieves String of current row, representing airline name.
+        airlineCounts.put(airline, airlineCounts.getOrDefault(airline, 0) + 1);                // increments count of airline in airlineCounts HashMap, if airline not present, it initializes count to 1.
+      }
     }
   }
   
@@ -52,15 +58,25 @@ class PieChart {
     }
     
     // prints title of pie chart on screen
-    PFont pieChartLabel = loadFont("Phosphate-Solid-28.vlw");
-    textFont(pieChartLabel, 40);
-    fill(0);
-    text("No. of Flights from Each Airline", 380, 880);
+    if(currentPieChart == 1){
+      PFont pieChartLabel = loadFont("Phosphate-Solid-28.vlw");
+      textFont(pieChartLabel, 40);
+      fill(0);
+      text("No. of Flights from Each Airline", 380, 100);
+    }
+    else{
+      PFont pieChartLabel = loadFont("Phosphate-Solid-28.vlw");
+      textFont(pieChartLabel, 40);
+      fill(0);
+      text("No. of Flights Each Day", 400, 100);
+    }
     
     // prints key for pie chart on screen.
-    PFont pieChartKey = loadFont("Phosphate-Solid-28.vlw");
-    textFont(pieChartKey, 28);
-    fill(0);
-    text("AA = American  \nAS = Alaska  \nB6 = JetBlue \nDL = Delta \nF9 = Frontier \nG4 = Allegiant \nHA = Hawaiian \nNK = Spirit \nUA = United \nWN = Southwest", 120, 400);
+    if(currentPieChart == 1){
+      PFont pieChartKey = loadFont("Phosphate-Solid-28.vlw");
+      textFont(pieChartKey, 28);
+      fill(0);
+      text("AA = American  \nAS = Alaska  \nB6 = JetBlue \nDL = Delta \nF9 = Frontier \nG4 = Allegiant \nHA = Hawaiian \nNK = Spirit \nUA = United \nWN = Southwest", 120, 480);
+    }
   } 
 }
