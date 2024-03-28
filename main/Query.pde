@@ -129,7 +129,12 @@ class Query{
     return tempReturnTable;
   }
   
-
-  
+  void searchAirline(String airlinePrefix){  
+    returnTable = filterTable(returnTable, airlinePrefix, 1);  
+ }
+ 
+ void reset(){
+   returnTable = table;
+  }
   
 }
