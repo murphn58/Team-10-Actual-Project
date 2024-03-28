@@ -24,11 +24,6 @@ LineGraph lineGraph;
 Query query;
 
  // TEXTBOX - ANNA 
-
-String userInput;
-
-// search bar - ANNA 
-boolean isAirlineTextboxVisible = false;
 String userInput;
 
 // search bar - ANNA 
@@ -111,7 +106,7 @@ void setup() {
   
   // NIAMH 27/03/24
   mouseImg = loadImage("plane.png");   // load image to replace mouse
-  mouseImg.resize(80, 0);              // choose size of plane image
+  mouseImg.resize(40, 0);              // choose size of plane image
   noCursor();                          // remove default mouse
 }
 
@@ -146,7 +141,7 @@ void draw(){
         aWidget.draw();
         break;
       
-      case 5:
+      case 5: //<>//
         background(bgImg); //<>//
         myTextlabel.hide();
         myTextarea.hide();
@@ -277,13 +272,6 @@ void mousePressed() {        // determines which box has been pressed
         hideAllTextbox();
         hideAllTextBoxes();
 
-        String output = parser.formatData(query.getTable());
-        myTextarea.setText(output);
-        break;
-
-        hideTextbox("search airlines");
-        hideTextbox("search date");
-        hideTextbox("search airport");
         String output = parser.formatData(query.getTable());
         myTextarea.setText(output);
         break;
