@@ -146,7 +146,7 @@ void draw(){
       myTextlabel.hide();
       myTextarea.hide();
       // NIAMH  
-      lineGraph = new LineGraph( mKTCarrierTable);
+      lineGraph = new LineGraph(query);
       lineGraph.draw(40, 100, 1200, 500);
       Widget bWidget = (Widget)widgetList.get(widgetList.size() - 3);
       bWidget.draw();
