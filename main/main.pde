@@ -36,6 +36,7 @@ boolean isAirlineTextboxVisible = false;    // to track whether the textboxes ar
 boolean isDestinationTextboxVisible = false;
 boolean isDateTextboxVisible = false;
 
+
 // AOIFE 20/3/24
 BarGraph barGraph;
 
