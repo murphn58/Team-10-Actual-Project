@@ -13,7 +13,12 @@ String[] lines;
 int currentLineIndex = 0;
 
 PImage bgImg;
+// Niamh declaring image variables
 PImage mouseImg; // declare a variable for the mouse image
+PImage houseImg; // declare a variable for the house image
+PImage submitImg; // declare a variable for the submit image
+PImage resetImg; // declare a variable for the return image
+
 
 ControlP5 cp5;
 Textlabel myTextlabel;
@@ -67,6 +72,14 @@ void setup() {
   StoreData storeData = new StoreData();
   storeData.setup();
   
+  // Niamh loading images
+  houseImg = loadImage("house.png");
+  houseImg.resize(55, 40);
+  submitImg = loadImage("submit.png");
+  submitImg.resize(50, 50);
+  resetImg = loadImage("reset.png");
+  resetImg.resize(50, 50);
+  
   // Interactive buttons - ANNA
   Widget widget1, widget2, widget3, widget4, widget5, widget6, homeWidget, submitWidget, resetWidget;
   widget1 = new Widget(40, 40, 180, 40, "Airline", color(33, 76, 180), myFont, EVENT_BUTTON1);
@@ -75,9 +88,9 @@ void setup() {
   widget4 = new Widget(140, 600, 200, 55, "Pie Chart", color(211, 190, 247), myFont, EVENT_BUTTON4);
   widget5 = new Widget(590, 600, 200, 55, "Line Graph", color(164, 84, 245), myFont, EVENT_BUTTON5);
   widget6 = new Widget(1040, 600, 200, 55, "Bar Graph", color(100, 0, 200), myFont, EVENT_BUTTON6);
-  homeWidget = new Widget(1250, 750, 65, 40, "Home", color(200, 50, 100), myFont, HOME_BUTTON);
-  submitWidget = new Widget(1200, 45, 80, 30, "Submit", color(88, 224, 104), myFont, SUBMIT_BUTTON);
-  resetWidget = new Widget(1300, 45, 80, 30, "Reset", color(255, 0, 0), myFont, RESET_BUTTON);
+  homeWidget = new Widget(1250, 775,  houseImg, HOME_BUTTON);
+  submitWidget = new Widget(1200, 35, submitImg, SUBMIT_BUTTON);
+  resetWidget = new Widget(1300, 35, resetImg, RESET_BUTTON);
   
   widgetList = new ArrayList<Widget>();
   widgetList.add(widget1);
@@ -234,7 +247,8 @@ void mousePressed() {        // determines which box has been pressed
         break;
         
       case HOME_BUTTON:
-        tempSwitch = 0;
+        tempSwitch = 0; // Switch to the home screen
+        println("home pressed");
         break;
 
         //Ella
