@@ -94,14 +94,8 @@ void setup() {
   pieScreen  = new Screen(color(0), widgetList);
   homeScreen = new Screen(widgetList);
   
-  // Extract dates and count flights for each date - AOIFE
-  HashMap<String, Integer> flightsPerDate = parser.extractDateAndCountFlights(table);
-  // Create a list of dates and flight counts for the bar graph - AOIFE 
-  ArrayList<String> dates = new ArrayList<String>(flightsPerDate.keySet());
-  ArrayList<Integer> flightCounts = new ArrayList<Integer>(flightsPerDate.values());
-  barGraph = new BarGraph(dates, flightCounts, 200, 600, 20, 400);
-
   query = new Query(table);
+  barGraph = new BarGraph(query);
   
   // NIAMH 27/03/24
   mouseImg = loadImage("plane.png");   // load image to replace mouse
@@ -159,7 +153,7 @@ void draw(){
         myTextarea.hide();
      
         // AOIFE
-        barGraph.draw();
+        barGraph.draw(40, 100, 1200, 500);
       
         Widget cWidget = (Widget)widgetList.get(widgetList.size() - 3);
         cWidget.draw();
