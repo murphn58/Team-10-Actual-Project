@@ -14,7 +14,12 @@ String[] lines;
 int currentLineIndex = 0;
 
 PImage bgImg;
+// Niamh declaring image variables
 PImage mouseImg; // declare a variable for the mouse image
+PImage houseImg; // declare a variable for the house image
+PImage submitImg; // declare a variable for the submit image
+PImage resetImg; // declare a variable for the return image
+
 
 ControlP5 cp5;
 Textlabel myTextlabel;
@@ -24,12 +29,14 @@ Screen currentScreen, homeScreen, pieScreen;
 LineGraph lineGraph;
 Query query;
 
+ // TEXTBOX - ANNA 
 String userInput;
 
 // search bar - ANNA 
-boolean isAirlineTextboxVisible = false;
+boolean isAirlineTextboxVisible = false;    // to track whether the textboxes are currently visible or not. 
 boolean isDestinationTextboxVisible = false;
 boolean isDateTextboxVisible = false;
+
 
 // AOIFE 20/3/24
 BarGraph barGraph;
@@ -68,6 +75,14 @@ void setup() {
   StoreData storeData = new StoreData();
   storeData.setup();
   
+  // Niamh loading images
+  houseImg = loadImage("house.png");
+  houseImg.resize(55, 40);
+  submitImg = loadImage("submit.png");
+  submitImg.resize(50, 50);
+  resetImg = loadImage("reset.png");
+  resetImg.resize(50, 50);
+  
   // Interactive buttons - ANNA
   Widget widget1, widget2, widget3, widget4, widget5, widget6, homeWidget, submitWidget, resetWidget;
   widget1 = new Widget(40, 40, 180, 40, "Airline", color(33, 76, 180), myFont, EVENT_BUTTON1);
@@ -76,9 +91,9 @@ void setup() {
   widget4 = new Widget(140, 600, 200, 55, "Pie Chart", color(211, 190, 247), myFont, EVENT_BUTTON4);
   widget5 = new Widget(590, 600, 200, 55, "Line Graph", color(164, 84, 245), myFont, EVENT_BUTTON5);
   widget6 = new Widget(1040, 600, 200, 55, "Bar Graph", color(100, 0, 200), myFont, EVENT_BUTTON6);
-  homeWidget = new Widget(1250, 750, 65, 40, "Home", color(200, 50, 100), myFont, HOME_BUTTON);
-  submitWidget = new Widget(1200, 45, 80, 30, "Submit", color(88, 224, 104), myFont, SUBMIT_BUTTON);
-  resetWidget = new Widget(1300, 45, 80, 30, "Reset", color(255, 0, 0), myFont, RESET_BUTTON);
+  homeWidget = new Widget(1250, 775,  houseImg, HOME_BUTTON);
+  submitWidget = new Widget(1200, 35, submitImg, SUBMIT_BUTTON);
+  resetWidget = new Widget(1300, 35, resetImg, RESET_BUTTON);
   
   widgetList = new ArrayList<Widget>();
   widgetList.add(widget1);
@@ -96,18 +111,12 @@ void setup() {
   pieScreen  = new Screen(color(0), widgetList);
   homeScreen = new Screen(widgetList);
   
-  // Extract dates and count flights for each date - AOIFE
-  HashMap<String, Integer> flightsPerDate = parser.extractDateAndCountFlights(table);
-  // Create a list of dates and flight counts for the bar graph - AOIFE 
-  ArrayList<String> dates = new ArrayList<String>(flightsPerDate.keySet());
-  ArrayList<Integer> flightCounts = new ArrayList<Integer>(flightsPerDate.values());
-  barGraph = new BarGraph(dates, flightCounts, 200, 600, 20, 400);
-
   query = new Query(table);
+  barGraph = new BarGraph(query);
   
   // NIAMH 27/03/24
   mouseImg = loadImage("plane.png");   // load image to replace mouse
-  mouseImg.resize(80, 0);              // choose size of plane image
+  mouseImg.resize(40, 0);              // choose size of plane image
   noCursor();                          // remove default mouse
 }
 
@@ -142,7 +151,7 @@ void draw(){
         aWidget.draw();
         break;
       
-      case 5:
+      case 5: //<>//
         background(bgImg); //<>//
         myTextlabel.hide();
         myTextarea.hide();
@@ -161,7 +170,7 @@ void draw(){
         myTextarea.hide();
      
         // AOIFE
-        barGraph.draw();
+        barGraph.draw(40, 100, 1200, 500);
       
         Widget cWidget = (Widget)widgetList.get(widgetList.size() - 3);
         cWidget.draw();
@@ -178,20 +187,24 @@ void draw(){
  }
 
 //BUTTONS + TEXTBOX - ANNA 
-void mousePressed() {
+void mousePressed() {        // determines which box has been pressed
   for (Widget widget : widgetList) {
-    int submit = 0;                                                  // determines which box has been pressed
-    int event = widget.getEvent(mouseX, mouseY); 
-    switch (event) {
+    int submit =0;                                  
+    int event = widget.getEvent(mouseX, mouseY);     // determines if mouse is pressed within the bounds o f the widget and returns an event type.
+    switch (event) {               // handles different types of events. 
       case EVENT_BUTTON1:
         println("airline");
-        if (isAirlineTextboxVisible) {
-          hideTextbox("search airlines");
+        if (isAirlineTextboxVisible) {    // checking isAirlineTextboxVisible 
+          hideTextbox("search airlines");     // if textbox is visible calls hideTextbox function
         } else {
-          showTextbox("search airlines", 40, 80);
+          showTextbox("search airlines", 40, 80);    // if false calls showTextbox function
         }
+
+        isAirlineTextboxVisible = !isAirlineTextboxVisible; // Toggle the visibility status
+        isAirlineTextboxVisible = !isAirlineTextboxVisible;         // Toggle the visibility status, negates current value.
         isAirlineTextboxVisible = !isAirlineTextboxVisible;         // Toggle the visibility status
         break;
+        
       case EVENT_BUTTON2:
         println("airport");
         if (isDestinationTextboxVisible) {
@@ -201,6 +214,7 @@ void mousePressed() {
         }
         isDestinationTextboxVisible = !isDestinationTextboxVisible;  // Toggle the visibility status
         break;
+        
       case EVENT_BUTTON3:
         println("date");                                                            
         if (isDateTextboxVisible) {
@@ -210,39 +224,57 @@ void mousePressed() {
         }
         isDateTextboxVisible = !isDateTextboxVisible;                // Toggle the visibility status
         break;
+      
       case EVENT_BUTTON4:
         tempSwitch = 4;
         println("button 4!");
+
         hideTextbox("search airlines");
         hideTextbox("search date");
         hideTextbox("search airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;
+
+        hideAllTextBoxes();
+
         break;
+      
       case EVENT_BUTTON5:
         tempSwitch = 5;
         println("button 5!");
+
         hideTextbox("search airlines");
         hideTextbox("search date");
         hideTextbox("search airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;        
+
+        hideAllTextBoxes();
+
         break;
+      
       case EVENT_BUTTON6:
         tempSwitch = 6;
         println("button 6!");
+
         hideTextbox("search airlines");
         hideTextbox("search date");
         hideTextbox("search airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;        
+
+        hideAllTextBoxes();
+
         break;
+        
       case HOME_BUTTON:
-        tempSwitch = 0;
+        tempSwitch = 0; // Switch to the home screen
+        println("home pressed");
         break;
+
         //Ella
       case SUBMIT_BUTTON:
 
@@ -277,12 +309,16 @@ void mousePressed() {
       //ELLA
       case RESET_BUTTON:
         query.reset();
+
         hideTextbox("search airlines");
         hideTextbox("search date");
         hideTextbox("search airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;
+
+        hideAllTextBoxes();
+
         String output = parser.formatData(query.getTable());
         myTextarea.setText(output);
         break;
@@ -302,7 +338,7 @@ void mouseMoved() {
 }
 
 void showTextbox(String name, int x, int y) { 
-  cp5.addTextfield(name)
+  cp5.addTextfield(name)   //adding textfile using the ControlP5 library 
      .setPosition(x, y) 
      .setSize(200, 20)
      .setAutoClear(false) // Disables automatic clearing of the text field
@@ -311,4 +347,23 @@ void showTextbox(String name, int x, int y) {
 
 void hideTextbox(String name) {
   cp5.remove(name); // Remove the textfield by its name
+}
+
+
+void hideAllTextBoxes() {
+    if(isAirlineTextboxVisible== true)
+    {
+       hideTextbox("search airlines");
+       isAirlineTextboxVisible = !isAirlineTextboxVisible;
+    }
+    if(isDestinationTextboxVisible ==true)
+    {
+       hideTextbox("search airport");
+       isDestinationTextboxVisible = !isDestinationTextboxVisible;
+    }
+    if( isDateTextboxVisible == true)
+    {
+        hideTextbox("search date");
+        isDateTextboxVisible = !isDateTextboxVisible;
+    }
 }
