@@ -16,7 +16,7 @@ class Gui{
   void textBox(String windowName, int xpos, int ypos, int xSize, int ySize, Table table){
       String displayData = parser.formatData(table);
       myTextarea = cp5.addTextarea(windowName)
-                  .setPosition(xpos,ypos + 16)
+                  .setPosition(xpos, ypos + 16)
                   .setSize(xSize, ySize - 16)
                   .setFont(createFont("Courier New",12))
                   .setLineHeight(14)
@@ -25,19 +25,19 @@ class Gui{
                   .setColorForeground(color(255,100))
                   .setText(displayData)
                   ;
-       int[] columnWidths = parser.getColumnWidths(table);
+  
       
        StringBuilder output = new StringBuilder();
        for(int i = 0; i < table.getColumnCount(); i++)
        {
-         if((table.getColumnTitle(i)).length() <= columnWidths[i]){
+         if((table.getColumnTitle(i)).length() <= maximumWidths[i]){
            output.append(table.getColumnTitle(i));
-           for(int j = (table.getColumnTitle(i)).length(); j < columnWidths[i]; j++)
+           for(int j = (table.getColumnTitle(i)).length(); j < maximumWidths[i]; j++)
            {
            output.append(" ");
            }
          }else{
-           String concatedString = (table.getColumnTitle(i)).substring(0, columnWidths[i]-3);
+           String concatedString = (table.getColumnTitle(i)).substring(0, maximumWidths[i]-3);
            output.append(concatedString);
            output.append("   ");    
          }

@@ -59,8 +59,7 @@ class Parse{
   
   String formatData(Table table)
   {
-    int[] maxWidths = getColumnWidths(table);
-    
+ 
     StringBuilder output = new StringBuilder();
     
     for(TableRow row : table.rows())
@@ -68,7 +67,7 @@ class Parse{
       for(int i = 0; i < row.getColumnCount(); i++)
       {
         output.append(row.getString(i));
-         for(int j = (row.getString(i)).length(); j < maxWidths[i]; j++)
+         for(int j = (row.getString(i)).length(); j < maximumWidths[i]; j++)
          {
            output.append(" ");
          }
