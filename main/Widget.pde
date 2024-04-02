@@ -6,6 +6,7 @@ class Widget {
   int event;
   color widgetColor, labelColor, lineColor;
   PFont widgetFont;
+  PImage image;
   
   Widget(int x, int y, int width, int height, String label, color widgetColor, PFont widgetFont, int event){
     this.x = x; this.y = y; this.width = width; this.height = height; 
@@ -13,15 +14,41 @@ class Widget {
     this.widgetColor = widgetColor; this.widgetFont = widgetFont;
     this.labelColor = color(0); this.lineColor = color(0);
   }
-   
+  
+  Widget(int x, int y, PImage image, int event){
+    this.x = x; this.y = y; 
+    this.event = event; 
+    this.image = image;
+  }
+  
   void draw(){
-    fill(widgetColor);
-    stroke(lineColor);
-    rect(x, y, width, height);
-    fill(labelColor);
-    textAlign(LEFT, BOTTOM);
-    textSize(16);
-    text(label, x + 10, y + height - 10);
+    if(event == HOME_BUTTON)
+    {
+         image(houseImg, x, y);
+         height = 55;
+         width = 45;
+    }
+    else if (event == SUBMIT_BUTTON)
+    {
+      image(submitImg, x, y);
+         height = 50;
+         width = 50;
+    }
+    else if (event == RESET_BUTTON)
+    {
+      image(resetImg, x, y);
+         height = 50;
+         width = 50;
+    }
+    else{
+         fill(widgetColor);
+         stroke(lineColor);
+         rect(x, y, width, height);
+         fill(labelColor);
+         textAlign(LEFT, BOTTOM);
+         textSize(16);
+         text(label, x + 10, y + height - 10);
+    }
   }
   
   void mouseOver() { 
