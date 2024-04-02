@@ -4,6 +4,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 // YUE PAN
+int[] maximumWidths;
 Parse parser;
 Table table;
 
@@ -65,8 +66,9 @@ void setup() {
   // YUE PAN
   parser = new Parse();
   table = parser.createTable("flights2k.csv");
+  maximumWidths = parser.getColumnWidths(table);
   gui = new Gui();                    
-  gui.textBox("results", 0, 100, 1407, 400,table);
+  gui.textBox("results", 0, 120, 1407, 470, table);
   
   // NIAMH AND SADHBH
   lines = loadStrings("flights2k.csv");
@@ -109,14 +111,8 @@ void setup() {
   pieScreen  = new Screen(color(0), widgetList);
   homeScreen = new Screen(widgetList);
   
-  // Extract dates and count flights for each date - AOIFE
-  HashMap<String, Integer> flightsPerDate = parser.extractDateAndCountFlights(table);
-  // Create a list of dates and flight counts for the bar graph - AOIFE 
-  ArrayList<String> dates = new ArrayList<String>(flightsPerDate.keySet());
-  ArrayList<Integer> flightCounts = new ArrayList<Integer>(flightsPerDate.values());
-  barGraph = new BarGraph(dates, flightCounts, 200, 600, 20, 400);
-
   query = new Query(table);
+  barGraph = new BarGraph(query);
   
   // NIAMH 27/03/24
   mouseImg = loadImage("plane.png");   // load image to replace mouse
@@ -139,7 +135,7 @@ void draw(){
         myTextlabel.show();
         myTextarea.show();
         fill(0);
-        rect(0, 100, 1407, 400);fill(0);
+        rect(0, 120, 1407, 470);fill(0);
         break;
       
       case 4:
@@ -174,7 +170,7 @@ void draw(){
         myTextarea.hide();
      
         // AOIFE
-        barGraph.draw();
+        barGraph.draw(40, 100, 1200, 500);
       
         Widget cWidget = (Widget)widgetList.get(widgetList.size() - 3);
         cWidget.draw();
@@ -232,19 +228,46 @@ void mousePressed() {        // determines which box has been pressed
       case EVENT_BUTTON4:
         tempSwitch = 4;
         println("button 4!");
+
+        hideTextbox("search airlines");
+        hideTextbox("search date");
+        hideTextbox("search airport");
+        isAirlineTextboxVisible = false;
+        isDestinationTextboxVisible = false;
+        isDateTextboxVisible = false;
+
         hideAllTextBoxes();
+
         break;
       
       case EVENT_BUTTON5:
         tempSwitch = 5;
         println("button 5!");
+
+        hideTextbox("search airlines");
+        hideTextbox("search date");
+        hideTextbox("search airport");
+        isAirlineTextboxVisible = false;
+        isDestinationTextboxVisible = false;
+        isDateTextboxVisible = false;        
+
         hideAllTextBoxes();
+
         break;
       
       case EVENT_BUTTON6:
         tempSwitch = 6;
         println("button 6!");
+
+        hideTextbox("search airlines");
+        hideTextbox("search date");
+        hideTextbox("search airport");
+        isAirlineTextboxVisible = false;
+        isDestinationTextboxVisible = false;
+        isDateTextboxVisible = false;        
+
         hideAllTextBoxes();
+
         break;
         
       case HOME_BUTTON:
@@ -254,19 +277,24 @@ void mousePressed() {        // determines which box has been pressed
 
         //Ella
       case SUBMIT_BUTTON:
-        if( isAirlineTextboxVisible ){
+
+
+    
+        if( isAirlineTextboxVisible && (cp5.get(Textfield.class,"search airlines").getText()).equals("") == false ){
           String input = cp5.get(Textfield.class,"search airlines").getText();
           query.searchAirline(input);
           String output = parser.formatData(query.getTable());
           myTextarea.setText(output);
+       
         }
-        if(isDestinationTextboxVisible){
+        if(isDestinationTextboxVisible && (cp5.get(Textfield.class,"search airport").getText()).equals("") == false ){
           String input = cp5.get(Textfield.class,"search airport").getText();
           query.searchStates(input);
           String output = parser.formatData(query.getTable());
           myTextarea.setText(output);
+
         }
-        if(isDateTextboxVisible){
+        if(isDateTextboxVisible && (cp5.get(Textfield.class,"search date").getText()).equals("") == false ){
           String input = cp5.get(Textfield.class,"search date").getText();
           try{
             query.searchDates(input);
@@ -281,6 +309,14 @@ void mousePressed() {        // determines which box has been pressed
       //ELLA
       case RESET_BUTTON:
         query.reset();
+
+        hideTextbox("search airlines");
+        hideTextbox("search date");
+        hideTextbox("search airport");
+        isAirlineTextboxVisible = false;
+        isDestinationTextboxVisible = false;
+        isDateTextboxVisible = false;
+
         hideAllTextBoxes();
 
         String output = parser.formatData(query.getTable());
