@@ -4,6 +4,7 @@ import java.util.Date;
 import java.text.SimpleDateFormat;
 
 // YUE PAN
+Chart myChart;
 int[] maximumWidths;
 Parse parser;
 Table table;
@@ -69,6 +70,7 @@ void setup() {
   maximumWidths = parser.getColumnWidths(table);
   gui = new Gui();                    
   gui.textBox("results", 0, 120, 1407, 470, table);
+  gui.pie(590, 700, 200);
   
   // NIAMH AND SADHBH
   lines = loadStrings("flights2k.csv");
@@ -118,11 +120,15 @@ void setup() {
   mouseImg = loadImage("plane.png");   // load image to replace mouse
   mouseImg.resize(40, 0);              // choose size of plane image
   noCursor();                          // remove default mouse
+  cp5.setAutoDraw(false);
+  
+  gui.pieAppendData(query.flightAttributes());
+  ellipseMode(RADIUS);  // Set ellipseMode to RADIUS
+   
 }
 
 void draw(){
     homeScreen.draw();
-    
     // ELLA and YUE
     switch(tempSwitch)
     {
@@ -134,8 +140,29 @@ void draw(){
         }
         myTextlabel.show();
         myTextarea.show();
+        noStroke();
         fill(0);
-        rect(0, 120, 1407, 470);fill(0);
+        rect(0, 120, 1407, 470);
+        //590, 700, 200
+        cp5.draw();
+        fill(255);
+        ellipse(690, 800, 75, 75);fill(255);
+        fill(0);
+        String count = "" + query.getCount();
+        text(count, 680, 800);
+        textAlign(CENTER, CENTER);
+        fill(25,75,79);
+        rect(820, 740, 20, 20);
+        fill(0);
+        text("normal", 875, 750);
+        fill(221,68,68);
+        rect(820, 770, 20, 20);
+        fill(0);
+        text("cancelled", 885, 780);
+        fill(255,220,220);
+        rect(820, 800, 20, 20);
+        fill(0);
+        text("delayed", 877, 810);
         break;
       
       case 4:
@@ -304,6 +331,8 @@ void mousePressed() {        // determines which box has been pressed
           String output = parser.formatData(query.getTable());
           myTextarea.setText(output);
         }
+        
+          gui.pieAppendData(query.flightAttributes());
         break;
       
       //ELLA
@@ -321,6 +350,7 @@ void mousePressed() {        // determines which box has been pressed
 
         String output = parser.formatData(query.getTable());
         myTextarea.setText(output);
+        gui.pieAppendData(query.flightAttributes());
         break;
     }
   }
