@@ -32,7 +32,7 @@ class LineGraph {
         drawLines(x, y, w, h);                                                    // Draws lines representing data points
         drawLabels(x, y, w, h);                                                   // Draws labels and ticks
         textSize(28);
-        text("Amount of Flights per Airline fulfilling chosen parameters", 320, 40); // Draws title
+        text("Amount of Flights per Airline fulfilling chosen parameters", 320, 90); // Draws title
     }
 
     void drawAxes(float x, float y, float w, float h) {
@@ -71,6 +71,7 @@ class LineGraph {
         for (int i = 0; i <= maxValue; i += labelStep) {
         float labelX = x - 10; 
         float labelY = y + h - map(i, 0, maxValue, 0, h);
+        textSize(28);
         text(i, labelX, labelY);
          }
     

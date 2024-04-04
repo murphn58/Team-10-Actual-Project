@@ -32,7 +32,7 @@ class BarGraph {
     drawAxes(x, y, w, h); // Draw axes
     drawLabels(x, y, w, h); // Draw labels and ticks
     textSize(28);
-    text("Amount of Flights per Airline fulfilling chosen parameters", 320, 40); // Draw title
+    text("Amount of Flights per Airline fulfilling chosen parameters", 320, 90); // Draw title
   }
 
   // method to draw bars
