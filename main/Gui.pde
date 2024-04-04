@@ -13,7 +13,8 @@ class Gui{
   public Gui(){
   }
   
-  void textBox(String windowName, int xpos, int ypos, int xSize, int ySize, Table table){
+  void textBox(String windowName, int xpos, int ypos, int xSize, int ySize, Table table)
+  {
       String displayData = parser.formatData(table);
       myTextarea = cp5.addTextarea(windowName)
                   .setPosition(xpos, ypos + 16)
@@ -25,6 +26,7 @@ class Gui{
                   .setColorForeground(color(255,100))
                   .setText(displayData)
                   ;
+                  
   
       
        StringBuilder output = new StringBuilder();
@@ -59,7 +61,8 @@ class Gui{
     
   }
   
-  void pie(int xpos, int ypos, int size){
+  void pie(int xpos, int ypos, int size)
+  {
     myChart = cp5.addChart("pieChart")
                .setPosition(xpos, ypos)
                .setSize(size, size)
@@ -71,16 +74,16 @@ class Gui{
     int totalFlights = query.getCount();
     int normalFlights = totalFlights - input.getOrDefault("CANCELLED", 0) - input.getOrDefault("DIVERTED", 0);
     
-  ChartData normal = new ChartData(normalFlights, "normal");
-  ChartData cancelledFlights = new ChartData(input.getOrDefault("CANCELLED", 0), "cancelled");
-  ChartData divrtedFlights = new ChartData(input.getOrDefault("DIVERTED", 0), "diverted");
-
-  myChart.addDataSet("data");
-  myChart.addData("data",normal);
-  myChart.addData("data",cancelledFlights);
-  myChart.addData("data",divrtedFlights);
-
-  myChart.setColors("data",color(25,75,79), color(221,68,68), color(255,220,220));
+    ChartData normal = new ChartData(normalFlights, "normal");
+    ChartData cancelledFlights = new ChartData(input.getOrDefault("CANCELLED", 0), "cancelled");
+    ChartData divrtedFlights = new ChartData(input.getOrDefault("DIVERTED", 0), "diverted");
+  
+    myChart.addDataSet("data");
+    myChart.addData("data",normal);
+    myChart.addData("data",cancelledFlights);
+    myChart.addData("data",divrtedFlights);
+  
+    myChart.setColors("data",color(25,75,79), color(221,68,68), color(255,220,220));
   
   }
 }
