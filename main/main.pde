@@ -95,7 +95,7 @@ void setup() {
   homeScreen = new Screen(widgetList);
   
   query = new Query(table);
-  barGraph = new BarGraph(query);
+  //barGraph = new BarGraph(query);
   
   // NIAMH 27/03/24
   mouseImg = loadImage("plane.png");   // load image to replace mouse
@@ -105,7 +105,80 @@ void setup() {
 
 void draw(){
     homeScreen.draw();
+<<<<<<< Updated upstream
     
+=======
+
+    textFont(myFont);
+    // Ella 3/4/24    
+    if(homeScr){ //<>// //<>//
+      myTextlabel.hide(); //<>// //<>//
+      myTextarea.hide();
+     }
+    
+    else{
+      // Ella 3/4/ edited main to show table only when interacting with query buttons 
+        textFont(myFont);     
+        
+      // ELLA and YUE          20/3/24
+      switch(tempSwitch)
+      {
+        case 0:
+          // Interactive buttons - SADHBH
+          for (int i = 0; i<widgetList.size(); i++) { //<>// //<>//
+          Widget aWidget = (Widget)widgetList.get(i); //<>// //<>//
+          aWidget.draw();
+          }
+          myTextlabel.show();
+          myTextarea.show();
+          fill(0);
+          rect(0, 120, 1407, 470);fill(0);
+          break;
+         //<>// //<>//
+        case 4: //<>// //<>//
+          background(bgImg);
+          myTextlabel.hide();
+          myTextarea.hide();
+        
+          // creates pie chart based on user query - SADHBH 28/3/24
+          PieChart pieChart = new PieChart(query);
+          pieChart.draw(width/2, height/2, 600);
+        
+          Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
+          aWidget.draw();
+          break;
+        
+        case 5: //<>// //<>//
+          background(bgImg); //<>// //<>//
+          myTextlabel.hide();
+          myTextarea.hide();
+        
+          // NIAMH 27/3/24  
+          lineGraph = new LineGraph(query);
+          lineGraph.draw(40, 100, 1200, 500);
+        
+          Widget bWidget = (Widget)widgetList.get(widgetList.size() - 3);
+          bWidget.draw();
+          break;      
+  
+        case 6:
+          background(bgImg);
+          myTextlabel.hide();
+          myTextarea.hide();
+       
+          // AOIFE
+          barGraph = new BarGraph(query);
+          barGraph.draw(40, 150, 1200, 500);
+        
+          Widget cWidget = (Widget)widgetList.get(widgetList.size() - 3);
+          cWidget.draw();
+          break;
+          
+        case -1:
+          break;
+      }
+
+>>>>>>> Stashed changes
     // ELLA and YUE
     switch(tempSwitch)
     {
@@ -132,10 +205,17 @@ void draw(){
       
         Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
         aWidget.draw();
+<<<<<<< Updated upstream
         break;
       
       case 5:
         background(bgImg); //<>//
+=======
+        break; //<>//
+       //<>//
+      case 5: //<>//
+        background(whiteBgImg); //<>//
+>>>>>>> Stashed changes
         myTextlabel.hide();
         myTextarea.hide();
       
