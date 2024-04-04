@@ -87,9 +87,9 @@ void setup() {
   
   // NIAMH AND SADHBH 13/3/24
 
-  lines = loadStrings("flights2k.csv");
-  StoreData storeData = new StoreData();
-  storeData.setup();
+//  lines = loadStrings("flights_full.csv");
+ // StoreData storeData = new StoreData();
+ // storeData.setup();
   
   // loading images - NIAMH 30/3/24
   houseImg = loadImage("house.png");
