@@ -229,9 +229,9 @@ void mousePressed() {                                                // determin
         tempSwitch = 4;
         println("button 4!");
 
-        hideTextbox("search airlines");
-        hideTextbox("search date");
-        hideTextbox("search airport");
+        hideTextbox("Enter Airline Prefix");
+        hideTextbox("Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
+        hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;
@@ -244,9 +244,9 @@ void mousePressed() {                                                // determin
         tempSwitch = 5;
         println("button 5!");
 
-        hideTextbox("search airlines");
-        hideTextbox("search date");
-        hideTextbox("search airport");
+        hideTextbox("Enter Airline Prefix");
+        hideTextbox("Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
+        hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;        
@@ -259,9 +259,9 @@ void mousePressed() {                                                // determin
         tempSwitch = 6;
         println("button 6!");
 
-        hideTextbox("search airlines");
-        hideTextbox("search date");
-        hideTextbox("search airport");
+        hideTextbox("Enter Airline Prefix");
+        hideTextbox("Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
+        hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;        
@@ -277,22 +277,22 @@ void mousePressed() {                                                // determin
 
       //ELLA 18/3/24
       case SUBMIT_BUTTON:
-        if( isAirlineTextboxVisible && (cp5.get(Textfield.class,"search airlines").getText()).equals("") == false ){
-          String input = cp5.get(Textfield.class,"search airlines").getText();
+        if( isAirlineTextboxVisible && (cp5.get(Textfield.class,"Enter Airline Prefix").getText()).equals("") == false ){
+          String input = cp5.get(Textfield.class,"Enter Airline Prefix").getText();
           query.searchAirline(input);
           String output = parser.formatData(query.getTable());
           myTextarea.setText(output);
        
         }
-        if(isDestinationTextboxVisible && (cp5.get(Textfield.class,"search airport").getText()).equals("") == false ){
-          String input = cp5.get(Textfield.class,"search airport").getText();
+        if(isDestinationTextboxVisible && (cp5.get(Textfield.class,"Enter Origin(O:) or Destination(D:), then Airport").getText()).equals("") == false ){
+          String input = cp5.get(Textfield.class,"Enter Origin(O:) or Destination(D:), then Airport").getText();
           query.searchStates(input);
           String output = parser.formatData(query.getTable());
           myTextarea.setText(output);
 
         }
-        if(isDateTextboxVisible && (cp5.get(Textfield.class,"search date").getText()).equals("") == false ){
-          String input = cp5.get(Textfield.class,"search date").getText();
+        if(isDateTextboxVisible && (cp5.get(Textfield.class,"Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)").getText()).equals("") == false ){
+          String input = cp5.get(Textfield.class,"Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)").getText();
           try{
             query.searchDates(input);
           }
@@ -307,9 +307,9 @@ void mousePressed() {                                                // determin
       case RESET_BUTTON:
         query.reset();
 
-        hideTextbox("search airlines");
-        hideTextbox("search date");
-        hideTextbox("search airport");
+        hideTextbox("Enter Airline Prefix");
+        hideTextbox("Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
+        hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;
@@ -350,17 +350,17 @@ void hideTextbox(String name) {
 void hideAllTextBoxes() {
     if(isAirlineTextboxVisible== true)
     {
-       hideTextbox("search airlines");
+       hideTextbox("Enter Airline Prefix");
        isAirlineTextboxVisible = !isAirlineTextboxVisible;
     }
     if(isDestinationTextboxVisible ==true)
     {
-       hideTextbox("search airport");
+       hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
        isDestinationTextboxVisible = !isDestinationTextboxVisible;
     }
     if( isDateTextboxVisible == true)
     {
-        hideTextbox("search date");
+        hideTextbox("sEnter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
         isDateTextboxVisible = !isDateTextboxVisible;
     }
 }
