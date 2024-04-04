@@ -28,7 +28,12 @@ class BarGraph {
     drawBars(x, y, w, h); // Draw bars representing data points
     drawAxes(x, y, w, h); // Draw axes
     drawLabels(x, y, w, h); // Draw labels and ticks
+<<<<<<< Updated upstream
     text("Amount of Flights per Airline fulfilling chosen parameters", 450, 20); // Draw title
+=======
+    textSize(28);
+    text("Amount of Flights per Airline fulfilling chosen parameters", 320, 90); // Draw title
+>>>>>>> Stashed changes
   }
 
   // method to draw bars
