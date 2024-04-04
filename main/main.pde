@@ -15,11 +15,20 @@ String[] lines;
 int currentLineIndex = 0;
 
 PImage bgImg;
+<<<<<<< Updated upstream
 // Niamh declaring image variables
 PImage mouseImg; // declare a variable for the mouse image
 PImage houseImg; // declare a variable for the house image
 PImage submitImg; // declare a variable for the submit image
 PImage resetImg; // declare a variable for the return image
+=======
+// declaring image variables - NIAMH 30/3/24
+PImage whiteBgImg;
+PImage mouseImg;     // declare a variable for the mouse image
+PImage houseImg;     // declare a variable for the house image
+PImage submitImg;    // declare a variable for the submit image
+PImage resetImg;     // declare a variable for the return image
+>>>>>>> Stashed changes
 
 
 ControlP5 cp5;
@@ -60,11 +69,17 @@ ArrayList<Widget> widgetList;
 void setup() {
   cp5 = new ControlP5(this);      
   size(1407, 946);
-  bgImg = loadImage("bgImg.png");
+  bgImg = loadImage("bgImgWithHeading.png");
+  whiteBgImg = loadImage("whiteBgImgWithHeading.png");
   PFont myFont = loadFont("Phosphate-Solid-28.vlw");
   textFont(myFont);
   
+<<<<<<< Updated upstream
   // YUE PAN
+=======
+  
+  // YUE PAN 
+>>>>>>> Stashed changes
   parser = new Parse();
   table = parser.createTable("flights2k.csv");
   maximumWidths = parser.getColumnWidths(table);
@@ -87,6 +102,7 @@ void setup() {
   
   // Interactive buttons - ANNA
   Widget widget1, widget2, widget3, widget4, widget5, widget6, homeWidget, submitWidget, resetWidget;
+<<<<<<< Updated upstream
   widget1 = new Widget(40, 40, 180, 40, "Airline", color(33, 76, 180), myFont, EVENT_BUTTON1);
   widget2 = new Widget(260, 40, 180, 40, "Airport", color(80, 142, 228), myFont, EVENT_BUTTON2);
   widget3 = new Widget(480, 40, 180, 40, "Date", color(167, 195, 247), myFont, EVENT_BUTTON3);
@@ -96,6 +112,17 @@ void setup() {
   homeWidget = new Widget(1250, 775,  houseImg, HOME_BUTTON);
   submitWidget = new Widget(1200, 35, submitImg, SUBMIT_BUTTON);
   resetWidget = new Widget(1300, 35, resetImg, RESET_BUTTON);
+=======
+  widget1 = new Widget(40, 60, 180, 40, "Airline", color(250, 148, 148), myFont, EVENT_BUTTON1);
+  widget2 = new Widget(260, 60, 180, 40, "Airport", color(250, 88, 88), myFont, EVENT_BUTTON2);
+  widget3 = new Widget(480, 60, 180, 40, "Date", color(250, 48, 48), myFont, EVENT_BUTTON3);
+  widget4 = new Widget(140, 630, 200, 55, "Pie Chart", color(160, 188, 244), myFont, EVENT_BUTTON4);
+  widget5 = new Widget(590, 630, 200, 55, "Line Graph", color(88, 138, 244), myFont, EVENT_BUTTON5);
+  widget6 = new Widget(1040, 630, 200, 55, "Bar Graph", color(52, 114, 244), myFont, EVENT_BUTTON6);
+  homeWidget = new Widget(1250, 775,  houseImg, HOME_BUTTON);
+  submitWidget = new Widget(1200, 55, submitImg, SUBMIT_BUTTON);
+  resetWidget = new Widget(1300, 60, resetImg, RESET_BUTTON);
+>>>>>>> Stashed changes
   
   widgetList = new ArrayList<Widget>();
   widgetList.add(widget1);
@@ -166,7 +193,7 @@ void draw(){
         break;
       
       case 4:
-        background(bgImg);
+        background(whiteBgImg);
         myTextlabel.hide();
         myTextarea.hide();
       
@@ -179,25 +206,25 @@ void draw(){
         break;
       
       case 5: //<>//
-        background(bgImg); //<>//
+        background(whiteBgImg); //<>//
         myTextlabel.hide();
         myTextarea.hide();
       
         // NIAMH 27/3/24  
         lineGraph = new LineGraph(query);
-        lineGraph.draw(40, 100, 1200, 500);
+        lineGraph.draw(40, 180, 1200, 500);
       
         Widget bWidget = (Widget)widgetList.get(widgetList.size() - 3);
         bWidget.draw();
         break;      
 
       case 6:
-        background(bgImg);
+        background(whiteBgImg);
         myTextlabel.hide();
         myTextarea.hide();
      
         // AOIFE
-        barGraph.draw(40, 100, 1200, 500);
+        barGraph.draw(40, 180, 1200, 500);
       
         Widget cWidget = (Widget)widgetList.get(widgetList.size() - 3);
         cWidget.draw();
@@ -368,8 +395,13 @@ void mouseMoved() {
 }
 
 void showTextbox(String name, int x, int y) { 
+<<<<<<< Updated upstream
   cp5.addTextfield(name)   //adding textfile using the ControlP5 library 
      .setPosition(x, y) 
+=======
+  cp5.addTextfield(name)              //adding textfile using the ControlP5 library 
+     .setPosition(x, 100) 
+>>>>>>> Stashed changes
      .setSize(200, 20)
      .setAutoClear(false) // Disables automatic clearing of the text field
      .setFocus(true);  // ready for input upon bein disaplayed
