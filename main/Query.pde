@@ -137,4 +137,26 @@ class Query{
    returnTable = table;
   }
   
+  int getCount()
+  {
+    return returnTable.getRowCount();
+  }
+  
+  
+  HashMap<String, Integer> flightAttributes()
+  {
+    HashMap<String, Integer> displayedFlightAttributes = new HashMap<>();
+    for(TableRow row : returnTable.rows()) {
+      if(row.getString("CANCELLED").equals("1"))
+      {
+        displayedFlightAttributes.put("CANCELLED",  displayedFlightAttributes.getOrDefault("CANCELLED", 0) + 1);                      
+      }
+      if(row.getString("DIVERTED").equals("1"))
+      {
+        displayedFlightAttributes.put("DIVERTED",  displayedFlightAttributes.getOrDefault("DIVERTED", 0) + 1);                      
+      }
+  }
+  
+  return  displayedFlightAttributes;
+  }
 }
