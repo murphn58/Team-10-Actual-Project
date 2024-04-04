@@ -93,8 +93,8 @@ class PieChart {
     
     // Prints title of pie chart on screen. - SADHBH 18/3/24
     PFont pieChartLabel = loadFont("Phosphate-Solid-28.vlw");
-    textFont(pieChartLabel, 40);
+    textFont(pieChartLabel, 28);
     fill(0);
-    text("Amount of Flights per Airline fulfilling chosen parameters", 140, 40);
+    text("Amount of Flights per Airline fulfilling chosen parameters", 320, 90);
   } 
 }

@@ -145,8 +145,8 @@ void draw(){
 
     textFont(myFont);
     // Ella 3/4/24    
-    if(homeScr){ //<>//
-      myTextlabel.hide(); //<>//
+    if(homeScr){ //<>// //<>//
+      myTextlabel.hide(); //<>// //<>//
       myTextarea.hide();
      }
     
@@ -159,8 +159,8 @@ void draw(){
       {
         case 0:
           // Interactive buttons - SADHBH
-          for (int i = 0; i<widgetList.size(); i++) { //<>//
-          Widget aWidget = (Widget)widgetList.get(i); //<>//
+          for (int i = 0; i<widgetList.size(); i++) { //<>// //<>//
+          Widget aWidget = (Widget)widgetList.get(i); //<>// //<>//
           aWidget.draw();
           }
           myTextlabel.show();
@@ -168,8 +168,8 @@ void draw(){
           fill(0);
           rect(0, 120, 1407, 470);fill(0);
           break;
-         //<>//
-        case 4: //<>//
+         //<>// //<>//
+        case 4: //<>// //<>//
           background(bgImg);
           myTextlabel.hide();
           myTextarea.hide();
@@ -182,8 +182,8 @@ void draw(){
           aWidget.draw();
           break;
         
-        case 5: //<>//
-          background(bgImg); //<>//
+        case 5: //<>// //<>//
+          background(bgImg); //<>// //<>//
           myTextlabel.hide();
           myTextarea.hide();
         
@@ -261,8 +261,8 @@ void draw(){
         aWidget.draw();
         break;
       
-      case 5: //<>//
-        background(whiteBgImg); //<>//
+      case 5: //<>// //<>//
+        background(whiteBgImg); //<>// //<>//
         myTextlabel.hide();
         myTextarea.hide();
       
