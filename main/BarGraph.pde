@@ -1,3 +1,6 @@
+// Bar Chart Class - AOIFE 18/3/24
+
+
 class BarGraph {
   
   HashMap<String, Integer> airlineCounts; // HashMap to store the count of occurrences of each airline
@@ -28,7 +31,8 @@ class BarGraph {
     drawBars(x, y, w, h); // Draw bars representing data points
     drawAxes(x, y, w, h); // Draw axes
     drawLabels(x, y, w, h); // Draw labels and ticks
-    text("Amount of Flights per Airline fulfilling chosen parameters", 450, 20); // Draw title
+    textSize(28);
+    text("Amount of Flights per Airline fulfilling chosen parameters", 320, 40); // Draw title
   }
 
   // method to draw bars
@@ -41,7 +45,7 @@ class BarGraph {
     for (String airline : airlineCounts.keySet()) 
     {
       float barHeight = map(airlineCounts.get(airline), 0, maxValue, 0, h); // Calculate the height of the current bar
-      fill(41, 64, 203); // Set colour for bars
+      fill(52, 114, 244); // Set colour for bars
       rect(xPos, y + h - barHeight, barWidth, barHeight); // Draw the current bar
       xPos += barWidth; // Move to the next x position for the next bar
     }
@@ -50,7 +54,7 @@ class BarGraph {
   // method to draw axes
   void drawAxes(float x, float y, float w, float h) {
     
-    stroke(0); // Set stroke color for axes
+    //stroke(0); // Set stroke color for axes
     line(x, y + h, x + w, y + h); // Draw X-axis
     line(x, y, x, y + h); // Draw Y-axis
   }

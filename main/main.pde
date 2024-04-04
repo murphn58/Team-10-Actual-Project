@@ -15,11 +15,11 @@ String[] lines;
 int currentLineIndex = 0;
 
 PImage bgImg;
-// Niamh declaring image variables
-PImage mouseImg; // declare a variable for the mouse image
-PImage houseImg; // declare a variable for the house image
-PImage submitImg; // declare a variable for the submit image
-PImage resetImg; // declare a variable for the return image
+// declaring image variables - NIAMH 30/3/24
+PImage mouseImg;     // declare a variable for the mouse image
+PImage houseImg;     // declare a variable for the house image
+PImage submitImg;    // declare a variable for the submit image
+PImage resetImg;     // declare a variable for the return image
 
 
 ControlP5 cp5;
@@ -30,11 +30,11 @@ Screen currentScreen, homeScreen, pieScreen;
 LineGraph lineGraph;
 Query query;
 
- // TEXTBOX - ANNA 
+ // Textbox - ANNA 
 String userInput;
 
-// search bar - ANNA 
-boolean isAirlineTextboxVisible = false;    // to track whether the textboxes are currently visible or not. 
+// search bar - ANNA 27/3/24
+boolean isAirlineTextboxVisible = false;      // to track whether the textboxes are currently visible or not. 
 boolean isDestinationTextboxVisible = false;
 boolean isDateTextboxVisible = false;
 
@@ -44,7 +44,7 @@ BarGraph barGraph;
 
 int tempSwitch = 0;
 
-//Interactive buttons - SADHBH
+//Interactive buttons - SADHBH 13/3/24
 final int EVENT_BUTTON1 = 1;
 final int EVENT_BUTTON2 = 2;
 final int EVENT_BUTTON3 = 3;
@@ -64,7 +64,7 @@ void setup() {
   PFont myFont = loadFont("Phosphate-Solid-28.vlw");
   textFont(myFont);
   
-  // YUE PAN
+  // YUE PAN 
   parser = new Parse();
   table = parser.createTable("flights2k.csv");
   maximumWidths = parser.getColumnWidths(table);
@@ -72,29 +72,29 @@ void setup() {
   gui.textBox("results", 0, 120, 1407, 470, table);
   gui.pie(590, 700, 200);
   
-  // NIAMH AND SADHBH
+  // NIAMH AND SADHBH 13/3/24
   lines = loadStrings("flights2k.csv");
   StoreData storeData = new StoreData();
   storeData.setup();
   
-  // Niamh loading images
+  // loading images - NIAMH 30/3/24
   houseImg = loadImage("house.png");
   houseImg.resize(55, 40);
   submitImg = loadImage("submit.png");
-  submitImg.resize(50, 50);
+  submitImg.resize(70, 70);
   resetImg = loadImage("reset.png");
   resetImg.resize(50, 50);
   
   // Interactive buttons - ANNA
   Widget widget1, widget2, widget3, widget4, widget5, widget6, homeWidget, submitWidget, resetWidget;
-  widget1 = new Widget(40, 40, 180, 40, "Airline", color(33, 76, 180), myFont, EVENT_BUTTON1);
-  widget2 = new Widget(260, 40, 180, 40, "Airport", color(80, 142, 228), myFont, EVENT_BUTTON2);
-  widget3 = new Widget(480, 40, 180, 40, "Date", color(167, 195, 247), myFont, EVENT_BUTTON3);
-  widget4 = new Widget(140, 600, 200, 55, "Pie Chart", color(211, 190, 247), myFont, EVENT_BUTTON4);
-  widget5 = new Widget(590, 600, 200, 55, "Line Graph", color(164, 84, 245), myFont, EVENT_BUTTON5);
-  widget6 = new Widget(1040, 600, 200, 55, "Bar Graph", color(100, 0, 200), myFont, EVENT_BUTTON6);
+  widget1 = new Widget(40, 40, 180, 40, "Airline", color(250, 148, 148), myFont, EVENT_BUTTON1);
+  widget2 = new Widget(260, 40, 180, 40, "Airport", color(250, 88, 88), myFont, EVENT_BUTTON2);
+  widget3 = new Widget(480, 40, 180, 40, "Date", color(250, 48, 48), myFont, EVENT_BUTTON3);
+  widget4 = new Widget(140, 600, 200, 55, "Pie Chart", color(160, 188, 244), myFont, EVENT_BUTTON4);
+  widget5 = new Widget(590, 600, 200, 55, "Line Graph", color(88, 138, 244), myFont, EVENT_BUTTON5);
+  widget6 = new Widget(1040, 600, 200, 55, "Bar Graph", color(52, 114, 244), myFont, EVENT_BUTTON6);
   homeWidget = new Widget(1250, 775,  houseImg, HOME_BUTTON);
-  submitWidget = new Widget(1200, 35, submitImg, SUBMIT_BUTTON);
+  submitWidget = new Widget(1200, 29, submitImg, SUBMIT_BUTTON);
   resetWidget = new Widget(1300, 35, resetImg, RESET_BUTTON);
   
   widgetList = new ArrayList<Widget>();
@@ -170,9 +170,9 @@ void draw(){
         myTextlabel.hide();
         myTextarea.hide();
       
-        // creates pie chart based on user query - SADHBH 28/3/24
+        // Creates pie chart based on user query - SADHBH 28/3/24
         PieChart pieChart = new PieChart(query);
-        pieChart.draw(width/2, height/2, 600);
+        pieChart.draw(width/2, height/2.2, 620);
       
         Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
         aWidget.draw();
@@ -213,31 +213,31 @@ void draw(){
     image(mouseImg, imgX, imgY);                   // draw plane image where mouseX and mouseY are
  }
 
-//BUTTONS + TEXTBOX - ANNA 
-void mousePressed() {        // determines which box has been pressed
+//BUTTONS + TEXTBOX - ANNA 18/3/24
+void mousePressed() {                                                // determines which box has been pressed
   for (Widget widget : widgetList) {
     int submit =0;                                  
-    int event = widget.getEvent(mouseX, mouseY);     // determines if mouse is pressed within the bounds o f the widget and returns an event type.
-    switch (event) {               // handles different types of events. 
+    int event = widget.getEvent(mouseX, mouseY);                     // determines if mouse is pressed within the bounds o f the widget and returns an event type.
+    switch (event) {                                                 // handles different types of events. 
       case EVENT_BUTTON1:
         println("airline");
-        if (isAirlineTextboxVisible) {    // checking isAirlineTextboxVisible 
-          hideTextbox("search airlines");     // if textbox is visible calls hideTextbox function
+        if (isAirlineTextboxVisible) {                               // checking isAirlineTextboxVisible 
+          hideTextbox("Enter Airline Prefix");                       // if textbox is visible calls hideTextbox function
         } else {
-          showTextbox("search airlines", 40, 80);    // if false calls showTextbox function
+          showTextbox("Enter Airline Prefix", 40, 80);               // if false calls showTextbox function
         }
 
-        isAirlineTextboxVisible = !isAirlineTextboxVisible; // Toggle the visibility status
-        isAirlineTextboxVisible = !isAirlineTextboxVisible;         // Toggle the visibility status, negates current value.
-        isAirlineTextboxVisible = !isAirlineTextboxVisible;         // Toggle the visibility status
+        isAirlineTextboxVisible = !isAirlineTextboxVisible;          // Toggle the visibility status
+        isAirlineTextboxVisible = !isAirlineTextboxVisible;          // Toggle the visibility status, negates current value.
+        isAirlineTextboxVisible = !isAirlineTextboxVisible;          // Toggle the visibility status
         break;
         
       case EVENT_BUTTON2:
         println("airport");
         if (isDestinationTextboxVisible) {
-          hideTextbox("search airport");
+          hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         } else {
-          showTextbox("search airport", 260, 80);
+          showTextbox("Enter Origin(O:) or Destination(D:), then Airport", 260, 80);
         }
         isDestinationTextboxVisible = !isDestinationTextboxVisible;  // Toggle the visibility status
         break;
@@ -245,9 +245,9 @@ void mousePressed() {        // determines which box has been pressed
       case EVENT_BUTTON3:
         println("date");                                                            
         if (isDateTextboxVisible) {
-          hideTextbox("search date");
+          hideTextbox("Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
         } else {
-          showTextbox("search date", 480, 80);
+          showTextbox("Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)", 480, 80);
         }
         isDateTextboxVisible = !isDateTextboxVisible;                // Toggle the visibility status
         break;
@@ -256,9 +256,9 @@ void mousePressed() {        // determines which box has been pressed
         tempSwitch = 4;
         println("button 4!");
 
-        hideTextbox("search airlines");
-        hideTextbox("search date");
-        hideTextbox("search airport");
+        hideTextbox("Enter Airline Prefix");
+        hideTextbox("Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
+        hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;
@@ -271,9 +271,9 @@ void mousePressed() {        // determines which box has been pressed
         tempSwitch = 5;
         println("button 5!");
 
-        hideTextbox("search airlines");
-        hideTextbox("search date");
-        hideTextbox("search airport");
+        hideTextbox("Enter Airline Prefix");
+        hideTextbox("Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
+        hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;        
@@ -286,9 +286,9 @@ void mousePressed() {        // determines which box has been pressed
         tempSwitch = 6;
         println("button 6!");
 
-        hideTextbox("search airlines");
-        hideTextbox("search date");
-        hideTextbox("search airport");
+        hideTextbox("Enter Airline Prefix");
+        hideTextbox("Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
+        hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;        
@@ -302,27 +302,24 @@ void mousePressed() {        // determines which box has been pressed
         println("home pressed");
         break;
 
-        //Ella
+      //ELLA 18/3/24
       case SUBMIT_BUTTON:
-
-
-    
-        if( isAirlineTextboxVisible && (cp5.get(Textfield.class,"search airlines").getText()).equals("") == false ){
-          String input = cp5.get(Textfield.class,"search airlines").getText();
+        if( isAirlineTextboxVisible && (cp5.get(Textfield.class,"Enter Airline Prefix").getText()).equals("") == false ){
+          String input = cp5.get(Textfield.class,"Enter Airline Prefix").getText();
           query.searchAirline(input);
           String output = parser.formatData(query.getTable());
           myTextarea.setText(output);
        
         }
-        if(isDestinationTextboxVisible && (cp5.get(Textfield.class,"search airport").getText()).equals("") == false ){
-          String input = cp5.get(Textfield.class,"search airport").getText();
+        if(isDestinationTextboxVisible && (cp5.get(Textfield.class,"Enter Origin(O:) or Destination(D:), then Airport").getText()).equals("") == false ){
+          String input = cp5.get(Textfield.class,"Enter Origin(O:) or Destination(D:), then Airport").getText();
           query.searchStates(input);
           String output = parser.formatData(query.getTable());
           myTextarea.setText(output);
 
         }
-        if(isDateTextboxVisible && (cp5.get(Textfield.class,"search date").getText()).equals("") == false ){
-          String input = cp5.get(Textfield.class,"search date").getText();
+        if(isDateTextboxVisible && (cp5.get(Textfield.class,"Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)").getText()).equals("") == false ){
+          String input = cp5.get(Textfield.class,"Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)").getText();
           try{
             query.searchDates(input);
           }
@@ -335,13 +332,13 @@ void mousePressed() {        // determines which box has been pressed
           gui.pieAppendData(query.flightAttributes());
         break;
       
-      //ELLA
+      //ELLA 18/3/24
       case RESET_BUTTON:
         query.reset();
 
-        hideTextbox("search airlines");
-        hideTextbox("search date");
-        hideTextbox("search airport");
+        hideTextbox("Enter Airline Prefix");
+        hideTextbox("Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
+        hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;
@@ -368,32 +365,32 @@ void mouseMoved() {
 }
 
 void showTextbox(String name, int x, int y) { 
-  cp5.addTextfield(name)   //adding textfile using the ControlP5 library 
+  cp5.addTextfield(name)              //adding textfile using the ControlP5 library 
      .setPosition(x, y) 
      .setSize(200, 20)
-     .setAutoClear(false) // Disables automatic clearing of the text field
-     .setFocus(true);  // ready for input upon bein disaplayed
+     .setAutoClear(false)             // Disables automatic clearing of the text field
+     .setFocus(true);                 // ready for input upon bein disaplayed
 }
 
 void hideTextbox(String name) {
-  cp5.remove(name); // Remove the textfield by its name
+  cp5.remove(name);                   // Remove the textfield by its name
 }
 
 
 void hideAllTextBoxes() {
     if(isAirlineTextboxVisible== true)
     {
-       hideTextbox("search airlines");
+       hideTextbox("Enter Airline Prefix");
        isAirlineTextboxVisible = !isAirlineTextboxVisible;
     }
     if(isDestinationTextboxVisible ==true)
     {
-       hideTextbox("search airport");
+       hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
        isDestinationTextboxVisible = !isDestinationTextboxVisible;
     }
     if( isDateTextboxVisible == true)
     {
-        hideTextbox("search date");
+        hideTextbox("sEnter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
         isDateTextboxVisible = !isDateTextboxVisible;
     }
 }
