@@ -58,4 +58,29 @@ class Gui{
       
     
   }
+  
+  void pie(int xpos, int ypos, int size){
+    myChart = cp5.addChart("pieChart")
+               .setPosition(xpos, ypos)
+               .setSize(size, size)
+               .setView(Chart.PIE); // Set view mode to PIE            
+  }
+  
+  void pieAppendData(HashMap<String, Integer> input)
+  {
+    int totalFlights = query.getCount();
+    int normalFlights = totalFlights - input.getOrDefault("CANCELLED", 0) - input.getOrDefault("DIVERTED", 0);
+    
+  ChartData normal = new ChartData(normalFlights, "normal");
+  ChartData cancelledFlights = new ChartData(input.getOrDefault("CANCELLED", 0), "cancelled");
+  ChartData divrtedFlights = new ChartData(input.getOrDefault("DIVERTED", 0), "diverted");
+
+  myChart.addDataSet("data");
+  myChart.addData("data",normal);
+  myChart.addData("data",cancelledFlights);
+  myChart.addData("data",divrtedFlights);
+
+  myChart.setColors("data",color(25,75,79), color(221,68,68), color(255,220,220));
+  
+  }
 }
