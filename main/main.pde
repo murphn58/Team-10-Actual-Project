@@ -201,7 +201,7 @@ void draw(){
           myTextlabel.hide();
           myTextarea.hide();
        
-          // AOIFE
+          // AOIFE 18/3/24
           barGraph = new BarGraph(query);
           barGraph.draw(40, 150, 1200, 500);
         
