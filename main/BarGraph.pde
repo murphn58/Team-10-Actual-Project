@@ -1,3 +1,4 @@
+//  Aoife
 class BarGraph {
   
   HashMap<String, Integer> airlineCounts; // HashMap to store the count of occurrences of each airline

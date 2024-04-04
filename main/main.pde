@@ -13,7 +13,7 @@ Table mKTCarrierTable;
 String[] lines;
 int currentLineIndex = 0;
 
-PFont title;      //ella
+PFont title;      //ella   3/4/24
 PFont myFont;
 String titleText;
 Boolean homeScr = true;
@@ -32,7 +32,7 @@ Textarea myTextarea;
 Gui gui;
 Screen currentScreen, homeScreen, pieScreen;
 LineGraph lineGraph;
-Query query;
+Query query;    // ella
 
  // TEXTBOX - ANNA 
 String userInput;
@@ -131,15 +131,13 @@ void draw(){
     textFont(myFont);
     // Ella 3/4/24    
     if(homeScr){
-      query.hide();
       myTextlabel.hide();
       myTextarea.hide();
      }
     
     else{
-      // Ella 3/4/24
+      // Ella 3/4/ edited main to show table only when interacting with query buttons 
         textFont(myFont);     
-        query.show();
         
       // ELLA and YUE          20/3/24
       switch(tempSwitch)

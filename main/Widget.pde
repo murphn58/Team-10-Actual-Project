@@ -6,9 +6,7 @@ class Widget {
   int event;
   color widgetColor, labelColor, lineColor;
   PFont widgetFont;
-  PImage image;
-  String title;
-  
+  PImage image;  
  
   Widget(int x, int y, int width, int height, String label, color widgetColor, PFont widgetFont, int event){
     this.x = x; this.y = y; this.width = width; this.height = height; 
@@ -26,21 +24,18 @@ class Widget {
   void draw(){
     if(event == HOME_BUTTON)
     {
-        // text(title, 300, 100);
          image(houseImg, x, y);
          height = 55;
          width = 45;
     }
     else if (event == SUBMIT_BUTTON)
-    {
-      
+    {     
       image(submitImg, x, y);
          height = 50;
          width = 50;
     }
     else if (event == RESET_BUTTON)
-    {
-      
+    {     
       image(resetImg, x, y);
          height = 50;
          width = 50;

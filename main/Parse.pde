@@ -1,4 +1,5 @@
-
+// Stores and formats data into to table and returns as a string representation of said data
+// Yue
 class Parse{
   Table table;
   
