@@ -1,11 +1,17 @@
 // Stores and formats data into to table and returns as a string representation of said data
-// Yue
+// Yue Pan 
 class Parse{
   Table table;
   
   Parse(){
   }
   
+  /** 
+   * Creates a Table object from a CSV file.
+   * 
+   * @param name of CSV file.
+   * @return A Table object containing the data from the CSV file.
+   */
   Table createTable(String fileName){
     table = loadTable(fileName, "header");
     return table;
@@ -14,7 +20,6 @@ class Parse{
 
   HashMap<String, Integer> extractDateAndCountFlights(Table table) {
   HashMap<String, Integer> flightsPerDate = new HashMap<String, Integer>();
-
   for (TableRow row : table.rows()) {
     String date = row.getString(0); // Assuming date is in the first column
     if (flightsPerDate.containsKey(date)) {
@@ -26,7 +31,13 @@ class Parse{
 
   return flightsPerDate;
   }
-  
+ 
+  /** 
+   * Converts a Table object into a string representation.
+   * 
+   * @param  Table object 
+   * @return String representation of table object.
+   */
    String getData(Table table){
     String data = "";
     for(TableRow row : table.rows())
@@ -40,6 +51,13 @@ class Parse{
     return data;
   }
   
+  
+  /**
+   * Calculates the maximum widths of columns in the provided Table.
+   * 
+   * @param  Table object 
+   * @return An array containing the maximum widths of each column.
+   */ 
   int[] getColumnWidths(Table table){
     int[] maxWidths = new int[table.getColumnCount()];
     int minimumWidth = 6;
@@ -59,9 +77,19 @@ class Parse{
     return maxWidths;
   }
   
+  /**
+   * Formats the data in the provided Table object by padding spaces according to the maximum widths of each column
+   * 
+   * @param  Table
+   * @return String representation of table object.
+   */   
   String formatData(Table table)
   {
- 
+    
+    if(table.getRowCount() > 10000)
+    {
+      return "";
+    }
     StringBuilder output = new StringBuilder();
     
     for(TableRow row : table.rows())

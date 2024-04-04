@@ -1,4 +1,4 @@
-//Yue
+//Yue Pan
 class Query{
   Table returnTable = null;
   
@@ -6,14 +6,30 @@ class Query{
     returnTable = table.copy();
   }
   
+  /**
+   * Returns Table associated wtih Query
+   * 
+   * @return table
+   */
   Table getTable(){
     return returnTable;
   }
   
+  /**
+   * Reset Table associated with Query with original
+   * 
+   * 
+   */
   void reset(){
    returnTable = table;
   }
   
+  /**
+   * Modifies the associated table with the dates within range
+   * 
+   * 
+   */
+   
     void searchDates(String input) throws Exception// expects "MM/DD/YY-MM/DD/YY" in form of "start-end"
   {
     String[] dateArray = input.split("-", 2);
@@ -39,6 +55,12 @@ class Query{
     
     this.returnTable = tempTable;
   }
+  
+  /**
+   * Modifies the associated table with by only including the queried states
+   * 
+   * 
+   */
   void searchStates(String input){   // changes the attached returnTable, expected "D:INPUT" or "O:INPUT" for destination or origin, can tell the difference between airport/state, abbreviations, full location name, and WAC
     // 
     int targetColumn = 0;
@@ -85,8 +107,13 @@ class Query{
      }
      
      this.returnTable = tempTable;
-  }
-  
+  } 
+ 
+ /**
+   * Modifies the associated table with by sorting by delay in time
+   * 
+   * 
+   */
   void sortByLateness()                  // sorts the attached returnTable by how "late" the arrival time is, jank implementation of difference between day change vs early
   {
     Table tempTable = this.returnTable;
@@ -121,6 +148,13 @@ class Query{
     returnTable = tempTable;
   }
   
+  
+  /**
+   * Returns a table based on target expression and column
+   * 
+   * @param Table, target expression, target column
+   * @return table
+   */
   Table filterTable(Table table, String targetExpression, int targetColumn)   // returns a table that only contains the target expression in the target column, partially matches from left to right so the full word is not needed
   {
     Table tempReturnTable = table.copy();
@@ -139,12 +173,22 @@ class Query{
  }
  
   
+ /**
+   * Returns row count
+   * 
+   * @return count 
+   */
+   
   int getCount()
   {
     return returnTable.getRowCount();
   }
   
-  
+  /**
+   * Returns Hashmap with counting the cancelled and diverted flights associated with the query object's table
+   * 
+   * @return Hashmap
+   */
   HashMap<String, Integer> flightAttributes()
   {
     HashMap<String, Integer> displayedFlightAttributes = new HashMap<>();
