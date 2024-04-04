@@ -127,8 +127,7 @@ void setup() {
   pieScreen  = new Screen(color(0), widgetList);
   homeScreen = new Screen(widgetList);
   query = new Query(table);
-  barGraph = new BarGraph(query);
-  
+ 
   // NIAMH 27/03/24
   mouseImg = loadImage("plane.png");   // load image to replace mouse
   mouseImg.resize(40, 0);              // choose size of plane image
@@ -176,7 +175,9 @@ void draw(){
         
           // creates pie chart based on user query - SADHBH 28/3/24
           PieChart pieChart = new PieChart(query);
+          ellipseMode(CENTER);
           pieChart.draw(width/2, height/2, 600);
+          ellipseMode(RADIUS);
         
           Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
           aWidget.draw();
@@ -200,7 +201,8 @@ void draw(){
           myTextlabel.hide();
           myTextarea.hide();
        
-          // AOIFE
+          // AOIFE 18/3/24
+          barGraph = new BarGraph(query);
           barGraph.draw(40, 150, 1200, 500);
         
           Widget cWidget = (Widget)widgetList.get(widgetList.size() - 3);
