@@ -31,12 +31,8 @@ class LineGraph {
         drawAxes(x, y, w, h);                                                     // Draws the axes
         drawLines(x, y, w, h);                                                    // Draws lines representing data points
         drawLabels(x, y, w, h);                                                   // Draws labels and ticks
-<<<<<<< Updated upstream
-        text("Amount of Flights per Airline fulfilling chosen parameters", 450, 20); // Draws title
-=======
         textSize(28);
-        text("Amount of Flights per Airline fulfilling chosen parameters", 320, 90); // Draws title
->>>>>>> Stashed changes
+        text("Amount of Flights per Airline fulfilling chosen parameters", 320, 40); // Draws title
     }
 
     void drawAxes(float x, float y, float w, float h) {
