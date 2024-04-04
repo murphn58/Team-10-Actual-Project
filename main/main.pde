@@ -83,7 +83,7 @@ void setup() {
 
   // NIAMH AND SADHBH
 
-  gui.pie(590, 700, 200);
+  gui.pie(590, 300, 200);
   
   // NIAMH AND SADHBH 13/3/24
 
@@ -153,19 +153,44 @@ void draw(){
       // Ella 3/4/ edited main to show table only when interacting with query buttons 
         textFont(myFont);     
         
-      // ELLA and YUE          20/3/24
+    /*  // ELLA and YUE          20/3/24
       switch(tempSwitch)
       {
+        /*
         case 0:
           // Interactive buttons - SADHBH
           for (int i = 0; i<widgetList.size(); i++) { //<>//
           Widget aWidget = (Widget)widgetList.get(i); //<>//
           aWidget.draw();
           }
+          if(query.getCount() < 10000)
+          {
           myTextlabel.show();
           myTextarea.show();
+          noStroke();
           fill(0);
-          rect(0, 120, 1407, 470);fill(0);
+          rect(0, 120, 1407, 470);
+          }
+        //590, 700, 200
+        cp5.draw();
+        fill(255);
+        ellipse(690, 400, 75, 75);
+        fill(0);
+        String count = "" + query.getCount();
+        text(count, 680, 800);
+        textAlign(CENTER, CENTER);
+        fill(25,75,79);
+        rect(820, 740, 20, 20);
+        fill(0);
+        text("normal", 875, 750);
+        fill(221,68,68);
+        rect(820, 770, 20, 20);
+        fill(0);
+        text("cancelled", 885, 780);
+        fill(255,220,220);
+        rect(820, 800, 20, 20);
+        fill(0);
+        text("delayed", 877, 810);
           break;
          //<>//
         case 4: //<>//
@@ -212,41 +237,49 @@ void draw(){
         case -1:
           break;
       }
-
+*/
     // ELLA and YUE
     switch(tempSwitch)
     {
       case 0:
+        
         // Interactive buttons - SADHBH
         for (int i = 0; i<widgetList.size(); i++) {
         Widget aWidget = (Widget)widgetList.get(i);
         aWidget.draw();
         }
-        myTextlabel.show();
-        myTextarea.show();
-        noStroke();
-        fill(0);
-        rect(0, 120, 1407, 470);
-        //590, 700, 200
-        cp5.draw();
-        fill(255);
-        ellipse(690, 800, 75, 75);fill(255);
-        fill(0);
-        String count = "" + query.getCount();
-        text(count, 680, 800);
-        textAlign(CENTER, CENTER);
-        fill(25,75,79);
-        rect(820, 740, 20, 20);
-        fill(0);
-        text("normal", 875, 750);
-        fill(221,68,68);
-        rect(820, 770, 20, 20);
-        fill(0);
-        text("cancelled", 885, 780);
-        fill(255,220,220);
-        rect(820, 800, 20, 20);
-        fill(0);
-        text("delayed", 877, 810);
+          if(query.getCount() < 10000)
+          {
+          myTextlabel.show();
+          myTextarea.show();
+          noStroke();
+          fill(0);
+          rect(0, 120, 1407, 470);
+          cp5.draw();
+          myChart.hide();
+          }else
+          {
+            cp5.draw();
+            myChart.show();
+            fill(255);
+            ellipse(690, 400, 75, 75);
+            fill(0);
+            String count = "" + query.getCount();
+            text(count, 680, 400);
+            textAlign(CENTER, CENTER);
+            fill(25,75,79);
+            rect(820, 340, 20, 20);
+            fill(0);
+            text("normal", 875, 350);
+            fill(221,68,68);
+            rect(820, 370, 20, 20);
+            fill(0);
+            text("cancelled", 885, 380);
+            fill(255,220,220);
+            rect(820, 400, 20, 20);
+            fill(0);
+            text("delayed", 877, 410);
+          }
         break;
       
       case 4:
@@ -282,6 +315,7 @@ void draw(){
         myTextarea.hide();
      
         // AOIFE
+        barGraph = new BarGraph(query);
         barGraph.draw(40, 100, 1200, 500);
       
         Widget cWidget = (Widget)widgetList.get(widgetList.size() - 3);

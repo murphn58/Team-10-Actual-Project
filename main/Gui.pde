@@ -30,7 +30,10 @@ class Gui{
                   .setText(displayData)
                   ;
                   
-  
+        if(displayData.equals(""))
+        {
+          myTextarea.hide();
+        }
       
        StringBuilder output = new StringBuilder();
        for(int i = 0; i < table.getColumnCount(); i++)

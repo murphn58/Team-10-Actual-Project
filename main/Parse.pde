@@ -85,7 +85,11 @@ class Parse{
    */   
   String formatData(Table table)
   {
- 
+    
+    if(table.getRowCount() > 10000)
+    {
+      return "";
+    }
     StringBuilder output = new StringBuilder();
     
     for(TableRow row : table.rows())
