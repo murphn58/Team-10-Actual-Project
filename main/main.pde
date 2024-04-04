@@ -254,8 +254,9 @@ void draw(){
       
         // Creates pie chart based on user query - SADHBH 28/3/24
         PieChart pieChart = new PieChart(query);
-        pieChart.draw(width/2, height/2.2, 620);
-      
+        ellipseMode(CENTER);
+        pieChart.draw(width/2, height/2, 620);
+        ellipseMode(RADIUS);
         Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
         aWidget.draw();
         break;
