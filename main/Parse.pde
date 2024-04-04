@@ -1,4 +1,5 @@
-
+// Stores and formats data into to table and returns as a string representation of said data
+// Yue
 class Parse{
   Table table;
   
@@ -9,6 +10,7 @@ class Parse{
     table = loadTable(fileName, "header");
     return table;
   }
+ 
 
   HashMap<String, Integer> extractDateAndCountFlights(Table table) {
   HashMap<String, Integer> flightsPerDate = new HashMap<String, Integer>();
@@ -82,4 +84,6 @@ class Parse{
     
     return output.toString();
   }
+  
+  
 }

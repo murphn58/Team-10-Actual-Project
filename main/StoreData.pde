@@ -1,4 +1,5 @@
 // class to store data into subsets - NIAMH AND SADHBH
+// May not need this class
 class StoreData {
   
   void setup(){

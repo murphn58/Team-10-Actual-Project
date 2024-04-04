@@ -34,7 +34,6 @@ class Screen{
       }
     }
  }
- 
    
    int getEvent(int mousex, int mousey){
      int event =0;                                                   // if ( widget pressed ){ determines outcome, return home etc...}
