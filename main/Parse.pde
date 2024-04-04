@@ -9,6 +9,7 @@ class Parse{
     table = loadTable(fileName, "header");
     return table;
   }
+ 
 
   HashMap<String, Integer> extractDateAndCountFlights(Table table) {
   HashMap<String, Integer> flightsPerDate = new HashMap<String, Integer>();
@@ -82,4 +83,6 @@ class Parse{
     
     return output.toString();
   }
+  
+  
 }

@@ -1,6 +1,7 @@
 //Yue
 class Query{
   Table returnTable = null;
+  Table emptyTable = null;
   
   Query(Table table){               // expects Table to be passed
     returnTable = table.copy();
@@ -9,6 +10,20 @@ class Query{
   Table getTable(){
     return returnTable;
   }
+    //* Ella 3/4/24
+   Table hide(){               //hides table on home screen
+    //returnTable.clearRows();
+    returnTable = emptyTable;
+    return returnTable;
+  }
+  
+  Table show(){                           // shows table after a query
+    returnTable = table;
+    //table = query.getTable();
+    return returnTable;
+  }
+  
+  //
     void searchDates(String input) throws Exception// expects "MM/DD/YY-MM/DD/YY" in form of "start-end"
   {
     String[] dateArray = input.split("-", 2);
