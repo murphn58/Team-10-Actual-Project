@@ -76,7 +76,7 @@ void setup() {
   
   // YUE PAN 
   parser = new Parse();
-  table = parser.createTable("flights2k.csv");
+  table = parser.createTable("flights_full.csv");
   maximumWidths = parser.getColumnWidths(table);
   gui = new Gui();                    
   gui.textBox("results", 0, 120, 1407, 470, table);
