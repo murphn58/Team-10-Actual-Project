@@ -66,8 +66,10 @@ ArrayList<Widget> widgetList;
 void setup() {
   cp5 = new ControlP5(this);      
   size(1407, 946);
+
   bgImg = loadImage("bgImgWithHeading.png");
   whiteBgImg = loadImage("whiteBgImgWithHeading.png");
+
   myFont = loadFont("Phosphate-Solid-28.vlw");
   textFont(myFont);
  
@@ -99,8 +101,6 @@ void setup() {
   
   // Interactive buttons - ANNA
   Widget widget1, widget2, widget3, widget4, widget5, widget6, homeWidget, submitWidget, resetWidget;
-
- 
   widget1 = new Widget(40, 60, 180, 40, "Airline", color(250, 148, 148), myFont, EVENT_BUTTON1);
   widget2 = new Widget(260, 60, 180, 40, "Airport", color(250, 88, 88), myFont, EVENT_BUTTON2);
   widget3 = new Widget(480, 60, 180, 40, "Date", color(250, 48, 48), myFont, EVENT_BUTTON3);
@@ -189,7 +189,7 @@ void draw(){
         
           // NIAMH 27/3/24  
           lineGraph = new LineGraph(query);
-          lineGraph.draw(40, 150, 1200, 500);
+          lineGraph.draw(40, 100, 1200, 500);
         
           Widget bWidget = (Widget)widgetList.get(widgetList.size() - 3);
           bWidget.draw();

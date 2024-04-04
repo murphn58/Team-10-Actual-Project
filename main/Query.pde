@@ -9,6 +9,11 @@ class Query{
   Table getTable(){
     return returnTable;
   }
+  
+  void reset(){
+   returnTable = table;
+  }
+  
     void searchDates(String input) throws Exception// expects "MM/DD/YY-MM/DD/YY" in form of "start-end"
   {
     String[] dateArray = input.split("-", 2);
@@ -133,9 +138,6 @@ class Query{
     returnTable = filterTable(returnTable, airlinePrefix, 1);  
  }
  
- void reset(){
-   returnTable = table;
-  }
   
   int getCount()
   {
