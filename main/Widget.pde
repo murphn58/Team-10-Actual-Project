@@ -31,8 +31,8 @@ class Widget {
     else if (event == SUBMIT_BUTTON)
     {
       image(submitImg, x, y);
-         height = 50;
-         width = 50;
+         height = 70;
+         width = 70;
     }
     else if (event == RESET_BUTTON)
     {
@@ -53,12 +53,12 @@ class Widget {
   
   void mouseOver() { 
     labelColor = color(255);
-    lineColor = color(255);
+    //lineColor = color(255);
   }
   
   void mouseNotOver() {
     labelColor = color(0); 
-    lineColor = color(0);
+    //lineColor = color(0);
   }
   
   int getEvent(int mX, int mY){

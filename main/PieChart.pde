@@ -30,7 +30,7 @@ class PieChart {
   
   // Method assigns color to each airline. - SADHBH 18/3/24
   void assignColors(){
-    int[] colors = {color(120, 82, 248), color(56, 2, 240), color(40, 2, 176)};               // initializes an array colors.
+    int[] colors = {color(88, 138, 244), color(250, 148, 148), color(250, 48, 48)};           // initializes an array colors.
     int index =  0;
     for (String rowData : dataCounts.keySet()) {                                              // starts a for loop iterating over each data type in dataCounts HashMap.
       pieChartColors.put(rowData, colors[index % colors.length]);                             // assigns a color from colors array to each data segement in the pieChartColors HashMap.
