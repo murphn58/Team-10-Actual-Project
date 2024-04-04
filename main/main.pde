@@ -360,7 +360,7 @@ void hideAllTextBoxes() {
     }
     if( isDateTextboxVisible == true)
     {
-        hideTextbox("Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
+        hideTextbox("sEnter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
         isDateTextboxVisible = !isDateTextboxVisible;
     }
 }
