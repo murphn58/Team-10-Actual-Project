@@ -79,6 +79,7 @@ void setup() {
   // YUE PAN 
   parser = new Parse();
   table = parser.createTable("flights2k.csv"); // "flights_full.csv"
+
   maximumWidths = parser.getColumnWidths(table);
   gui = new Gui();                    
   gui.textBox("results", 0, 120, 1407, 470, table);
@@ -192,8 +193,9 @@ void draw(){
         rect(820, 800, 20, 20);
         fill(0);
         text("delayed", 877, 810);
-          break; //<>//
-         //<>// //<>//
+
+        break;
+
         case 4: //<>//
           background(bgImg);
           myTextlabel.hide();

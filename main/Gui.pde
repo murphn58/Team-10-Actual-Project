@@ -1,10 +1,6 @@
 /* Yue Pan, Basic textbox with columns,9pm 16/03/2024
 
-columns label implementation really bad, could use some help!
-Make sure you use monospaced fonts since in Parse formatData() relies on spaces and assumes letters are all equal width to left align each column
-Columns label currently simply cuts off all letters that exceed the width of the column, which sucks..., I've tried implementation which generate multiple textlabels and 
-calculates their origin with maxWidthCount * WidthofLetter, but that doesn't seem to work, if you try with space = 8  it approximates it
-I think the reason is that origin can only take int values but the exact origin mathematically are decimals so it loses accuracy 
+use monospaced fonts since in Parse formatData() relies on spaces and assumes letters are all equal width to left align each column
 
 */
 
@@ -13,6 +9,13 @@ class Gui{
   public Gui(){
   }
   
+  /** 
+   * creates a Control5P text box
+   * 
+   * @param name of window, x position, y position, width, height, table object to display
+   *
+   * 
+   */
   void textBox(String windowName, int xpos, int ypos, int xSize, int ySize, Table table)
   {
       String displayData = parser.formatData(table);
@@ -27,7 +30,10 @@ class Gui{
                   .setText(displayData)
                   ;
                   
-  
+        if(displayData.equals(""))
+        {
+          myTextarea.hide();
+        }
       
        StringBuilder output = new StringBuilder();
        for(int i = 0; i < table.getColumnCount(); i++)
@@ -61,6 +67,14 @@ class Gui{
     
   }
   
+  
+  /** 
+   * creates a Control5P pie chart
+   * 
+   * @param x position of centre, y position of centre, radius
+   *
+   * 
+   */
   void pie(int xpos, int ypos, int size)
   {
     myChart = cp5.addChart("pieChart")
@@ -68,7 +82,14 @@ class Gui{
                .setSize(size, size)
                .setView(Chart.PIE); // Set view mode to PIE            
   }
-  
+ 
+ /** 
+   * append data to the pie chart via a Hash map
+   * 
+   * @param hashmap 
+   *
+   * 
+   */
   void pieAppendData(HashMap<String, Integer> input)
   {
     int totalFlights = query.getCount();
