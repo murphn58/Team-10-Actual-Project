@@ -16,7 +16,7 @@ int currentLineIndex = 0;
 
 PFont title;      //ella   3/4/24
 PFont myFont;
-PFont labelsFont; // Niamh for LineGraph 05/04/24
+PFont labelsFont; // Niamh for LineGraph 05/04/24 02:00
 String titleText;
 Boolean homeScr = true;
 
@@ -78,7 +78,7 @@ void setup() {
   
   // YUE PAN 
   parser = new Parse();
-  table = parser.createTable("flights2k.csv"); // "flights_full.csv"
+  table = parser.createTable("flights2k.csv"); // flights_full flights2k
 
   maximumWidths = parser.getColumnWidths(table);
   gui = new Gui();                    
@@ -144,9 +144,9 @@ void setup() {
 void draw(){    
     homeScreen.draw();
 
-    textFont(myFont);
-    // Ella 3/4/24     //<>//
-    if(homeScr){ //<>// //<>//
+    textFont(myFont); //<>//
+    // Ella 3/4/24     //<>// //<>//
+    if(homeScr){ //<>// //<>// //<>//
       myTextlabel.hide(); //<>//
       myTextarea.hide();
      }
@@ -159,9 +159,9 @@ void draw(){
       switch(tempSwitch)
       {
         /*
-        case 0:
-          // Interactive buttons - SADHBH //<>//
-          for (int i = 0; i<widgetList.size(); i++) { //<>// //<>//
+        case 0: //<>//
+          // Interactive buttons - SADHBH //<>// //<>//
+          for (int i = 0; i<widgetList.size(); i++) { //<>// //<>// //<>//
           Widget aWidget = (Widget)widgetList.get(i); //<>//
           aWidget.draw();
           }
@@ -192,9 +192,9 @@ void draw(){
         fill(255,220,220);
         rect(820, 800, 20, 20);
         fill(0);
-        text("delayed", 877, 810);
-
-        break;
+        text("delayed", 877, 810); //<>//
+ //<>//
+        break; //<>//
 
         case 4: //<>//
           background(bgImg);
@@ -208,9 +208,9 @@ void draw(){
           ellipseMode(RADIUS);
         
           Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
-          aWidget.draw();
-          break;
-         //<>//
+          aWidget.draw(); //<>//
+          break; //<>//
+         //<>// //<>//
         case 5: //<>// //<>//
           background(bgImg); //<>//
           myTextlabel.hide();
@@ -296,9 +296,9 @@ void draw(){
         pieChart.draw(width/2, height/2, 620);
         ellipseMode(RADIUS);
         Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
-        aWidget.draw();
-        break;
-       //<>//
+        aWidget.draw(); //<>//
+        break; //<>//
+       //<>// //<>//
       case 5: //<>// //<>//
         background(whiteBgImg); //<>//
         myTextlabel.hide();
@@ -306,7 +306,7 @@ void draw(){
       
         // Creates line graph based on user query NIAMH 27/03/24  
         lineGraph = new LineGraph(query);    // Creates new object of LineGraph class
-        lineGraph.draw(40, 170, 1200, 500);  // Draws line graph in specified size at specified co-ordinates
+        lineGraph.draw(100, 130, 1200, 500);  // Draws line graph in specified size at specified co-ordinates
       
         Widget bWidget = (Widget)widgetList.get(widgetList.size() - 3);
         bWidget.draw();
@@ -319,7 +319,7 @@ void draw(){
      
         // AOIFE
         barGraph = new BarGraph(query);
-        barGraph.draw(40, 100, 1200, 500);
+        barGraph.draw(400, 200, 1200, 500);
       
         Widget cWidget = (Widget)widgetList.get(widgetList.size() - 3);
         cWidget.draw();
@@ -373,9 +373,9 @@ void mousePressed() {                                                // determin
       case EVENT_BUTTON3:
         println("date");                                                            
         if (isDateTextboxVisible) {
-          hideTextbox("Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
+          hideTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)");
         } else {
-          showTextbox("Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)", 480, 80);
+          showTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)", 480, 80);
         }
         isDateTextboxVisible = !isDateTextboxVisible;                // Toggle the visibility status
         
@@ -387,7 +387,7 @@ void mousePressed() {                                                // determin
         println("button 4!");
 
         hideTextbox("Enter Airline Prefix");
-        hideTextbox("Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
+        hideTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)");
         hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
@@ -402,7 +402,7 @@ void mousePressed() {                                                // determin
         println("button 5!");
 
         hideTextbox("Enter Airline Prefix");
-        hideTextbox("Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
+        hideTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)");
         hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
@@ -417,7 +417,7 @@ void mousePressed() {                                                // determin
         println("button 6!");
 
         hideTextbox("Enter Airline Prefix");
-        hideTextbox("Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
+        hideTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)");
         hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
@@ -451,8 +451,8 @@ void mousePressed() {                                                // determin
           myTextarea.setText(output);
 
         }
-        if(isDateTextboxVisible && (cp5.get(Textfield.class,"Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)").getText()).equals("") == false ){
-          String input = cp5.get(Textfield.class,"Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)").getText();
+        if(isDateTextboxVisible && (cp5.get(Textfield.class,"Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)").getText()).equals("") == false ){
+          String input = cp5.get(Textfield.class,"Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)").getText();
           try{
             query.searchDates(input);
           }
@@ -478,7 +478,7 @@ void mousePressed() {                                                // determin
 
 
         hideTextbox("Enter Airline Prefix");
-        hideTextbox("Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
+        hideTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)");
         hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
 
         isAirlineTextboxVisible = false;
@@ -534,7 +534,7 @@ void hideAllTextBoxes() {
     }
     if( isDateTextboxVisible == true)
     {
-        hideTextbox("sEnter Date Range (XX/XX/XXXX-YY/YY/YYYY)");
+        hideTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)");
         isDateTextboxVisible = !isDateTextboxVisible;
     }
 }
