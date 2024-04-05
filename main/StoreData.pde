@@ -1,5 +1,6 @@
-// class to store data into subsets - NIAMH AND SADHBH
-// May not need this class
+// Class written to store data into subsets - NIAMH AND SADHBH
+// Decided not to use this class, as it made our code much slower, 
+// especialluy when loading in the full data set
 //class StoreData {
   
 //  void setup(){

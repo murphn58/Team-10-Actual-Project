@@ -16,16 +16,17 @@ int currentLineIndex = 0;
 
 PFont title;      //ella   3/4/24
 PFont myFont;
+PFont labelsFont; // Niamh for LineGraph 05/04/24
 String titleText;
 Boolean homeScr = true;
 
 PImage bgImg;
 // declaring image variables - NIAMH 30/3/24
-PImage mouseImg;     // declare a variable for the mouse image
-PImage houseImg;     // declare a variable for the house image
-PImage submitImg;    // declare a variable for the submit image
-PImage resetImg;     // declare a variable for the return image
-PImage whiteBgImg;
+PImage mouseImg;     // declares a variable for the mouse image
+PImage houseImg;     // declares a variable for the house image
+PImage submitImg;    // declares a variable for the submit image
+PImage resetImg;     // declares a variable for the return image
+PImage whiteBgImg;   // declares a variable for different baclground for graphs Niamh 04/04/24
 
 ControlP5 cp5;
 Textlabel myTextlabel;
@@ -67,8 +68,9 @@ void setup() {
   cp5 = new ControlP5(this);      
   size(1407, 946);
 
+
   bgImg = loadImage("bgImgWithHeading.png");
-  whiteBgImg = loadImage("whiteBgImgWithHeading.png");
+  whiteBgImg = loadImage("whiteBgImgWithHeading.png");   // loading different images for the different backgrounds, Niamh 04/04/24
 
   myFont = loadFont("Phosphate-Solid-28.vlw");
   textFont(myFont);
@@ -76,28 +78,27 @@ void setup() {
   
   // YUE PAN 
   parser = new Parse();
-  table = parser.createTable("flights2k.csv");
+  table = parser.createTable("flights2k.csv"); // "flights_full.csv"
   maximumWidths = parser.getColumnWidths(table);
   gui = new Gui();                    
   gui.textBox("results", 0, 120, 1407, 470, table);
 
   // NIAMH AND SADHBH
 
-  gui.pie(590, 700, 200);
+  gui.pie(590, 300, 200);
   
   // NIAMH AND SADHBH 13/3/24
-
-//  lines = loadStrings("flights_full.csv");
- // StoreData storeData = new StoreData();
- // storeData.setup();
+  //lines = loadStrings("flights2k.csv");
+  //StoreData storeData = new StoreData();
+  //storeData.setup();
   
   // loading images - NIAMH 30/3/24
-  houseImg = loadImage("house.png");
-  houseImg.resize(55, 40);
-  submitImg = loadImage("submit.png");
-  submitImg.resize(70, 70);
-  resetImg = loadImage("reset.png");
-  resetImg.resize(50, 50);
+  houseImg = loadImage("house.png");    // loading in house png to replace home button
+  houseImg.resize(55, 40);              // resizing house 
+  submitImg = loadImage("submit.png");  // loading in submit png to replace submit button
+  submitImg.resize(70, 70);             // resizing submit button
+  resetImg = loadImage("reset.png");    // loading in reset png to replace reset button
+  resetImg.resize(50, 50);              // resizing reset button
   
   // Interactive buttons - ANNA
   Widget widget1, widget2, widget3, widget4, widget5, widget6, homeWidget, submitWidget, resetWidget;
@@ -107,7 +108,7 @@ void setup() {
   widget4 = new Widget(140, 640, 200, 55, "Pie Chart", color(160, 188, 244), myFont, EVENT_BUTTON4);
   widget5 = new Widget(590, 640, 200, 55, "Line Graph", color(88, 138, 244), myFont, EVENT_BUTTON5);
   widget6 = new Widget(1040, 640, 200, 55, "Bar Graph", color(52, 114, 244), myFont, EVENT_BUTTON6);
-
+  // home, submit, and reset buttons rewritten to work with images, Niamh 01/04/24 13:00
   homeWidget = new Widget(1250, 775,  houseImg, HOME_BUTTON);
   submitWidget = new Widget(1200, 55, submitImg, SUBMIT_BUTTON);
   resetWidget = new Widget(1300, 60, resetImg, RESET_BUTTON);
@@ -127,12 +128,11 @@ void setup() {
   pieScreen  = new Screen(color(0), widgetList);
   homeScreen = new Screen(widgetList);
   query = new Query(table);
-  barGraph = new BarGraph(query);
-  
+ 
   // NIAMH 27/03/24
   mouseImg = loadImage("plane.png");   // load image to replace mouse
-  mouseImg.resize(40, 0);              // choose size of plane image
-  noCursor();                          // remove default mouse
+  mouseImg.resize(40, 0);              // resizing size of plane image
+  noCursor();                          // removes default mouse
   cp5.setAutoDraw(false);
   
   gui.pieAppendData(query.flightAttributes());
@@ -144,9 +144,9 @@ void draw(){
     homeScreen.draw();
 
     textFont(myFont);
-    // Ella 3/4/24    
+    // Ella 3/4/24     //<>//
     if(homeScr){ //<>// //<>//
-      myTextlabel.hide(); //<>// //<>//
+      myTextlabel.hide(); //<>//
       myTextarea.hide();
      }
     
@@ -154,81 +154,28 @@ void draw(){
       // Ella 3/4/ edited main to show table only when interacting with query buttons 
         textFont(myFont);     
         
-      // ELLA and YUE          20/3/24
+    /*  // ELLA and YUE          20/3/24
       switch(tempSwitch)
       {
+        /*
         case 0:
-          // Interactive buttons - SADHBH
+          // Interactive buttons - SADHBH //<>//
           for (int i = 0; i<widgetList.size(); i++) { //<>// //<>//
-          Widget aWidget = (Widget)widgetList.get(i); //<>// //<>//
+          Widget aWidget = (Widget)widgetList.get(i); //<>//
           aWidget.draw();
           }
+          if(query.getCount() < 10000)
+          {
           myTextlabel.show();
           myTextarea.show();
+          noStroke();
           fill(0);
-          rect(0, 120, 1407, 470);fill(0);
-          break;
-         //<>// //<>//
-        case 4: //<>// //<>//
-          background(bgImg);
-          myTextlabel.hide();
-          myTextarea.hide();
-        
-          // creates pie chart based on user query - SADHBH 28/3/24
-          PieChart pieChart = new PieChart(query);
-          pieChart.draw(width/2, height/2, 600);
-        
-          Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
-          aWidget.draw();
-          break;
-        
-        case 5: //<>// //<>//
-          background(bgImg); //<>// //<>//
-          myTextlabel.hide();
-          myTextarea.hide();
-        
-          // NIAMH 27/3/24  
-          lineGraph = new LineGraph(query);
-          lineGraph.draw(40, 100, 1200, 500);
-        
-          Widget bWidget = (Widget)widgetList.get(widgetList.size() - 3);
-          bWidget.draw();
-          break;      
-  
-        case 6:
-          background(bgImg);
-          myTextlabel.hide();
-          myTextarea.hide();
-       
-          // AOIFE
-          barGraph.draw(40, 150, 1200, 500);
-        
-          Widget cWidget = (Widget)widgetList.get(widgetList.size() - 3);
-          cWidget.draw();
-          break;
-          
-        case -1:
-          break;
-      }
-
-    // ELLA and YUE
-    switch(tempSwitch)
-    {
-      case 0:
-        // Interactive buttons - SADHBH
-        for (int i = 0; i<widgetList.size(); i++) {
-        Widget aWidget = (Widget)widgetList.get(i);
-        aWidget.draw();
-        }
-        myTextlabel.show();
-        myTextarea.show();
-        noStroke();
-        fill(0);
-        rect(0, 120, 1407, 470);
+          rect(0, 120, 1407, 470);
+          }
         //590, 700, 200
         cp5.draw();
         fill(255);
-        ellipse(690, 800, 75, 75);fill(255);
+        ellipse(690, 400, 75, 75);
         fill(0);
         String count = "" + query.getCount();
         text(count, 680, 800);
@@ -245,6 +192,95 @@ void draw(){
         rect(820, 800, 20, 20);
         fill(0);
         text("delayed", 877, 810);
+          break; //<>//
+         //<>// //<>//
+        case 4: //<>//
+          background(bgImg);
+          myTextlabel.hide();
+          myTextarea.hide();
+        
+          // creates pie chart based on user query - SADHBH 28/3/24
+          PieChart pieChart = new PieChart(query);
+          ellipseMode(CENTER);
+          pieChart.draw(width/2, height/2, 600);
+          ellipseMode(RADIUS);
+        
+          Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
+          aWidget.draw();
+          break;
+         //<>//
+        case 5: //<>// //<>//
+          background(bgImg); //<>//
+          myTextlabel.hide();
+          myTextarea.hide();
+        
+          // NIAMH 27/3/24  
+          lineGraph = new LineGraph(query);
+          lineGraph.draw(40, 100, 1200, 500);
+        
+          Widget bWidget = (Widget)widgetList.get(widgetList.size() - 3);
+          bWidget.draw();
+          break;      
+  
+        case 6:
+          background(bgImg);
+          myTextlabel.hide();
+          myTextarea.hide();
+       
+          // AOIFE 18/3/24
+          barGraph = new BarGraph(query);
+          barGraph.draw(40, 150, 1200, 500);
+        
+          Widget cWidget = (Widget)widgetList.get(widgetList.size() - 3);
+          cWidget.draw();
+          break;
+          
+        case -1:
+          break;
+      }
+*/
+    // ELLA and YUE
+    switch(tempSwitch)
+    {
+      case 0:
+        
+        // Interactive buttons - SADHBH
+        for (int i = 0; i<widgetList.size(); i++) {
+        Widget aWidget = (Widget)widgetList.get(i);
+        aWidget.draw();
+        }
+          if(query.getCount() < 10000)
+          {
+          myTextlabel.show();
+          myTextarea.show();
+          noStroke();
+          fill(0);
+          rect(0, 120, 1407, 470);
+          cp5.draw();
+          myChart.hide();
+          }else
+          {
+            cp5.draw();
+            myChart.show();
+            fill(255);
+            ellipse(690, 400, 75, 75);
+            fill(0);
+            String count = "" + query.getCount();
+            text(count, 680, 400);
+            textAlign(CENTER, CENTER);
+            fill(25,75,79);
+            rect(820, 340, 20, 20);
+            fill(0);
+            text("normal", 875, 350);
+            fill(221,68,68);
+            rect(820, 370, 20, 20);
+            fill(0);
+            text("cancelled", 885, 380);
+            fill(255,220,220);
+            rect(820, 400, 20, 20);
+            fill(0);
+            text("delayed", 877, 410);
+          }
         break;
       
       case 4:
@@ -260,15 +296,15 @@ void draw(){
         Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
         aWidget.draw();
         break;
-      
+       //<>//
       case 5: //<>// //<>//
-        background(whiteBgImg); //<>// //<>//
+        background(whiteBgImg); //<>//
         myTextlabel.hide();
         myTextarea.hide();
       
-        // NIAMH 27/3/24  
-        lineGraph = new LineGraph(query);
-        lineGraph.draw(40, 100, 1200, 500);
+        // Creates line graph based on user query NIAMH 27/03/24  
+        lineGraph = new LineGraph(query);    // Creates new object of LineGraph class
+        lineGraph.draw(40, 170, 1200, 500);  // Draws line graph in specified size at specified co-ordinates
       
         Widget bWidget = (Widget)widgetList.get(widgetList.size() - 3);
         bWidget.draw();
@@ -280,6 +316,7 @@ void draw(){
         myTextarea.hide();
      
         // AOIFE
+        barGraph = new BarGraph(query);
         barGraph.draw(40, 100, 1200, 500);
       
         Widget cWidget = (Widget)widgetList.get(widgetList.size() - 3);
@@ -291,7 +328,7 @@ void draw(){
 
      }
     }
-    // NIAMH 27/3/24
+    // NIAMH 27/03/24
     float imgX = mouseX - mouseImg.width / 2;      // image follows x-value of mouse
     float imgY = mouseY - mouseImg.height / 2;     // image follows y-value of mouse
     image(mouseImg, imgX, imgY);                   // draw plane image where mouseX and mouseY are
