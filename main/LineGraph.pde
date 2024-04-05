@@ -27,24 +27,129 @@ class LineGraph {
       Table table = query.getTable();                                                // Get the table from the Query object
       for(TableRow row : table.rows())                                               // Iterates through each row of table until it reaches the end
       {                                                                            
-        String destination = row.getString(9);                                           // Retrieves String of current row (destination name); could be changed so pie chart represents different data?
-        dataCount.put(destination, dataCount.getOrDefault(destination, 0) + 1);          // Increments count of data points in 'dataCount' HashMap 
+        String destination = row.getString(9);                                       // Retrieves String of current row (destination name); could be changed so pie chart represents different data?
+        dataCount.put(destination, dataCount.getOrDefault(destination, 0) + 1);      // Increments count of data points in 'dataCount' HashMap 
       }
      }
 
-/** This method draws the line graph, by calling the draw methods I've created 
-* @param x  the x-coordinate of the top-left corner of the graph
-* @param y  the y-coordinate of the top-left corner of the graph
-* @param w  the width of the graph
-* @param h  the height of the graph
-*/
+  /** This method draws the key for the state abbreviations below the line graph, 
+  * as well as a title by it, and a box around it
+  * Written by Niamh 05/04/24 17:00
+  * @param x  the x-coordinate of the top-left corner of the graph
+  */
+    void drawKey(float x) {
+    float rectWidth = 1135;                                                         // Declares width of table big enough to contain all states 
+    float rectHeight = 200;                                                         // Declares length of table big enough to contain all states 
+    // Draws rectangle around the key
+    noFill();                                                                       // Removes filling in for rectangle so it's just an outline
+    rect(x, 695, rectWidth, rectHeight);                                            // Creates rectangle around key
+    
+    float currentY = 720;                                                           // Adjust the starting y-coordinate
+    
+    // Draw each key label and its description for states present in the dataCount HashMap
+    for (String state : dataCount.keySet()) {
+        fill(0);                                                                  // Sets text color to black
+        String description = getStateDescription(state);                          // Gets the description for the state using my getStateDescription(...) method
+        text(state + " = " + description, x, currentY);
+        if (currentY <= 860)                                                      // If the y-value of the text isn't nearing the bottom of the screen,
+        {
+          currentY += 20;                                                         // Increments y-co-ordinate for the next label
+        } 
+        else                                                                      // Or if the y value of the text is nearing the bottom of the screen,
+        {
+         currentY = 720;                                                          // Creates a new column
+         x += 200;                    
+        }
+    }
+     
+    textFont(myFont);                                                             // Sets font for axes labels
+    fill(140, 150, 250);                                                          // Makes text blue
+    textSize(50);                                                                 // Aligns text to the right
+    pushMatrix();                                                                 // Saves the current transformation matrix
+    translate(100, 850);                                                          // Translates to the label position
+    rotate(-HALF_PI);                                                             // Rotates the text by -90 degrees
+    text("KEY", 0, 0);                                                            // Label content specification
+    popMatrix();                                                                  // Restores the previous transformation matrix state after applying transformations
+    fill(0);                                                                      // Returns font to black
+    textFont(labelsFont);                                                         // Switches back to font for x and y value labels
+}
+
+  /** This method gets the description for each state abbreviation
+  * @param state  description matching label on x-axis 
+  */
+String getStateDescription(String state) {
+    // Define the descriptions for each state abbreviation
+    HashMap<String, String> stateDescriptions = new HashMap<>();
+    stateDescriptions.put("TT", "Trust Territory of\n the Pacific Islands");
+    stateDescriptions.put("HI", "Hawaii");
+    stateDescriptions.put("DE", "Delaware");
+    stateDescriptions.put("PR", "Puerto Rico");
+    stateDescriptions.put("TX", "Texas");
+    stateDescriptions.put("MA", "Massachusetts");
+    stateDescriptions.put("MD", "Maryland");
+    stateDescriptions.put("IA", "Iowa");
+    stateDescriptions.put("ME", "Maine");
+    stateDescriptions.put("ID", "Idaho");
+    stateDescriptions.put("MI", "Michigan");
+    stateDescriptions.put("UT", "Utah");
+    stateDescriptions.put("MN", "Minnesota");
+    stateDescriptions.put("MO", "Missouri");
+    stateDescriptions.put("IL", "Illinois");
+    stateDescriptions.put("IN", "Indiana");
+    stateDescriptions.put("MS", "Mississippi");
+    stateDescriptions.put("MT", "Montana");
+    stateDescriptions.put("AK", "Alaska");
+    stateDescriptions.put("VA", "Virginia");
+    stateDescriptions.put("AL", "Alabama");
+    stateDescriptions.put("AR", "Arkansas");
+    stateDescriptions.put("VI", "U.S. Virgin Islands");
+    stateDescriptions.put("NC", "North Carolina");
+    stateDescriptions.put("ND", "North Dakota");
+    stateDescriptions.put("NE", "Nebraska");
+    stateDescriptions.put("RI", "Rhode Island");
+    stateDescriptions.put("AZ", "Arizona");
+    stateDescriptions.put("NH", "New Hampshire");
+    stateDescriptions.put("NJ", "New Jersey");
+    stateDescriptions.put("VT", "Vermont");
+    stateDescriptions.put("NM", "New Mexico");
+    stateDescriptions.put("FL", "Florida");
+    stateDescriptions.put("NV", "Nevada");
+    stateDescriptions.put("WA", "Washington");
+    stateDescriptions.put("NY", "New York");
+    stateDescriptions.put("SC", "South Carolina");
+    stateDescriptions.put("SD", "South Dakota");
+    stateDescriptions.put("WI", "Wisconsin");
+    stateDescriptions.put("OH", "Ohio");
+    stateDescriptions.put("GA", "Georgia");
+    stateDescriptions.put("OK", "Oklahoma");
+    stateDescriptions.put("CA", "California");
+    stateDescriptions.put("WV", "West Virginia");
+    stateDescriptions.put("WY", "Wyoming");
+    stateDescriptions.put("OR", "Oregon");
+    stateDescriptions.put("KS", "Kansas");
+    stateDescriptions.put("CO", "Colorado");
+    stateDescriptions.put("KY", "Kentucky");
+    stateDescriptions.put("PA", "Pennsylvania");
+    stateDescriptions.put("CT", "Connecticut");
+    stateDescriptions.put("LA", "Louisiana");
+    stateDescriptions.put("TN", "Tennessee");
+    
+    // Return the description for the given state abbreviation
+    return stateDescriptions.getOrDefault(state, "No description available");
+}
+  /** This method draws the line graph, by calling the draw methods I've created 
+  * @param x  the x-coordinate of the top-left corner of the graph
+  * @param y  the y-coordinate of the top-left corner of the graph
+  * @param w  the width of the graph
+  * @param h  the height of the graph
+  */
     void draw(float x, float y, float w, float h) {
         drawAxes(x, y, w, h);                                                     // Draws the x and y axes, using my drawAxes(...) method
         drawLines(x, y, w, h);                                                    // Draws lines and dots representing data points, using my drawLines(..) method
         drawLabels(x, y, w, h);                                                   // Draws labels and dashes, using my drawLabels(...) method
+        drawKey(x);                                                               // Draws key at bottom of screen using my drawKey(...) method
         textFont(myFont);
-        text("Amount of Flights to Each Destination Available;" 
-                + " Fulfilling User-Specified Parameters", 110, 90);              // Draws title above graph
+        text("Amount of Flights to Each Destination Available", 380, 90);         // Draws title above graph
     }
     
 /** This method specifies how the axes of the graph should be drawn
@@ -69,7 +174,7 @@ class LineGraph {
     void drawLines(float x, float y, float w, float h) {
         float maxValue = getMaxValue();                                           
         
-        stroke(255, 0, 0);                                                        // Colours line
+        stroke(140, 150, 250);                                                    // Colours line blue
         //strokeWeight(2);                                                        // Sets line width, had to be removed as was affecting other line and text widths
         noFill();                                                                 // Removes filling in under line
 
@@ -80,7 +185,7 @@ class LineGraph {
         {
             float xValue = x + i * (w / dataCount.size()) + (w / (2 * dataCount.size()));  // Calculates the x-coordinate for the current destination's data point
             float yValue = y + h - map(dataCount.get(destination), 0, maxValue, 0, h);     // Calculates the y-coordinate for the current destination's data poin
-            fill(255, 0, 0);                                                               // Fills dots in red
+            fill(140, 150, 250);                                                           // Fills dots in blue
             ellipse(xValue, yValue, 5, 5);                                                 // Draws a small  circle, representing the data point, at the calculated co-ordinates
             noFill();                                                                      // Turns off filling for the subsequent shape
             vertex(xValue, yValue);                                                        // Adds the line at the current data point's co-ordinates 
@@ -103,7 +208,7 @@ class LineGraph {
         // Draws labels for y-axis
         for (int i = 0; i <= maxValue; i += labelStep)                            
         {
-          float labelX = x - 20;                                                  // X-co-ordinate for the labels, positioned to the left of the y-axis
+          float labelX = x - 35;                                                  // X-co-ordinate for the labels, positioned to the left of the y-axis
           float labelY = y + h - map(i, 0, maxValue, 0, h);                       // Y-coordinate for the labels, mapped to the data range
           labelsFont = loadFont("Phosphate-Solid-15.vlw");                        // Loads smaller font for the labels
           textFont(labelsFont);                                                   // Sets the text font
@@ -114,15 +219,24 @@ class LineGraph {
            float dashY = labelY;                                                   // Y-coordinate for dashes, same as label
            line(dashX, dashY, dashX + 5, dashY);                                   // Draws a horizontal dash
          }
-    
+         
+       textFont(myFont);                                                          // Sets font for axes labels
+       textSize(23);                                                              // Aligns text to the right
+       pushMatrix();                                                              // Saves the current transformation matrix
+       translate(50, 460);                                                        // Translates to the label position
+       rotate(-HALF_PI);                                                          // Rotates the text by -90 degrees
+       text("Number of Flights", 0, 0);                                           // Label content specification
+       popMatrix();                                                               // Restores the previous transformation matrix state after applying transformations
+       textFont(labelsFont);                                                      // Switches back to font for x and y value labels
+       
        int i = 0;
        // Draws labels for x-axis 
        for (String destination : dataCount.keySet()) 
        {
-          float labelX = x + i * (w / dataCount.size()) + (w / (2 * dataCount.size())); ;  // Calculate x-coordinate for the label
-          float labelY = y + h + 20;                                                       // Sets y-coordinate for the labels, below the x-axis
-          text(destination, labelX, labelY);                                               // Draws the labels at the calculated coordinates
-          i++;                                                                             // Increments the counter for the next iteration
+          float labelX = (x + i * (w / dataCount.size()) + (w / (2 * dataCount.size())))-5; ;  // Calculate x-coordinate for the label
+          float labelY = y + h + 20;                                                           // Sets y-coordinate for the labels, below the x-axis
+          text(destination, labelX, labelY);                                                   // Draws the labels at the calculated coordinates
+          i++;                                                                                 // Increments the counter for the next iteration
        }
        // Draws ticks on x-axis
        for (int i2 = 0; i2 < dataCount.size(); i2++)  
@@ -131,6 +245,11 @@ class LineGraph {
           float dashY = y + h + 5;                                                         // Sets y-coordinates for the dashes, at the x-axis
           line(dashX, y + h, dashX, dashY);                                                // Draws a vertical line at each label on x-axis
        }
+        
+       textFont(myFont);                                                                   // Sets fon for axes labels
+       textSize(23);                                                                       // Sets size for axes labels
+       text("Destination States Abbreviated", 500, 670);                                   // Label content and size specification
+       textFont(labelsFont);                                                               // Switches back to font for x and y value labels
 
     }
     

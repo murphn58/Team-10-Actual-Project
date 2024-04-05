@@ -41,7 +41,7 @@ class BarGraph {
   void drawBars(float x, float y, float w, float h) {
     
     float maxValue = getMaxValue(); // Get the maximum value of airline counts
-    float barWidth = w / airlineCounts.size(); // Calculate the width of each bar
+    float barWidth = (w / airlineCounts.size())/2; // Calculate the width of each bar
     float xPos = x; // Initial x position for the first bar
 
     for (String airline : airlineCounts.keySet()) 
@@ -57,7 +57,7 @@ class BarGraph {
   void drawAxes(float x, float y, float w, float h) {
     
     //stroke(0); // Set stroke color for axes
-    line(x, y + h, x + w, y + h); // Draw X-axis
+    line(x, y + h, x + (w/2), y + h); // Draw X-axis
     line(x, y, x, y + h); // Draw Y-axis
   }
 
@@ -71,25 +71,47 @@ class BarGraph {
     // Draw labels for Y-axis
     for (int i = 0; i <= maxValue; i += labelStep) 
     {
-      float labelX = x - 10; 
+      float labelX = x - 50; 
       float labelY = y + h - map(i, 0, maxValue, 0, h);
+      labelsFont = loadFont("Phosphate-Solid-15.vlw");                        // Loads smaller font for the labels
+      textFont(labelsFont);                                                   // Sets the text font
       text(i, labelX, labelY);
+      
+       float dashX = x-5;                                                       
+       float dashY = labelY;                                                  
+       line(dashX, dashY, dashX + 5, dashY);                                  
     }
+    
+     textFont(myFont);                                                          // Sets font for axes labels
+     textSize(23);                                                              // Aligns text to the right
+     pushMatrix();                                                              // Save the current transformation matrix
+     translate(335, 500);                                                       // Translate to the label position
+     rotate(-HALF_PI);                                                          // Rotate the text by -90 degrees
+     text("Number of Flights", 0, 0);                                           // Label content specification
+     popMatrix();                                                               // Restores the previous transformation matrix state after applying transformations
+     textFont(labelsFont);                                                      // Switches back to font for x and y value labels
 
     // Draw labels for X-axis
     int i = 0;
     for (String airline : airlineCounts.keySet()) 
     {
-      float labelX = x + i * (w / airlineCounts.size()) + (w / (2 * airlineCounts.size()));
+      float labelX = (x + i * ((w / airlineCounts.size()))/2 + (w / (2 * airlineCounts.size())))-45;
       float labelY = y + h + 20;
+      labelsFont = loadFont("Phosphate-Solid-15.vlw");                        // Loads smaller font for the labels
+      textFont(labelsFont);                                                   // Sets the text font
       text(airline, labelX, labelY);
       i++;
     }
+    
+     textFont(myFont);                                                                   // Sets font for axes labels
+     textSize(23);                                                                       // Sets size for axes labels
+     text("Flight Destination States Abbreviated", 420, 745);                            // Label content and size specification
+     textFont(labelsFont);                                                               // Switches back to font for x and y value labels
 
     // Draw ticks on X-axis
     for (int i2 = 0; i2 < airlineCounts.size(); i2++) 
     {
-      float tickX = x + i2 * (w / airlineCounts.size()) + (w / (2 * airlineCounts.size()));
+      float tickX = x + i2 * ((w / airlineCounts.size()))/2 + (w / (2 * airlineCounts.size()));
       float tickY = y + h + 5;
       line(tickX, y + h, tickX, tickY);
     }
