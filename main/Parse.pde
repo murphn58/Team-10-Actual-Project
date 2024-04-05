@@ -59,9 +59,12 @@ class Parse{
    * @return An array containing the maximum widths of each column.
    */ 
   int[] getColumnWidths(Table table){
+   
     int[] maxWidths = new int[table.getColumnCount()];
     int minimumWidth = 6;
+    
      
+    
     for(TableRow row : table.rows())
     {
       for(int i = 0; i < row.getColumnCount(); i++)
@@ -73,6 +76,8 @@ class Parse{
         }
       }
     }
+    
+  
     
     return maxWidths;
   }

@@ -59,10 +59,16 @@ final int EVENT_BUTTON5 = 5;
 final int EVENT_BUTTON6 = 6;
 final int HOME_BUTTON   = 7;
 final int EVENT_NULL = 0;
+
 // Ella
 final int SUBMIT_BUTTON = 8;
 final int RESET_BUTTON = 9;
 ArrayList<Widget> widgetList;
+
+//Textbox
+ArrayList<Widget> textboxButtons;
+final int FORWARD_BUTTON = 11;
+final int BACKWARD_BUTTON = 12;
 
 void setup() {
   cp5 = new ControlP5(this);      
@@ -78,15 +84,16 @@ void setup() {
   
   // YUE PAN 
   parser = new Parse();
-  table = parser.createTable("flights2k.csv"); // "flights_full.csv"
-
-  maximumWidths = parser.getColumnWidths(table);
+  table = parser.createTable("flights_full.csv"); // "flights_full.csv"
   gui = new Gui();                    
+  maximumWidths = parser.getColumnWidths(table);
+  myTextlabel = cp5.addTextlabel("columns");
+  gui.textlabels("results", 0, 120, 1407, 470, table);
   gui.textBox("results", 0, 120, 1407, 470, table);
 
   // NIAMH AND SADHBH
 
-  gui.pie(590, 300, 200);
+ // gui.pie(590, 300, 200);
   
   // NIAMH AND SADHBH 13/3/24
   //lines = loadStrings("flights2k.csv");
@@ -125,6 +132,14 @@ void setup() {
   widgetList.add(submitWidget);
   widgetList.add(resetWidget);
   
+  //Text Box Buttons
+  Widget forwardButton, backButton;
+  textboxButtons = new ArrayList<Widget>();
+  forwardButton = new Widget(1140, 610, 75, 20, ">>>", color(52, 114, 244), myFont, FORWARD_BUTTON);
+  backButton = new Widget(1060, 610, 75, 20, "<<<", color(52, 114, 244), myFont, BACKWARD_BUTTON);
+  textboxButtons.add(forwardButton);
+  textboxButtons.add(backButton);
+  
   // ELLA
   pieScreen  = new Screen(color(0), widgetList);
   homeScreen = new Screen(widgetList);
@@ -136,7 +151,27 @@ void setup() {
   noCursor();                          // removes default mouse
   cp5.setAutoDraw(false);
   
-  gui.pieAppendData(query.flightAttributes());
+ // gui.pieAppendData(query.flightAttributes())
+ // initialising Textbox data for large tables
+ if(query.getCount() > 10000)
+ {
+         int totalPages = (int) Math.ceil((double)query.getCount()/ MAXIMUM_LINES);
+          int startIndex = gui.returnIndex();
+          int endIndex = startIndex + MAXIMUM_LINES;
+          if( gui.returnCurrentPage() >= totalPages)
+          {
+            endIndex = query.getCount();
+          }
+          Table temp = table.copy();
+          temp.clearRows();
+          for(int i = startIndex; i < endIndex ; i++)
+          {
+            temp.addRow((query.getTable()).getRow(i));
+          }
+          maximumWidths = parser.getColumnWidths(temp);
+          gui.textlabels("results", 0, 120, 1407, 470, temp);
+          myTextarea.setText(parser.formatData(temp));
+ }
   ellipseMode(RADIUS);  // Set ellipseMode to RADIUS
    
 }
@@ -154,103 +189,17 @@ void draw(){
     else{
       // Ella 3/4/ edited main to show table only when interacting with query buttons 
         textFont(myFont);     
-        
-    /*  // ELLA and YUE          20/3/24
-      switch(tempSwitch)
-      {
-        /*
-        case 0:
-          // Interactive buttons - SADHBH //<>//
-          for (int i = 0; i<widgetList.size(); i++) { //<>// //<>//
-          Widget aWidget = (Widget)widgetList.get(i); //<>//
-          aWidget.draw();
-          }
-          if(query.getCount() < 10000)
-          {
-          myTextlabel.show();
-          myTextarea.show();
-          noStroke();
-          fill(0);
-          rect(0, 120, 1407, 470);
-          }
-        //590, 700, 200
-        cp5.draw();
-        fill(255);
-        ellipse(690, 400, 75, 75);
-        fill(0);
-        String count = "" + query.getCount();
-        text(count, 680, 800);
-        textAlign(CENTER, CENTER);
-        fill(25,75,79);
-        rect(820, 740, 20, 20);
-        fill(0);
-        text("normal", 875, 750);
-        fill(221,68,68);
-        rect(820, 770, 20, 20);
-        fill(0);
-        text("cancelled", 885, 780);
-        fill(255,220,220);
-        rect(820, 800, 20, 20);
-        fill(0);
-        text("delayed", 877, 810);
-
-        break;
-
-        case 4: //<>//
-          background(bgImg);
-          myTextlabel.hide();
-          myTextarea.hide();
-        
-          // creates pie chart based on user query - SADHBH 28/3/24
-          PieChart pieChart = new PieChart(query);
-          ellipseMode(CENTER);
-          pieChart.draw(width/2, height/2, 600);
-          ellipseMode(RADIUS);
-        
-          Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
-          aWidget.draw();
-          break;
-         //<>//
-        case 5: //<>// //<>//
-          background(bgImg); //<>//
-          myTextlabel.hide();
-          myTextarea.hide();
-        
-          // NIAMH 27/3/24  
-          lineGraph = new LineGraph(query);
-          lineGraph.draw(40, 100, 1200, 500);
-        
-          Widget bWidget = (Widget)widgetList.get(widgetList.size() - 3);
-          bWidget.draw();
-          break;      
-  
-        case 6:
-          background(bgImg);
-          myTextlabel.hide();
-          myTextarea.hide();
-       
-          // AOIFE 18/3/24
-          barGraph = new BarGraph(query);
-          barGraph.draw(40, 150, 1200, 500);
-        
-          Widget cWidget = (Widget)widgetList.get(widgetList.size() - 3);
-          cWidget.draw();
-          break;
-          
-        case -1:
-          break;
-      }
-*/
+         //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     // ELLA and YUE
     switch(tempSwitch)
     {
       case 0:
-        
         // Interactive buttons - SADHBH
         for (int i = 0; i<widgetList.size(); i++) {
         Widget aWidget = (Widget)widgetList.get(i);
         aWidget.draw();
         }
+          
           if(query.getCount() < 10000)
           {
           myTextlabel.show();
@@ -259,9 +208,10 @@ void draw(){
           fill(0);
           rect(0, 120, 1407, 470);
           cp5.draw();
-          myChart.hide();
+          //myChart.hide();
           }else
           {
+            /*
             cp5.draw();
             myChart.show();
             fill(255);
@@ -282,6 +232,20 @@ void draw(){
             rect(820, 400, 20, 20);
             fill(0);
             text("delayed", 877, 410);
+            */
+          for (int i = 0; i<textboxButtons.size(); i++) {
+            Widget bWidget = (Widget)textboxButtons.get(i);
+            bWidget.draw(); 
+          }
+          
+          myTextlabel.show();
+          myTextarea.show();
+          
+          noStroke();
+          fill(0);
+          rect(0, 120, 1407, 470);
+          cp5.draw();
+            
           }
         break;
       
@@ -440,32 +404,52 @@ void mousePressed() {                                                // determin
           String input = cp5.get(Textfield.class,"Enter Airline Prefix").getText();
 
           query.searchAirline(input);
-          String output = parser.formatData(query.getTable());
-          myTextarea.setText(output);
-       
+          if(query.getCount() < 10000){
+            String output = parser.formatData(query.getTable());
+            myTextarea.setText(output);
+          }
+         
+        }else
+        {
+          println("skipped airlines");
         }
+        
         if(isDestinationTextboxVisible && (cp5.get(Textfield.class,"Enter Origin(O:) or Destination(D:), then Airport").getText()).equals("") == false ){
           String input = cp5.get(Textfield.class,"Enter Origin(O:) or Destination(D:), then Airport").getText();
           query.searchStates(input);
-          String output = parser.formatData(query.getTable());
-          myTextarea.setText(output);
-
+          if(query.getCount() < 10000)
+          {
+            String output = parser.formatData(query.getTable());
+            myTextarea.setText(output);
+          }
+        }else{
+           println("skipped destinations");
         }
+        
         if(isDateTextboxVisible && (cp5.get(Textfield.class,"Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)").getText()).equals("") == false ){
+          println("trying dates");
           String input = cp5.get(Textfield.class,"Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)").getText();
           try{
+            println("entering query with " + input);
             query.searchDates(input);
           }
           catch(Exception e){
           }
+          if(query.getCount() < 10000)
+          {
           String output = parser.formatData(query.getTable());
           myTextarea.setText(output);
+          }
+        }else{
+          println("skipped dates");
         }
 
-          homeScr = false;
-        
-          gui.pieAppendData(query.flightAttributes());
-
+          homeScr = false;       
+        //  gui.pieAppendData(query.flightAttributes());
+        if(query.getCount() < 10000)
+        {
+          gui.textlabels("results", 0, 120, 1407, 470, query.getTable());
+        }
         break;
       
       //ELLA 18/3/24
@@ -486,12 +470,30 @@ void mousePressed() {                                                // determin
         isDateTextboxVisible = false;
         hideAllTextBoxes();
         
-        String output = parser.formatData(query.getTable());
-        myTextarea.setText(output);
+        if(query.getCount() < 10000)
+        {
+          String output = parser.formatData(query.getTable());
+          myTextarea.setText(output);
+        }
         homeScr = true;
 
-        gui.pieAppendData(query.flightAttributes());
+      //  gui.pieAppendData(query.flightAttributes());
         break;
+        
+     
+    }
+  }
+  for(Widget widget : textboxButtons)
+  {
+    int event = widget.getEvent(mouseX, mouseY);                     // determines if mouse is pressed within the bounds of the widget and returns an event type.
+    switch (event){
+       case FORWARD_BUTTON:
+       gui.textboxForward();
+       break;
+       
+       case BACKWARD_BUTTON:
+       gui.textboxBackward();
+       break;
     }
   }
 }
