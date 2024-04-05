@@ -16,16 +16,17 @@ int currentLineIndex = 0;
 
 PFont title;      //ella   3/4/24
 PFont myFont;
+PFont labelsFont; // Niamh for LineGraph 05/04/24
 String titleText;
 Boolean homeScr = true;
 
 PImage bgImg;
 // declaring image variables - NIAMH 30/3/24
-PImage mouseImg;     // declare a variable for the mouse image
-PImage houseImg;     // declare a variable for the house image
-PImage submitImg;    // declare a variable for the submit image
-PImage resetImg;     // declare a variable for the return image
-PImage whiteBgImg;
+PImage mouseImg;     // declares a variable for the mouse image
+PImage houseImg;     // declares a variable for the house image
+PImage submitImg;    // declares a variable for the submit image
+PImage resetImg;     // declares a variable for the return image
+PImage whiteBgImg;   // declares a variable for different baclground for graphs Niamh 04/04/24
 
 ControlP5 cp5;
 Textlabel myTextlabel;
@@ -67,8 +68,9 @@ void setup() {
   cp5 = new ControlP5(this);      
   size(1407, 946);
 
+
   bgImg = loadImage("bgImgWithHeading.png");
-  whiteBgImg = loadImage("whiteBgImgWithHeading.png");
+  whiteBgImg = loadImage("whiteBgImgWithHeading.png");   // loading different images for the different backgrounds, Niamh 04/04/24
 
   myFont = loadFont("Phosphate-Solid-28.vlw");
   textFont(myFont);
@@ -76,7 +78,8 @@ void setup() {
   
   // YUE PAN 
   parser = new Parse();
-  table = parser.createTable("flights_full.csv");
+  table = parser.createTable("flights2k.csv"); // "flights_full.csv"
+
   maximumWidths = parser.getColumnWidths(table);
   gui = new Gui();                    
   gui.textBox("results", 0, 120, 1407, 470, table);
@@ -86,18 +89,17 @@ void setup() {
   gui.pie(590, 300, 200);
   
   // NIAMH AND SADHBH 13/3/24
-
-  lines = loadStrings("flights2k.csv");
-  StoreData storeData = new StoreData();
-  storeData.setup();
+  //lines = loadStrings("flights2k.csv");
+  //StoreData storeData = new StoreData();
+  //storeData.setup();
   
   // loading images - NIAMH 30/3/24
-  houseImg = loadImage("house.png");
-  houseImg.resize(55, 40);
-  submitImg = loadImage("submit.png");
-  submitImg.resize(70, 70);
-  resetImg = loadImage("reset.png");
-  resetImg.resize(50, 50);
+  houseImg = loadImage("house.png");    // loading in house png to replace home button
+  houseImg.resize(55, 40);              // resizing house 
+  submitImg = loadImage("submit.png");  // loading in submit png to replace submit button
+  submitImg.resize(70, 70);             // resizing submit button
+  resetImg = loadImage("reset.png");    // loading in reset png to replace reset button
+  resetImg.resize(50, 50);              // resizing reset button
   
   // Interactive buttons - ANNA
   Widget widget1, widget2, widget3, widget4, widget5, widget6, homeWidget, submitWidget, resetWidget;
@@ -107,7 +109,7 @@ void setup() {
   widget4 = new Widget(140, 640, 200, 55, "Pie Chart", color(160, 188, 244), myFont, EVENT_BUTTON4);
   widget5 = new Widget(590, 640, 200, 55, "Line Graph", color(88, 138, 244), myFont, EVENT_BUTTON5);
   widget6 = new Widget(1040, 640, 200, 55, "Bar Graph", color(52, 114, 244), myFont, EVENT_BUTTON6);
-
+  // home, submit, and reset buttons rewritten to work with images, Niamh 01/04/24 13:00
   homeWidget = new Widget(1250, 775,  houseImg, HOME_BUTTON);
   submitWidget = new Widget(1200, 55, submitImg, SUBMIT_BUTTON);
   resetWidget = new Widget(1300, 60, resetImg, RESET_BUTTON);
@@ -130,8 +132,8 @@ void setup() {
  
   // NIAMH 27/03/24
   mouseImg = loadImage("plane.png");   // load image to replace mouse
-  mouseImg.resize(40, 0);              // choose size of plane image
-  noCursor();                          // remove default mouse
+  mouseImg.resize(40, 0);              // resizing size of plane image
+  noCursor();                          // removes default mouse
   cp5.setAutoDraw(false);
   
   gui.pieAppendData(query.flightAttributes());
@@ -143,8 +145,8 @@ void draw(){
     homeScreen.draw();
 
     textFont(myFont);
-    // Ella 3/4/24    
-    if(homeScr){ //<>//
+    // Ella 3/4/24     //<>//
+    if(homeScr){ //<>// //<>//
       myTextlabel.hide(); //<>//
       myTextarea.hide();
      }
@@ -158,8 +160,8 @@ void draw(){
       {
         /*
         case 0:
-          // Interactive buttons - SADHBH
-          for (int i = 0; i<widgetList.size(); i++) { //<>//
+          // Interactive buttons - SADHBH //<>//
+          for (int i = 0; i<widgetList.size(); i++) { //<>// //<>//
           Widget aWidget = (Widget)widgetList.get(i); //<>//
           aWidget.draw();
           }
@@ -191,8 +193,9 @@ void draw(){
         rect(820, 800, 20, 20);
         fill(0);
         text("delayed", 877, 810);
-          break;
-         //<>//
+
+        break;
+
         case 4: //<>//
           background(bgImg);
           myTextlabel.hide();
@@ -207,8 +210,8 @@ void draw(){
           Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
           aWidget.draw();
           break;
-        
-        case 5: //<>//
+         //<>//
+        case 5: //<>// //<>//
           background(bgImg); //<>//
           myTextlabel.hide();
           myTextarea.hide();
@@ -295,15 +298,15 @@ void draw(){
         Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
         aWidget.draw();
         break;
-      
-      case 5: //<>//
+       //<>//
+      case 5: //<>// //<>//
         background(whiteBgImg); //<>//
         myTextlabel.hide();
         myTextarea.hide();
       
-        // NIAMH 27/3/24  
-        lineGraph = new LineGraph(query);
-        lineGraph.draw(40, 100, 1200, 500);
+        // Creates line graph based on user query NIAMH 27/03/24  
+        lineGraph = new LineGraph(query);    // Creates new object of LineGraph class
+        lineGraph.draw(40, 170, 1200, 500);  // Draws line graph in specified size at specified co-ordinates
       
         Widget bWidget = (Widget)widgetList.get(widgetList.size() - 3);
         bWidget.draw();
@@ -327,7 +330,7 @@ void draw(){
 
      }
     }
-    // NIAMH 27/3/24
+    // NIAMH 27/03/24
     float imgX = mouseX - mouseImg.width / 2;      // image follows x-value of mouse
     float imgY = mouseY - mouseImg.height / 2;     // image follows y-value of mouse
     image(mouseImg, imgX, imgY);                   // draw plane image where mouseX and mouseY are
