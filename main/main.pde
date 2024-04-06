@@ -59,10 +59,16 @@ final int EVENT_BUTTON5 = 5;
 final int EVENT_BUTTON6 = 6;
 final int HOME_BUTTON   = 7;
 final int EVENT_NULL = 0;
+
 // Ella
 final int SUBMIT_BUTTON = 8;
 final int RESET_BUTTON = 9;
 ArrayList<Widget> widgetList;
+
+//Textbox
+ArrayList<Widget> textboxButtons;
+final int FORWARD_BUTTON = 11;
+final int BACKWARD_BUTTON = 12;
 
 void setup() {
   cp5 = new ControlP5(this);      
@@ -78,15 +84,22 @@ void setup() {
   
   // YUE PAN 
   parser = new Parse();
+<<<<<<< HEAD
+  table = parser.createTable("flights_full.csv"); // "flights_full.csv"
+=======
   table = parser.createTable("flights2k.csv"); // flights_full flights2k
 
   maximumWidths = parser.getColumnWidths(table);
+>>>>>>> 3b192536d9e1c6ba1c9b3c10541ae8bcbd87e940
   gui = new Gui();                    
+  maximumWidths = parser.getColumnWidths(table);
+  myTextlabel = cp5.addTextlabel("columns");
+  gui.textlabels("results", 0, 120, 1407, 470, table);
   gui.textBox("results", 0, 120, 1407, 470, table);
 
   // NIAMH AND SADHBH
 
-  gui.pie(590, 300, 200);
+ // gui.pie(590, 300, 200);
   
   // NIAMH AND SADHBH 13/3/24
   //lines = loadStrings("flights2k.csv");
@@ -125,6 +138,14 @@ void setup() {
   widgetList.add(submitWidget);
   widgetList.add(resetWidget);
   
+  //Text Box Buttons
+  Widget forwardButton, backButton;
+  textboxButtons = new ArrayList<Widget>();
+  forwardButton = new Widget(1140, 610, 75, 20, ">>>", color(52, 114, 244), myFont, FORWARD_BUTTON);
+  backButton = new Widget(1060, 610, 75, 20, "<<<", color(52, 114, 244), myFont, BACKWARD_BUTTON);
+  textboxButtons.add(forwardButton);
+  textboxButtons.add(backButton);
+  
   // ELLA
   pieScreen  = new Screen(color(0), widgetList);
   homeScreen = new Screen(widgetList);
@@ -136,7 +157,27 @@ void setup() {
   noCursor();                          // removes default mouse
   cp5.setAutoDraw(false);
   
-  gui.pieAppendData(query.flightAttributes());
+ // gui.pieAppendData(query.flightAttributes())
+ // initialising Textbox data for large tables
+ if(query.getCount() > 10000)
+ {
+         int totalPages = (int) Math.ceil((double)query.getCount()/ MAXIMUM_LINES);
+          int startIndex = gui.returnIndex();
+          int endIndex = startIndex + MAXIMUM_LINES;
+          if( gui.returnCurrentPage() >= totalPages)
+          {
+            endIndex = query.getCount();
+          }
+          Table temp = table.copy();
+          temp.clearRows();
+          for(int i = startIndex; i < endIndex ; i++)
+          {
+            temp.addRow((query.getTable()).getRow(i));
+          }
+          maximumWidths = parser.getColumnWidths(temp);
+          gui.textlabels("results", 0, 120, 1407, 470, temp);
+          myTextarea.setText(parser.formatData(temp));
+ }
   ellipseMode(RADIUS);  // Set ellipseMode to RADIUS
    
 }
@@ -154,6 +195,9 @@ void draw(){
     else{
       // Ella 3/4/ edited main to show table only when interacting with query buttons 
         textFont(myFont);     
+<<<<<<< HEAD
+         //<>// //<>// //<>// //<>// //<>// //<>// //<>//
+=======
         
     /*  // ELLA and YUE          20/3/24
       switch(tempSwitch)
@@ -241,16 +285,17 @@ void draw(){
           break;
       }
 */
+>>>>>>> 3b192536d9e1c6ba1c9b3c10541ae8bcbd87e940
     // ELLA and YUE
     switch(tempSwitch)
     {
       case 0:
-        
         // Interactive buttons - SADHBH
         for (int i = 0; i<widgetList.size(); i++) {
         Widget aWidget = (Widget)widgetList.get(i);
         aWidget.draw();
         }
+          
           if(query.getCount() < 10000)
           {
           myTextlabel.show();
@@ -259,9 +304,10 @@ void draw(){
           fill(0);
           rect(0, 120, 1407, 470);
           cp5.draw();
-          myChart.hide();
+          //myChart.hide();
           }else
           {
+            /*
             cp5.draw();
             myChart.show();
             fill(255);
@@ -282,6 +328,20 @@ void draw(){
             rect(820, 400, 20, 20);
             fill(0);
             text("delayed", 877, 410);
+            */
+          for (int i = 0; i<textboxButtons.size(); i++) {
+            Widget bWidget = (Widget)textboxButtons.get(i);
+            bWidget.draw(); 
+          }
+          
+          myTextlabel.show();
+          myTextarea.show();
+          
+          noStroke();
+          fill(0);
+          rect(0, 120, 1407, 470);
+          cp5.draw();
+            
           }
         break;
       
@@ -440,32 +500,57 @@ void mousePressed() {                                                // determin
           String input = cp5.get(Textfield.class,"Enter Airline Prefix").getText();
 
           query.searchAirline(input);
-          String output = parser.formatData(query.getTable());
-          myTextarea.setText(output);
-       
+          if(query.getCount() < 10000){
+            String output = parser.formatData(query.getTable());
+            myTextarea.setText(output);
+          }
+         
+        }else
+        {
+          println("skipped airlines");
         }
+        
         if(isDestinationTextboxVisible && (cp5.get(Textfield.class,"Enter Origin(O:) or Destination(D:), then Airport").getText()).equals("") == false ){
           String input = cp5.get(Textfield.class,"Enter Origin(O:) or Destination(D:), then Airport").getText();
           query.searchStates(input);
-          String output = parser.formatData(query.getTable());
-          myTextarea.setText(output);
-
+          if(query.getCount() < 10000)
+          {
+            String output = parser.formatData(query.getTable());
+            myTextarea.setText(output);
+          }
+        }else{
+           println("skipped destinations");
         }
+<<<<<<< HEAD
+        
+        if(isDateTextboxVisible && (cp5.get(Textfield.class,"Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)").getText()).equals("") == false ){
+          println("trying dates");
+          String input = cp5.get(Textfield.class,"Enter Date Range (XX/XX/XXXX-YY/YY/YYYY)").getText();
+=======
         if(isDateTextboxVisible && (cp5.get(Textfield.class,"Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)").getText()).equals("") == false ){
           String input = cp5.get(Textfield.class,"Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)").getText();
+>>>>>>> 3b192536d9e1c6ba1c9b3c10541ae8bcbd87e940
           try{
+            println("entering query with " + input);
             query.searchDates(input);
           }
           catch(Exception e){
           }
+          if(query.getCount() < 10000)
+          {
           String output = parser.formatData(query.getTable());
           myTextarea.setText(output);
+          }
+        }else{
+          println("skipped dates");
         }
 
-          homeScr = false;
-        
-          gui.pieAppendData(query.flightAttributes());
-
+          homeScr = false;       
+        //  gui.pieAppendData(query.flightAttributes());
+        if(query.getCount() < 10000)
+        {
+          gui.textlabels("results", 0, 120, 1407, 470, query.getTable());
+        }
         break;
       
       //ELLA 18/3/24
@@ -486,12 +571,30 @@ void mousePressed() {                                                // determin
         isDateTextboxVisible = false;
         hideAllTextBoxes();
         
-        String output = parser.formatData(query.getTable());
-        myTextarea.setText(output);
+        if(query.getCount() < 10000)
+        {
+          String output = parser.formatData(query.getTable());
+          myTextarea.setText(output);
+        }
         homeScr = true;
 
-        gui.pieAppendData(query.flightAttributes());
+      //  gui.pieAppendData(query.flightAttributes());
         break;
+        
+     
+    }
+  }
+  for(Widget widget : textboxButtons)
+  {
+    int event = widget.getEvent(mouseX, mouseY);                     // determines if mouse is pressed within the bounds of the widget and returns an event type.
+    switch (event){
+       case FORWARD_BUTTON:
+       gui.textboxForward();
+       break;
+       
+       case BACKWARD_BUTTON:
+       gui.textboxBackward();
+       break;
     }
   }
 }
