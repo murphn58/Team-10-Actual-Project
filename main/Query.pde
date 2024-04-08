@@ -202,6 +202,10 @@ class Query{
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+
+/** Thread implementation of Queries for general matching
+  *  
+  */
 class FilterThread extends Thread {
      Table table;
      Queue<TableRow> rowsQueue;
@@ -218,7 +222,10 @@ class FilterThread extends Thread {
         this.startIndex = startIndex;
         this.endIndex = endIndex;
     }
-
+  
+  /** @override run, add matching rows to concurrent linked queue
+    *  
+    */
     public void run() {
         for (int i = startIndex; i < endIndex; i++) {
             TableRow row = table.getRow(i);
@@ -228,7 +235,14 @@ class FilterThread extends Thread {
         }
     }
 }
-
+  /** threads creator,
+    *  @param table to search
+    *  @param matching expression
+    *  @param target column
+    *  @param desired thread count ( currently is 4)
+    *  
+    *  @return table of matching rows
+    */
 Table filterTable(Table table, String targetExpression, int targetColumn, int numThreads) {
     Queue<TableRow> rowsQueue = new ConcurrentLinkedQueue<>();
     ArrayList<FilterThread> threads = new ArrayList<>();
@@ -248,7 +262,7 @@ Table filterTable(Table table, String targetExpression, int targetColumn, int nu
         endIndex += rowsPerThread;
     }
 
-    // Wait for all threads to finish
+    // wait for all threads to finish
     for (FilterThread thread : threads) {
         try {
             thread.join();
@@ -260,9 +274,9 @@ Table filterTable(Table table, String targetExpression, int targetColumn, int nu
     // Create a new table and add rows from the queue
     Table tempReturnTable = table.copy();
     tempReturnTable.clearRows();
-    println("starting final join");
+    //debugging prints
+    println("starting final join"); 
     println(System.currentTimeMillis());
-    // Assuming the table structure is the same as the original table
     tempReturnTable.addRows(new Table(rowsQueue));
     println("finished");
     println(System.currentTimeMillis());
@@ -270,6 +284,9 @@ Table filterTable(Table table, String targetExpression, int targetColumn, int nu
     return tempReturnTable;
 }
 
+/** Thread implementation of Queries for date range matching
+  *  
+  */
 class DateSearchThread extends Thread {
     Table table;
     Queue<TableRow> rowsQueue;
@@ -305,6 +322,12 @@ class DateSearchThread extends Thread {
     }
 }
 
+  /** threads creator, 4 seems to work well so sticking with it
+    *  @param table to search
+    *  @param desired date range in String
+    *  
+    *  @return table of matching rows
+    */
 Table searchDatesThreads(Table table, String input) throws Exception {
     String[] dateArray = input.split("-", 2);
     Date startDate = new SimpleDateFormat("MM/dd/yy").parse(dateArray[0]);
