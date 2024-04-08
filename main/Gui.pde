@@ -50,6 +50,18 @@ class Gui{
         }
     
   }
+   /** 
+   * creates a Control5P textlabel
+   * 
+   * @param name of window
+   * @param x position
+   * @param y position
+   * @param width
+   * @param height
+   * @param table object to display
+   *
+   * 
+   */
     void textlabels(String windowName, int xpos, int ypos, int xSize, int ySize, Table table)
   {
   
@@ -87,7 +99,9 @@ class Gui{
   /** 
    * creates a Control5P pie chart
    * 
-   * @param x position of centre, y position of centre, radius
+   * @param x position of centre, 
+   * @param y position of centre, 
+   * @param radius
    *
    * 
    */
@@ -123,19 +137,44 @@ class Gui{
     myChart.setColors("data",color(25,75,79), color(221,68,68), color(255,220,220));
   
   }
-  
+   /** 
+   * returns index of text box
+   * 
+   * 
+   *
+   * @return int index
+   */
   int returnIndex()
   {
     return index;
   }
   
+   /** 
+   * returns current page of text box
+   * 
+   * 
+   *
+   * @return current page
+   */
   int returnCurrentPage()
   {
     return currentPage;
   }
+   /** 
+   * reset current page to 0
+   * 
+   * 
+   *
+   * @return current page
+   */
   void resetCurrentPage(){
       this.currentPage = 0;
   }
+  
+   /** 
+   * displays next 30 entries in text box
+   * 
+   */
   void textboxForward()
   {
           int totalPages = (int) Math.ceil((double)query.getCount()/ MAXIMUM_LINES);
@@ -163,6 +202,10 @@ class Gui{
           gui.textlabels("results", 0, 120, 1407, 470, temp);
           myTextarea.setText(parser.formatData(temp));
   }
+  /** 
+   * displays previous 30 entries in text box
+   * 
+   */
     void textboxBackward()
   {
           int totalPages = (int) Math.ceil((double)query.getCount()/ MAXIMUM_LINES);
