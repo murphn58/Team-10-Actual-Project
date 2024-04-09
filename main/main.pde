@@ -106,9 +106,9 @@ void setup() {
   houseImg = loadImage("house.png");    // loading in house png to replace home button
   houseImg.resize(55, 40);              // resizing house 
   submitImg = loadImage("submit.png");  // loading in submit png to replace submit button
-  submitImg.resize(70, 70);             // resizing submit button
+  submitImg.resize(85, 85);             // resizing submit button
   resetImg = loadImage("reset.png");    // loading in reset png to replace reset button
-  resetImg.resize(50, 50);              // resizing reset button
+  resetImg.resize(60, 60);              // resizing reset button
   
   // Interactive buttons - ANNA
   // changing colors to cater for color bliindness - SADHBH 3/4/24
@@ -123,7 +123,7 @@ void setup() {
   // home, submit, and reset buttons rewritten to work with images, Niamh 01/04/24 13:00
   homeWidget = new Widget(1250, 775,  houseImg, HOME_BUTTON);
   submitWidget = new Widget(1200, 55, submitImg, SUBMIT_BUTTON);
-  resetWidget = new Widget(1300, 60, resetImg, RESET_BUTTON);
+  resetWidget = new Widget(1300, 62, resetImg, RESET_BUTTON);
   
   widgetList = new ArrayList<Widget>();
   widgetList.add(widget1);
@@ -139,8 +139,8 @@ void setup() {
   //Text Box Buttons - YUE
   Widget forwardButton, backButton;
   textboxButtons = new ArrayList<Widget>();
-  forwardButton = new Widget(1140, 610, 75, 20, ">>>", color(52, 114, 244), myFont, FORWARD_BUTTON);
-  backButton = new Widget(1060, 610, 75, 20, "<<<", color(52, 114, 244), myFont, BACKWARD_BUTTON);
+  forwardButton = new Widget(1140, 596, 60, 30, ">>>", color(255), myFont, FORWARD_BUTTON);
+  backButton = new Widget(1060, 596, 60, 30, "<<<", color(255), myFont, BACKWARD_BUTTON);
   textboxButtons.add(forwardButton);
   textboxButtons.add(backButton);
   
@@ -196,7 +196,7 @@ void draw(){
     
     else{
         // edited main to show table only when interacting with query buttons - ELLA 3/4/24 
-        textFont(myFont);  //<>// //<>// //<>// //<>// //<>//
+        textFont(myFont);  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     
     // ELLA and YUE 20/3/24
     switch(tempSwitch)
@@ -271,12 +271,12 @@ void draw(){
         ellipseMode(RADIUS);
         
         Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
-        aWidget.draw(); //<>//
+        aWidget.draw(); //<>// //<>// //<>// //<>//
         
-        break; //<>//
-        //<>//
-      case 5: //<>//
-        background(whiteBgImg); //<>//
+        break; //<>// //<>// //<>// //<>//
+        //<>// //<>// //<>// //<>//
+      case 5: //<>// //<>// //<>// //<>//
+        background(whiteBgImg); //<>// //<>// //<>// //<>//
         myTextlabel.hide();
         myTextarea.hide();
       
@@ -313,6 +313,98 @@ void draw(){
     float imgX = mouseX - mouseImg.width / 2;      // image follows x-value of mouse
     float imgY = mouseY - mouseImg.height / 2;     // image follows y-value of mouse
     image(mouseImg, imgX, imgY);                   // draw plane image where mouseX and mouseY are
+
+    // Aoife Mahon 3/3/24
+    if (tempSwitch == 0 && mouseX > 140 && mouseX < 340 && mouseY > 640 && mouseY < 695) // Check if the mouse is over the pie chart button, If so, draw pie chart on button
+    {
+      noStroke(); // No outline
+      fill(255); // White fill color
+      ellipse(280, 667.5, 20, 20); // Draw a circle at the specified position (assuming the pie chart button's position)
+
+      fill(100); // Dark grey fill color
+      // Draw the first segment of the pie chart
+      arc(280, 667.5, 20, 20, 20, PI / 2);
+
+      fill(150); // Light grey fill color
+      // Draw the second segment of the pie chart
+      arc(280, 667.5, 20, 20, PI / 2, TWO_PI / 3);
+
+      // Draw the third segment of the pie chart
+      fill(200); // Another shade of grey
+      arc(280, 667.5, 20, 20, TWO_PI / 3, PI);
+    }
+
+    // Aoife Mahon 3/3/24
+    if (tempSwitch == 0 && mouseX > 590 && mouseX < 790 && mouseY > 640 && mouseY < 695) //Check if the mouse is over the linegraph button, If so, draw linegraph on button
+    {
+      // LINE 1
+      // Define the angle of the line in radians (45 degrees)
+      float angle1 = PI / 4;
+      // Define the length of the line
+      float lineLength1 = 30; // Change this value as needed
+      // Calculate the end point of the line using trigonometry
+      float endX1 = 700 + cos(angle1) * lineLength1;
+      float endY1 = 665 + sin(angle1) * lineLength1;
+
+      // Draw the line
+      stroke(255); // White outline color
+      line(700, 665, endX1, endY1);
+
+      // LINE 2
+      float angle2 = 295; // Angle in degrees
+      angle2 = radians(angle2);   // Convert degrees to radians
+      float lineLength2 = 40;
+      float endX2 = endX1 + cos(angle2) * lineLength2;
+      float endY2 = endY1 + sin(angle2) * lineLength2;
+
+      // Draw the line
+      stroke(255); // White outline color
+      line(endX1, endY1, endX2, endY2);
+
+      // LINE 3
+      float angle3 = 60; // Angle in degrees
+      angle3 = radians(angle3);   // Convert degrees to radians
+      float lineLength3 = 35;
+      float endX3 = endX2 + cos(angle3) * lineLength3;
+      float endY3 = endY2 + sin(angle3) * lineLength3;
+
+      // Draw the line
+      stroke(255); // White outline color
+      line(endX2, endY2, endX3, endY3);
+
+      // LINE 4
+      float angle4 = 300; // Angle in degrees
+      angle4 = radians(angle4);   // Convert degrees to radians
+      float lineLength4 = 25;
+      float endX4 = endX3 + cos(angle4) * lineLength4;
+      float endY4 = endY3 + sin(angle4) * lineLength4;
+
+      // Draw the line
+      stroke(255); // White outline color
+      line(endX3, endY3, endX4, endY4);
+
+      // LINE 5
+      float angle5 = 359; // Angle in degrees
+      angle5 = radians(angle5);   // Convert degrees to radians
+      float lineLength5 = 10;
+      float endX5 = endX4 + cos(angle5) * lineLength5;
+      float endY5 = endY4 + sin(angle5) * lineLength5;
+
+      // Draw the line
+      stroke(255); // White outline color
+      line(endX4, endY4, endX5, endY5);
+    }
+
+    // Aoife Mahon 3/3/24
+    if (tempSwitch == 0 && mouseX > 1040 && mouseX < 1240 && mouseY > 640 && mouseY < 695)   //Check if the mouse is over the bargraph button, If so, draw bargraph on button
+    {
+      stroke(255);
+      fill(255);
+      rect(1150, 651, 10, 34);
+      rect(1170, 668, 10, 17);
+      rect(1190, 660, 10, 25);
+      rect(1210, 670, 10, 15);
+    }
 }
 
 
