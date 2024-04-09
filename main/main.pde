@@ -125,6 +125,17 @@ void setup() {
   widgetList.add(submitWidget);
   widgetList.add(resetWidget);
   
+<<<<<<< Updated upstream
+=======
+  //Text Box Buttons - YUE
+  Widget forwardButton, backButton;
+  textboxButtons = new ArrayList<Widget>();
+  forwardButton = new Widget(1140, 600, 75, 25, ">>>", color(52, 114, 244), myFont, FORWARD_BUTTON);
+  backButton = new Widget(1060, 600, 75, 25, "<<<", color(52, 114, 244), myFont, BACKWARD_BUTTON);
+  textboxButtons.add(forwardButton);
+  textboxButtons.add(backButton);
+  
+>>>>>>> Stashed changes
   // ELLA
   pieScreen  = new Screen(color(0), widgetList);
   homeScreen = new Screen(widgetList);
