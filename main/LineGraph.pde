@@ -48,7 +48,7 @@ class LineGraph {
     noFill();                                                                       // Removes filling in for rectangle so it's just an outline
     rect(x, 695, rectWidth, rectHeight);                                            // Creates rectangle around key
     
-    float currentY = 720;                                                           // Adjust the starting y-coordinate
+    float currentY = 730;                                                           // Adjust the starting y-coordinate
     
     // Draw each key label and its description for states present in the dataCount HashMap
     for (String state : dataCount.keySet()) {
