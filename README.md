@@ -10,7 +10,7 @@
 
 ## **Project requires controlP5 library**
 ### Installation
-[Download Link](https://github.com/sojamo/controlp5/releases/download/v2.2.5/controlP5-2.2.5.zip)
+[Download Link](https://github.com/sojamo/controlp5/releases/download/v2.2.5/controlP5-2.2.5.zip) <br>
 Extract and move folder controlP5 into Processing's libraries folder and restart Processing.
 
 ### **Alternative Installation**
