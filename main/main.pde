@@ -124,9 +124,9 @@ void setup() {
   // changing size/location of buttons - SADHBH 5/4/24
   Widget widget1, widget2, widget3, widget4, widget5, widget6, homeWidget, submitWidget, resetWidget;
 
-  widget1 = new Widget(20, 60, 180, 40, "Airline", color(250, 148, 148), myFont, EVENT_BUTTON1);
-  widget2 = new Widget(450, 60, 180, 40, "Airport", color(250, 88, 88), myFont, EVENT_BUTTON2);
-  widget3 = new Widget(920, 60, 180, 40, "Date", color(250, 48, 48), myFont, EVENT_BUTTON3);
+  widget1 = new Widget(40, 60, 180, 50, "Date", color(250, 148, 148), myFont, EVENT_BUTTON3);
+  widget2 = new Widget(430, 60, 180, 50, "Airport", color(250, 88, 88), myFont, EVENT_BUTTON2);
+  widget3 = new Widget(880, 60, 180, 50, "Airline", color(250, 48, 48), myFont, EVENT_BUTTON1);
   widget4 = new Widget(140, 640, 200, 55, "Pie Chart", color(160, 188, 244), myFont, EVENT_BUTTON4);
   widget5 = new Widget(590, 640, 200, 55, "Line Graph", color(88, 138, 244), myFont, EVENT_BUTTON5);
   widget6 = new Widget(1040, 640, 200, 55, "Bar Graph", color(52, 114, 244), myFont, EVENT_BUTTON6);
@@ -439,7 +439,7 @@ void mousePressed() {                                                // determin
         if (isAirlineTextboxVisible) {                               // checking isAirlineTextboxVisible 
           hideTextbox("Enter Airline Prefix");                       // if textbox is visible calls hideTextbox function
         } else {
-          showTextbox("Enter Airline Prefix", 20, 80);               // if false calls showTextbox function
+          showTextbox("Enter Airline Prefix", 880, 80);               // if false calls showTextbox function
         }
         
         // ELLA
@@ -457,7 +457,7 @@ void mousePressed() {                                                // determin
         if (isDestinationTextboxVisible) {
           hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         } else {
-          showTextbox("Enter Origin(O:) or Destination(D:), then Airport", 450, 80);
+          showTextbox("Enter Origin(O:) or Destination(D:) then Airport", 430, 80);
         }
         isDestinationTextboxVisible = !isDestinationTextboxVisible;  // Toggle the visibility status
         homeScr = false;
@@ -469,7 +469,7 @@ void mousePressed() {                                                // determin
         if (isDateTextboxVisible) {
           hideTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)");
         } else {
-          showTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)", 920, 80);
+          showTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)", 40, 80);
         }
         isDateTextboxVisible = !isDateTextboxVisible;                // Toggle the visibility status
         
