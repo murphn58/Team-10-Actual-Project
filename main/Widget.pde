@@ -33,14 +33,14 @@ class Widget {
     else if (event == SUBMIT_BUTTON)   // For submit button
     {     
       image(submitImg, x, y);          // Submit Image, not rectangle
-         height = 70;                  // Height that works for specific image
-         width = 70;                   // Width that works for specific image
+         height = 80;                  // Height that works for specific image
+         width = 80;                   // Width that works for specific image
     }
     else if (event == RESET_BUTTON)    // For reset button
     {     
       image(resetImg, x, y);          // Reset Image, not rectangle
-         height = 50;                 // Height that works for specific image
-         width = 50;                  // Width that works for specific image
+         height = 60;                 // Height that works for specific image
+         width = 60;                  // Width that works for specific image
     }
     else{                             // Or if it's any other button
          fill(widgetColor);
