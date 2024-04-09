@@ -167,8 +167,9 @@ class Gui{
    *
    * @return current page
    */
-  void resetCurrentPage(){
+  void resetIndices(){
       this.currentPage = 0;
+      this.index = 0;
   }
   
    /** 
