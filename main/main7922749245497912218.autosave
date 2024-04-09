@@ -9,23 +9,18 @@ int[] maximumWidths;
 Parse parser;
 Table table;
 
-//ELLA 3/4/24
-PFont title; 
+Table dateTable;
+Table mKTCarrierTable;
+String[] lines;
+int currentLineIndex = 0;
 
-// default font for buttons - SADHBH 5/4/24
+PFont title;      //ella   3/4/24
 PFont myFont;
-
-// For LineGraph and Bar Graph - NIAMH and SADHBH 5/4/24
-PFont labelsFont;
-PFont axesFont;
-PFont lineGraphKey;
-
+PFont labelsFont; // Niamh for LineGraph 05/04/24 02:00
 String titleText;
 Boolean homeScr = true;
 
-// cloud background - SADHBH
 PImage bgImg;
-
 // declaring image variables - NIAMH 30/3/24
 PImage mouseImg;     // declares a variable for the mouse image
 PImage houseImg;     // declares a variable for the house image
@@ -33,18 +28,13 @@ PImage submitImg;    // declares a variable for the submit image
 PImage resetImg;     // declares a variable for the return image
 PImage whiteBgImg;   // declares a variable for different baclground for graphs Niamh 04/04/24
 
-// YUE
 ControlP5 cp5;
 Textlabel myTextlabel;
 Textarea myTextarea;
 Gui gui;
-
-// ELLA
-Query query; 
 Screen currentScreen, homeScreen, pieScreen;
-
-// NIAMH
 LineGraph lineGraph;
+Query query;    // ella
 
  // Textbox - ANNA 
 String userInput;
@@ -69,44 +59,50 @@ final int EVENT_BUTTON5 = 5;
 final int EVENT_BUTTON6 = 6;
 final int HOME_BUTTON   = 7;
 final int EVENT_NULL = 0;
-// ELLA
+
+// Ella
 final int SUBMIT_BUTTON = 8;
 final int RESET_BUTTON = 9;
 ArrayList<Widget> widgetList;
 
-//Textbox buttons - YUE
+//Textbox
 ArrayList<Widget> textboxButtons;
 final int FORWARD_BUTTON = 11;
 final int BACKWARD_BUTTON = 12;
-
 
 void setup() {
   cp5 = new ControlP5(this);      
   size(1407, 946);
 
+
   bgImg = loadImage("backgroundCroppedDarker.jpg");
   bgImg.resize(1407,946);
-  whiteBgImg = loadImage("whiteBgImgWithHeading.png");   // loading different images for the different backgrounds, Niamh 04/04/24 
+  whiteBgImg = loadImage("whiteBgImgWithHeading.png");   // loading different images for the different backgrounds, Niamh 04/04/24
 
-  // Fixing fonts - SADHBH 5/4/24
-  myFont = loadFont("VerdanaPro-CondBoldItalic-48.vlw");
+  myFont = loadFont("Phosphate-Solid-28.vlw");
+  textFont(myFont);
  
+  
   // YUE PAN 
   parser = new Parse();
+
   table = parser.createTable("flights_full.csv"); // "flights_full.csv"
 
   maximumWidths = parser.getColumnWidths(table);
   gui = new Gui();                    
   maximumWidths = parser.getColumnWidths(table);
   myTextlabel = cp5.addTextlabel("columns");
-
   gui.textlabels("results", 100, 500, 1220, 430, table);
   gui.textBox("results", 100, 500, 1220, 430, table);
 
+  // NIAMH AND SADHBH
 
-//  gui.textlabels("results", 0, 120, 1407, 470, table);
- // gui.textBox("results", 0, 120, 1407, 470, table);
-
+ // gui.pie(590, 300, 200);
+  
+  // NIAMH AND SADHBH 13/3/24
+  //lines = loadStrings("flights2k.csv");
+  //StoreData storeData = new StoreData();
+  //storeData.setup();
   
   // loading images - NIAMH 30/3/24
   houseImg = loadImage("house.png");    // loading in house png to replace home button
@@ -118,8 +114,6 @@ void setup() {
   
   // edited by Ella 9/4/24
   // Interactive buttons - ANNA
-  // changing colors to cater for color bliindness - SADHBH 3/4/24
-  // changing size/location of buttons - SADHBH 5/4/24
   Widget widget1, widget2, widget3, widget4, widget5, widget6, homeWidget, submitWidget, resetWidget;
   widget1 = new Widget(40, 60, 180, 40, "Airline", color(250, 148, 148), myFont, EVENT_BUTTON1);
   widget2 = new Widget(260, 60, 180, 40, "Airport", color(250, 88, 88), myFont, EVENT_BUTTON2);
@@ -143,13 +137,12 @@ void setup() {
   widgetList.add(submitWidget);
   widgetList.add(resetWidget);
   
-  //Text Box Buttons - YUE
-  Widget forwardButton, backButton; //<>//
-  textboxButtons = new ArrayList<Widget>(); //<>//
-
-  forwardButton = new Widget(1140, 600, 75, 25, ">>>", color(52, 114, 244), myFont, FORWARD_BUTTON);
-  backButton = new Widget(1060, 600, 75, 25, "<<<", color(52, 114, 244), myFont, BACKWARD_BUTTON); //<>//
-  textboxButtons.add(forwardButton); //<>//
+  //Text Box Buttons
+  Widget forwardButton, backButton;
+  textboxButtons = new ArrayList<Widget>();
+  forwardButton = new Widget(1140, 410, 75, 20, ">>>", color(52, 114, 244), myFont, FORWARD_BUTTON);
+  backButton = new Widget(1060, 410, 75, 20, "<<<", color(52, 114, 244), myFont, BACKWARD_BUTTON);
+  textboxButtons.add(forwardButton);
   textboxButtons.add(backButton);
    //<>//
   // ELLA //<>//
@@ -161,18 +154,17 @@ void setup() {
   mouseImg = loadImage("plane.png");   // load image to replace mouse
   mouseImg.resize(40, 0);              // resizing size of plane image
   noCursor();                          // removes default mouse
+  cp5.setAutoDraw(false);
   
-  // YUE //<>//
-  cp5.setAutoDraw(false); //<>//
-  
-  // initialising Textbox data for large tables
-  if(query.getCount() > 10000)
-  { //<>//
-         int totalPages = (int) Math.ceil((double)query.getCount()/ MAXIMUM_LINES); //<>//
+ // gui.pieAppendData(query.flightAttributes())
+ // initialising Textbox data for large tables
+ if(query.getCount() > 10000)
+ {
+         int totalPages = (int) Math.ceil((double)query.getCount()/ MAXIMUM_LINES);
           int startIndex = gui.returnIndex();
           int endIndex = startIndex + MAXIMUM_LINES; //<>//
-          if( gui.returnCurrentPage() >= totalPages) //<>// //<>//
-          { //<>//
+          if( gui.returnCurrentPage() >= totalPages) //<>//
+          {
             endIndex = query.getCount();
           }
           Table temp = table.copy(); //<>//
@@ -186,30 +178,25 @@ void setup() {
           //  gui.textBox("results", 100, 500, 1220, 430, table);
 
           myTextarea.setText(parser.formatData(temp));
-  }
-  ellipseMode(RADIUS);  // Set ellipseMode to RADIUS //<>//
-    //<>//
+ }
+  ellipseMode(RADIUS);  // Set ellipseMode to RADIUS
+   
 }
-
 
 void draw(){    
     homeScreen.draw();
 
+    textFont(myFont); //<>//
     // Ella 3/4/24     //<>// //<>// //<>//
-    // font - SADHBH 
-    textFont(myFont);
-    
-    // ELLA 3/4/24     
-    if(homeScr){ 
-      myTextlabel.hide(); 
+    if(homeScr){ //<>// //<>// //<>// //<>//
+      myTextlabel.hide(); //<>//
       myTextarea.hide();
      }
     
     else{
-        // edited main to show table only when interacting with query buttons - ELLA 3/4/24 
-        textFont(myFont);  //<>// //<>// //<>// //<>// //<>// //<>// //<>//
-    
-    // ELLA and YUE 20/3/24
+      // Ella 3/4/24 edited main to show table only when interacting with query buttons 
+        textFont(myFont);     
+ //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     switch(tempSwitch)
     {
       case 0:
@@ -225,7 +212,7 @@ void draw(){
           myTextarea.show();
           noStroke();
           fill(0);
-          rect(80, 500, 1220, 430,5);
+          rect(80, 500, 1220, 450);
           cp5.draw();
           //myChart.hide();
           }else
@@ -262,42 +249,37 @@ void draw(){
           
           noStroke();
           fill(0);
-          rect(100, 500, 1200, 450,5);
+          rect(100, 500, 1200, 450);
           cp5.draw();
             
           }
-        
-        break; //<>//
-       //<>//
+        break;
+      
       case 4:
         background(whiteBgImg);
         myTextlabel.hide();
         myTextarea.hide();
       
         // Creates pie chart based on user query - SADHBH 28/3/24
-        // Fixing pie chart display - SADHBH 3/4/24
         PieChart pieChart = new PieChart(query);
         ellipseMode(CENTER);
         pieChart.draw(width/2, height/2, 620);
         ellipseMode(RADIUS);
-        
         Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
         aWidget.draw(); //<>//
         break; //<>// //<>//
        //<>// //<>// //<>//
-     
-      case 5: //<>// //<>// //<>//
-        background(whiteBgImg); //<>// //<>// //<>//
+      case 5: //<>// //<>//
+        background(whiteBgImg); //<>//
         myTextlabel.hide();
         myTextarea.hide();
       
-        // Creates line graph based on user query - NIAMH 27/03/24  
+        // Creates line graph based on user query NIAMH 27/03/24  
         lineGraph = new LineGraph(query);    // Creates new object of LineGraph class
         lineGraph.draw(100, 130, 1200, 500);  // Draws line graph in specified size at specified co-ordinates
       
         Widget bWidget = (Widget)widgetList.get(widgetList.size() - 3);
         bWidget.draw();
-        
         break;      
 
       case 6:
@@ -305,13 +287,12 @@ void draw(){
         myTextlabel.hide();
         myTextarea.hide();
      
-        // Creates bar graph based on user query - AOIFE 28/03/24 
+        // AOIFE
         barGraph = new BarGraph(query);
         barGraph.draw(400, 200, 1200, 500);
       
         Widget cWidget = (Widget)widgetList.get(widgetList.size() - 3);
         cWidget.draw();
-        
         break;
 
       case -1:
@@ -319,107 +300,14 @@ void draw(){
 
      }
     }
-    
     // NIAMH 27/03/24
     float imgX = mouseX - mouseImg.width / 2;      // image follows x-value of mouse
     float imgY = mouseY - mouseImg.height / 2;     // image follows y-value of mouse
     image(mouseImg, imgX, imgY);                   // draw plane image where mouseX and mouseY are
-
-    // Aoife Mahon 3/3/24
-  if (tempSwitch == 0 && mouseX > 140 && mouseX < 340 && mouseY > 640 && mouseY < 695) // Check if the mouse is over the pie chart button, If so, draw pie chart on button
-  {
-    noStroke(); // No outline
-    fill(255); // White fill color
-    ellipse(280, 667.5, 20, 20); // Draw a circle at the specified position (assuming the pie chart button's position)
-
-    fill(100); // Dark grey fill color
-    // Draw the first segment of the pie chart
-    arc(280, 667.5, 20, 20, 20, PI / 2);
-
-    fill(150); // Light grey fill color
-    // Draw the second segment of the pie chart
-    arc(280, 667.5, 20, 20, PI / 2, TWO_PI / 3);
-
-    // Draw the third segment of the pie chart
-    fill(200); // Another shade of grey
-    arc(280, 667.5, 20, 20, TWO_PI / 3, PI);
-  }
-
-  // Aoife Mahon 3/3/24
-  if (tempSwitch == 0 && mouseX > 590 && mouseX < 790 && mouseY > 640 && mouseY < 695) //Check if the mouse is over the linegraph button, If so, draw linegraph on button
-  {
-    // LINE 1
-    // Define the angle of the line in radians (45 degrees)
-    float angle1 = PI / 4;
-    // Define the length of the line
-    float lineLength1 = 30; // Change this value as needed
-    // Calculate the end point of the line using trigonometry
-    float endX1 = 700 + cos(angle1) * lineLength1;
-    float endY1 = 665 + sin(angle1) * lineLength1;
-
-    // Draw the line
-    stroke(255); // White outline color
-    line(700, 665, endX1, endY1);
-
-    // LINE 2
-    float angle2 = 295; // Angle in degrees
-    angle2 = radians(angle2);   // Convert degrees to radians
-    float lineLength2 = 40;
-    float endX2 = endX1 + cos(angle2) * lineLength2;
-    float endY2 = endY1 + sin(angle2) * lineLength2;
-
-    // Draw the line
-    stroke(255); // White outline color
-    line(endX1, endY1, endX2, endY2);
-
-    // LINE 3
-    float angle3 = 60; // Angle in degrees
-    angle3 = radians(angle3);   // Convert degrees to radians
-    float lineLength3 = 35;
-    float endX3 = endX2 + cos(angle3) * lineLength3;
-    float endY3 = endY2 + sin(angle3) * lineLength3;
-
-    // Draw the line
-    stroke(255); // White outline color
-    line(endX2, endY2, endX3, endY3);
-
-    // LINE 4
-    float angle4 = 300; // Angle in degrees
-    angle4 = radians(angle4);   // Convert degrees to radians
-    float lineLength4 = 25;
-    float endX4 = endX3 + cos(angle4) * lineLength4;
-    float endY4 = endY3 + sin(angle4) * lineLength4;
-
-    // Draw the line
-    stroke(255); // White outline color
-    line(endX3, endY3, endX4, endY4);
-
-    // LINE 5
-    float angle5 = 359; // Angle in degrees
-    angle5 = radians(angle5);   // Convert degrees to radians
-    float lineLength5 = 10;
-    float endX5 = endX4 + cos(angle5) * lineLength5;
-    float endY5 = endY4 + sin(angle5) * lineLength5;
-
-    // Draw the line
-    stroke(255); // White outline color
-    line(endX4, endY4, endX5, endY5);
-  }
-
-  // Aoife Mahon 3/3/24
-  if (tempSwitch == 0 && mouseX > 1040 && mouseX < 1240 && mouseY > 640 && mouseY < 695)   //Check if the mouse is over the bargraph button, If so, draw bargraph on button
-  {
-    stroke(255);
-    fill(255);
-    rect(1150, 651, 10, 34);
-    rect(1170, 668, 10, 17);
-    rect(1190, 660, 10, 25);
-    rect(1210, 670, 10, 15);
-  }
+  
 }
 
-
-//buttons and textbox - ANNA 18/3/24
+//BUTTONS + TEXTBOX - ANNA 18/3/24
 void mousePressed() {                                                // determines which box has been pressed
   for (Widget widget : widgetList) {
     int event = widget.getEvent(mouseX, mouseY);                     // determines if mouse is pressed within the bounds of the widget and returns an event type.
@@ -432,7 +320,7 @@ void mousePressed() {                                                // determin
           showTextbox("Enter Airline Prefix", 40, 80);               // if false calls showTextbox function
         }
         
-        // ELLA
+        // ella
         homeScr = false;
 
         isAirlineTextboxVisible = !isAirlineTextboxVisible;          // Toggle the visibility status
@@ -454,7 +342,6 @@ void mousePressed() {                                                // determin
         
       case EVENT_BUTTON3:
         println("date");                                                            
-        
         if (isDateTextboxVisible) {
           hideTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)");
         } else {
@@ -463,7 +350,6 @@ void mousePressed() {                                                // determin
         isDateTextboxVisible = !isDateTextboxVisible;                // Toggle the visibility status
         
         homeScr = false;
-        
         break;
       
       case EVENT_BUTTON4:
@@ -476,10 +362,9 @@ void mousePressed() {                                                // determin
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;
+
         hideAllTextBoxes();
-        
         homeScr = false;
-        
         break;
       
       case EVENT_BUTTON5:
@@ -492,10 +377,9 @@ void mousePressed() {                                                // determin
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;        
-        hideAllTextBoxes();
 
+        hideAllTextBoxes();
         homeScr = false;
-        
         break;
       
       case EVENT_BUTTON6:
@@ -508,29 +392,29 @@ void mousePressed() {                                                // determin
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;        
+
         hideAllTextBoxes();
-        
         homeScr = false;
-        
         break;
         
       case HOME_BUTTON:
         tempSwitch = 0; // Switch to the home screen
         println("home pressed");
-        
         homeScr = true;
-        
         break;
 
       //ELLA 18/3/24
       case SUBMIT_BUTTON:
+
         if( isAirlineTextboxVisible && (cp5.get(Textfield.class,"Enter Airline Prefix").getText()).equals("") == false ){
           String input = cp5.get(Textfield.class,"Enter Airline Prefix").getText();
+
           query.searchAirline(input);
           if(query.getCount() < 10000){
             String output = parser.formatData(query.getTable());
             myTextarea.setText(output);
           }
+         
         }else
         {
           println("skipped airlines");
@@ -565,14 +449,12 @@ void mousePressed() {                                                // determin
           println("skipped dates");
         }
 
-        homeScr = false;       
-        
-        // YUE
+          homeScr = false;       
+        //  gui.pieAppendData(query.flightAttributes());
         if(query.getCount() < 10000)
         {
           gui.textlabels("results", 80, 500, 1220, 470, query.getTable());
         }
-
         if(query.getCount() > 10000)
  {
          int totalPages = (int) Math.ceil((double)query.getCount()/ MAXIMUM_LINES);
@@ -592,17 +474,17 @@ void mousePressed() {                                                // determin
           gui.textlabels("results", 80, 500, 12207, 470, temp);
           myTextarea.setText(parser.formatData(temp));
  }
-       
         break;
       
       //ELLA 18/3/24
       case RESET_BUTTON:
         tempSwitch = 0;                    // switch to homeScreen
         query.reset();
-        
         hideTextbox("search airlines");
         hideTextbox("search date");
         hideTextbox("search airport");
+
+
         hideTextbox("Enter Airline Prefix");
         hideTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)");
         hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
@@ -612,7 +494,6 @@ void mousePressed() {                                                // determin
         isDateTextboxVisible = false;
         hideAllTextBoxes();
         
-        // YUE
         if(query.getCount() < 10000)
         {
           String output = parser.formatData(query.getTable());
@@ -640,10 +521,9 @@ if(query.getCount() > 10000)
           myTextarea.setText(parser.formatData(temp));
  }        break;
         
+     
     }
   }
-  
-  // YUE
   for(Widget widget : textboxButtons)
   {
     int event = widget.getEvent(mouseX, mouseY);                     // determines if mouse is pressed within the bounds of the widget and returns an event type.
@@ -659,7 +539,6 @@ if(query.getCount() > 10000)
   }
 }
 
-
 void mouseMoved() {
   for (Widget widget : widgetList) {
     int event = widget.getEvent(mouseX, mouseY);
@@ -671,8 +550,7 @@ void mouseMoved() {
   }
 }
 
-
-// ANNA
+// Ana
 void showTextbox(String name, int x, int y) { 
   cp5.addTextfield(name)              //adding textfile using the ControlP5 library 
      .setPosition(x, 100) 
@@ -680,7 +558,6 @@ void showTextbox(String name, int x, int y) {
      .setAutoClear(false)             // Disables automatic clearing of the text field
      .setFocus(true);                 // ready for input upon bein disaplayed
 }
-
 
 void hideTextbox(String name) {
   cp5.remove(name);                   // Remove the textfield by its name
