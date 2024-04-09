@@ -75,8 +75,7 @@ void setup() {
   size(1407, 946);
 
 
-  bgImg = loadImage("backgroundCroppedDarker.jpg");
-  bgImg.resize(1407,946);
+  bgImg = loadImage("bgImgWithHeading.png");
   whiteBgImg = loadImage("whiteBgImgWithHeading.png");   // loading different images for the different backgrounds, Niamh 04/04/24
 
   myFont = loadFont("Phosphate-Solid-28.vlw");
@@ -92,8 +91,8 @@ void setup() {
   gui = new Gui();                    
   maximumWidths = parser.getColumnWidths(table);
   myTextlabel = cp5.addTextlabel("columns");
-  gui.textlabels("results", 100, 500, 1220, 430, table);
-  gui.textBox("results", 100, 500, 1220, 430, table);
+  gui.textlabels("results", 0, 120, 1407, 470, table);
+  gui.textBox("results", 0, 120, 1407, 470, table);
 
   // NIAMH AND SADHBH
 
@@ -108,19 +107,18 @@ void setup() {
   houseImg = loadImage("house.png");    // loading in house png to replace home button
   houseImg.resize(55, 40);              // resizing house 
   submitImg = loadImage("submit.png");  // loading in submit png to replace submit button
-  submitImg.resize(80, 80);             // resizing submit button
+  submitImg.resize(70, 70);             // resizing submit button
   resetImg = loadImage("reset.png");    // loading in reset png to replace reset button
-  resetImg.resize(60, 60);              // resizing reset button
+  resetImg.resize(50, 50);              // resizing reset button
   
-  // edited by Ella 9/4/24
   // Interactive buttons - ANNA
   Widget widget1, widget2, widget3, widget4, widget5, widget6, homeWidget, submitWidget, resetWidget;
   widget1 = new Widget(40, 60, 180, 40, "Airline", color(250, 148, 148), myFont, EVENT_BUTTON1);
   widget2 = new Widget(260, 60, 180, 40, "Airport", color(250, 88, 88), myFont, EVENT_BUTTON2);
   widget3 = new Widget(480, 60, 180, 40, "Date", color(250, 48, 48), myFont, EVENT_BUTTON3);
-  widget4 = new Widget(1170, 200, 180, 50, "Pie Chart", color(160, 188, 244), myFont, EVENT_BUTTON4);
-  widget5 = new Widget(1170, 300, 180, 50, "Line Graph", color(88, 138, 244), myFont, EVENT_BUTTON5);
-  widget6 = new Widget(1170, 400, 180, 50, "Bar Graph", color(52, 114, 244), myFont, EVENT_BUTTON6);
+  widget4 = new Widget(140, 640, 200, 55, "Pie Chart", color(160, 188, 244), myFont, EVENT_BUTTON4);
+  widget5 = new Widget(590, 640, 200, 55, "Line Graph", color(88, 138, 244), myFont, EVENT_BUTTON5);
+  widget6 = new Widget(1040, 640, 200, 55, "Bar Graph", color(52, 114, 244), myFont, EVENT_BUTTON6);
   // home, submit, and reset buttons rewritten to work with images, Niamh 01/04/24 13:00
   homeWidget = new Widget(1250, 775,  houseImg, HOME_BUTTON);
   submitWidget = new Widget(1200, 55, submitImg, SUBMIT_BUTTON);
@@ -140,16 +138,16 @@ void setup() {
   //Text Box Buttons
   Widget forwardButton, backButton;
   textboxButtons = new ArrayList<Widget>();
-  forwardButton = new Widget(1140, 410, 75, 20, ">>>", color(52, 114, 244), myFont, FORWARD_BUTTON);
-  backButton = new Widget(1060, 410, 75, 20, "<<<", color(52, 114, 244), myFont, BACKWARD_BUTTON);
+  forwardButton = new Widget(1140, 610, 75, 20, ">>>", color(52, 114, 244), myFont, FORWARD_BUTTON);
+  backButton = new Widget(1060, 610, 75, 20, "<<<", color(52, 114, 244), myFont, BACKWARD_BUTTON);
   textboxButtons.add(forwardButton);
   textboxButtons.add(backButton);
-   //<>//
-  // ELLA //<>//
+  
+  // ELLA
   pieScreen  = new Screen(color(0), widgetList);
   homeScreen = new Screen(widgetList);
-  query = new Query(table); //<>//
-  //<>//
+  query = new Query(table);
+ 
   // NIAMH 27/03/24
   mouseImg = loadImage("plane.png");   // load image to replace mouse
   mouseImg.resize(40, 0);              // resizing size of plane image
@@ -162,21 +160,19 @@ void setup() {
  {
          int totalPages = (int) Math.ceil((double)query.getCount()/ MAXIMUM_LINES);
           int startIndex = gui.returnIndex();
-          int endIndex = startIndex + MAXIMUM_LINES; //<>//
-          if( gui.returnCurrentPage() >= totalPages) //<>//
+          int endIndex = startIndex + MAXIMUM_LINES;
+          if( gui.returnCurrentPage() >= totalPages)
           {
             endIndex = query.getCount();
           }
-          Table temp = table.copy(); //<>//
-          temp.clearRows(); //<>//
+          Table temp = table.copy();
+          temp.clearRows();
           for(int i = startIndex; i < endIndex ; i++)
           {
-            temp.addRow((query.getTable()).getRow(i)); //<>//
-          } //<>//
+            temp.addRow((query.getTable()).getRow(i));
+          }
           maximumWidths = parser.getColumnWidths(temp);
-          gui.textlabels("results", 100, 500, 1220, 430, temp);
-          //  gui.textBox("results", 100, 500, 1220, 430, table);
-
+          gui.textlabels("results", 0, 120, 1407, 470, temp);
           myTextarea.setText(parser.formatData(temp));
  }
   ellipseMode(RADIUS);  // Set ellipseMode to RADIUS
@@ -187,14 +183,14 @@ void draw(){
     homeScreen.draw();
 
     textFont(myFont); //<>//
-    // Ella 3/4/24     //<>// //<>// //<>//
-    if(homeScr){ //<>// //<>// //<>// //<>//
+    // Ella 3/4/24     //<>// //<>//
+    if(homeScr){ //<>// //<>// //<>//
       myTextlabel.hide(); //<>//
       myTextarea.hide();
      }
     
     else{
-      // Ella 3/4/24 edited main to show table only when interacting with query buttons 
+      // Ella 3/4/ edited main to show table only when interacting with query buttons 
         textFont(myFont);     
  //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     switch(tempSwitch)
@@ -212,7 +208,7 @@ void draw(){
           myTextarea.show();
           noStroke();
           fill(0);
-          rect(80, 500, 1220, 430,5);
+          rect(0, 120, 1407, 470);
           cp5.draw();
           //myChart.hide();
           }else
@@ -249,7 +245,7 @@ void draw(){
           
           noStroke();
           fill(0);
-          rect(100, 500, 1200, 450,5);
+          rect(0, 120, 1407, 470);
           cp5.draw();
             
           }
@@ -267,8 +263,8 @@ void draw(){
         ellipseMode(RADIUS);
         Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
         aWidget.draw(); //<>//
-        break; //<>// //<>//
-       //<>// //<>// //<>//
+        break; //<>//
+       //<>// //<>//
       case 5: //<>// //<>//
         background(whiteBgImg); //<>//
         myTextlabel.hide();
@@ -453,27 +449,9 @@ void mousePressed() {                                                // determin
         //  gui.pieAppendData(query.flightAttributes());
         if(query.getCount() < 10000)
         {
-          gui.textlabels("results", 80, 500, 1220, 470, query.getTable());
+          gui.textlabels("results", 0, 120, 1407, 470, query.getTable());
         }
-        if(query.getCount() > 10000)
- {
-         int totalPages = (int) Math.ceil((double)query.getCount()/ MAXIMUM_LINES);
-          int startIndex = gui.returnIndex();
-          int endIndex = startIndex + MAXIMUM_LINES;
-          if( gui.returnCurrentPage() >= totalPages)
-          {
-            endIndex = query.getCount();
-          }
-          Table temp = table.copy();
-          temp.clearRows();
-          for(int i = startIndex; i < endIndex ; i++)
-          {
-            temp.addRow((query.getTable()).getRow(i));
-          }
-          maximumWidths = parser.getColumnWidths(temp);
-          gui.textlabels("results", 80, 500, 12207, 470, temp);
-          myTextarea.setText(parser.formatData(temp));
- }
+       
         break;
       
       //ELLA 18/3/24
@@ -501,25 +479,8 @@ void mousePressed() {                                                // determin
         }
         homeScr = true;
 
-if(query.getCount() > 10000)
- {
-         int totalPages = (int) Math.ceil((double)query.getCount()/ MAXIMUM_LINES);
-          int startIndex = gui.returnIndex();
-          int endIndex = startIndex + MAXIMUM_LINES;
-          if( gui.returnCurrentPage() >= totalPages)
-          {
-            endIndex = query.getCount();
-          }
-          Table temp = table.copy();
-          temp.clearRows();
-          for(int i = startIndex; i < endIndex ; i++)
-          {
-            temp.addRow((query.getTable()).getRow(i));
-          }
-          maximumWidths = parser.getColumnWidths(temp);
-          gui.textlabels("results", 100, 500, 1220, 470, temp);
-          myTextarea.setText(parser.formatData(temp));
- }        break;
+      //  gui.pieAppendData(query.flightAttributes());
+        break;
         
      
     }
