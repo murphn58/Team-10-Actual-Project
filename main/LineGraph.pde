@@ -8,7 +8,6 @@
 * Other minor edits/improvements made throughout process, by Niamh
 */
 class LineGraph { 
-   
   
     HashMap<String, Integer> dataCount;                                            // HashMap to store the count of occurrences of each data point for this class
     Query query;                                                                   // The Query object used to retrieve data
@@ -62,8 +61,6 @@ class LineGraph {
          x += 200;                    
         }
     }
-     
-    textFont(myFont);                                                             // Sets font for axes labels
     textFont(myFont);                                                             // Sets font for axes labels  
     fill(140, 150, 250);                                                          // Makes text blue
     textSize(50);                                                                 // Aligns text to the right
@@ -72,7 +69,6 @@ class LineGraph {
     rotate(-HALF_PI);                                                             // Rotates the text by -90 degrees
     text("KEY", 0, 0);                                                            // Label content specification
     popMatrix();                                                                  // Restores the previous transformation matrix state after applying transformations
-    fill(0);                                                                      // Returns font to black
     fill(0);       
     // Returns font to black
     textFont(labelsFont);                                                         // Switches back to font for x and y value labels
@@ -220,16 +216,13 @@ String getStateDescription(String state) {
           float labelY = y + h - map(i, 0, maxValue, 0, h);                       // Y-coordinate for the labels, mapped to the data range
           
           labelsFont = loadFont("Phosphate-Solid-15.vlw");                        // Loads smaller font for the labels
-          textFont(labelsFont);                                                   // Sets the text font
           textFont(labelsFont);                                                   // Sets the text font                                             // Sets the text font
           text(i, labelX, labelY);                                                // Draws the labels at the calculated coordinates
           
-           // Draw dashes on y-axis
           // Draw dashes on y-axis
            float dashX = x;                                                        // X-coordinate for dashes, on the y-axis
            float dashY = labelY;                                                   // Y-coordinate for dashes, same as label
            line(dashX, dashY, dashX + 5, dashY);                                   // Draws a horizontal dash
-         }
         }
          
        textFont(myFont);                                                          // Sets font for axes labels
@@ -240,7 +233,6 @@ String getStateDescription(String state) {
        text("Number of Flights", 0, 0);                                           // Label content specification
        popMatrix();                                                               // Restores the previous transformation matrix state after applying transformations
        textFont(labelsFont);                                                      // Switches back to font for x and y value labels
-       
        int i = 0;
        
        
@@ -259,16 +251,13 @@ String getStateDescription(String state) {
           float dashY = y + h + 5;                                                         // Sets y-coordinates for the dashes, at the x-axis
           line(dashX, y + h, dashX, dashY);                                                // Draws a vertical line at each label on x-axis
        }
-        
        
        textFont(myFont);                                                                   // Sets fon for axes labels
        textSize(23);                                                                       // Sets size for axes labels
        text("Destination States Abbreviated", 500, 670);                                   // Label content and size specification
        textFont(labelsFont);                                                               // Switches back to font for x and y value labels
-
                        // Label content and size specification
     }
-    
 
 
 /** Method gets the maximum value of the data in the dataCount HashMap being used in the line graph

@@ -1,7 +1,4 @@
-
-//  Aoife
 // Bar Chart Class - AOIFE 18/3/24
-
 
 class BarGraph {
   
@@ -18,11 +15,8 @@ class BarGraph {
 
 
   // Method to count occurrences of each airline in data provided
-  void countAirlines() {
-    
   void countAirlines() {    
     Table table = query.getTable(); // Get the table from the Query object
-    
     for (TableRow row : table.rows()) 
     { // Iterates through each row of table.
       String airline = row.getString(1); // Retrieves String of current row, representing airline name
@@ -33,7 +27,6 @@ class BarGraph {
 
   // Draws the bar graph
   void draw(float x, float y, float w, float h) {
-    
     drawBars(x, y, w, h); // Draw bars representing data points
     drawAxes(x, y, w, h); // Draw axes
     drawLabels(x, y, w, h); // Draw labels and ticks
@@ -45,11 +38,9 @@ class BarGraph {
 
   // method to draw bars
   void drawBars(float x, float y, float w, float h) {
-    
     float maxValue = getMaxValue(); // Get the maximum value of airline counts
     float barWidth = (w / airlineCounts.size())/2; // Calculate the width of each bar
     float xPos = x; // Initial x position for the first bar
-
     for (String airline : airlineCounts.keySet()) 
     {
       float barHeight = map(airlineCounts.get(airline), 0, maxValue, 0, h); // Calculate the height of the current bar
@@ -62,8 +53,6 @@ class BarGraph {
 
   // method to draw axes
   void drawAxes(float x, float y, float w, float h) {
-    
-    //stroke(0); // Set stroke color for axes
     line(x, y + h, x + (w/2), y + h); // Draw X-axis
     line(x, y, x, y + h); // Draw Y-axis
   }
@@ -71,7 +60,6 @@ class BarGraph {
 
   // method to draw labels and ticks
   void drawLabels(float x, float y, float w, float h) {
-    
     fill(0); // Set fill color for labels and ticks
     float maxValue = getMaxValue(); // Get the maximum value of airline counts
     float labelStep = maxValue / 5; // Calculate step for labeling
@@ -83,13 +71,9 @@ class BarGraph {
       float labelY = y + h - map(i, 0, maxValue, 0, h);
       
       labelsFont = loadFont("Phosphate-Solid-15.vlw");                        // Loads smaller font for the labels
-      textFont(labelsFont);                                                   // Sets the text font
       textFont(labelsFont);                                                   // Sets the text font                                              // Sets the text font
       text(i, labelX, labelY);
       
-       float dashX = x-5;                                                       
-       float dashY = labelY;                                                  
-       line(dashX, dashY, dashX + 5, dashY);                                  
       float dashX = x-5;                                                       
       float dashY = labelY;                                                  
       line(dashX, dashY, dashX + 5, dashY);                                  
@@ -104,15 +88,12 @@ class BarGraph {
      text("Number of Flights", 0, 0);                                           // Label content specification
      popMatrix();                                                               // Restores the previous transformation matrix state after applying transformations
      textFont(labelsFont);                                                      // Switches back to font for x and y value labels
-
     // Draw labels for X-axis
     int i = 0;
     for (String airline : airlineCounts.keySet()) 
     {
       float labelX = (x + i * ((w / airlineCounts.size()))/2 + (w / (2 * airlineCounts.size())))-45;
       float labelY = y + h + 20;
-      labelsFont = loadFont("Phosphate-Solid-15.vlw");                        // Loads smaller font for the labels
-      textFont(labelsFont);                                                   // Sets the text font
       
          labelsFont = loadFont("Phosphate-Solid-15.vlw");                        // Loads smaller font for the labels
       textFont(labelsFont);                                                   // Sets the text font                                                // Sets the text font
@@ -124,7 +105,6 @@ class BarGraph {
      textSize(23);                                                                       // Sets size for axes labels
      text("Flight Destination States Abbreviated", 420, 745);                            // Label content and size specification
      textFont(labelsFont);                                                               // Switches back to font for x and y value labels
-
     
     // Draw ticks on X-axis
     for (int i2 = 0; i2 < airlineCounts.size(); i2++) 
@@ -134,7 +114,6 @@ class BarGraph {
       line(tickX, y + h, tickX, tickY);
     }
   }
-
   
   
   // Gets the maximum value of airline counts

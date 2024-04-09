@@ -1,10 +1,7 @@
 // Pie Chart for Airlines - SADHBH 18/3/24
-// Pie Chart for chose user inputs - SADHBH 28/3/24
 // Pie Chart for chosen user inputs - SADHBH 28/3/24
 // Pie Chart that takes into accountmissing information - SADHBH 2/4/24
 // Pie Chart that displays percentages and makes labels clearer. - SADHBH 3/4/24
-
-
  
 import java.util.HashMap;                                                                    // a collection class in Java that stores items in key/value pairs.
 
@@ -73,7 +70,6 @@ class PieChart {
         
       // Draw labels of segments. - SADHBH 18/3/24
       fill(0);                                                                                // set label color to black.
-      textSize(18);
       textSize(18);    
       text(rowData, labelX, labelY);
       
@@ -103,5 +99,4 @@ class PieChart {
     fill(0);
     text("Amount of Flights per Airline fulfilling chosen parameters", 320, 90);
   } 
-}
 } 
