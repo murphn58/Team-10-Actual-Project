@@ -167,8 +167,9 @@ class Gui{
    *
    * @return current page
    */
-  void resetCurrentPage(){
+  void resetIndices(){
       this.currentPage = 0;
+      this.index = 0;
   }
   
    /** 
@@ -199,7 +200,7 @@ class Gui{
             temp.addRow((query.getTable()).getRow(i));
           }
           maximumWidths = parser.getColumnWidths(temp);
-          gui.textlabels("results", 0, 120, 1407, 470, temp);
+          gui.textlabels("results", 50, 160, 1300, 450, temp);
           myTextarea.setText(parser.formatData(temp));
   }
   /** 
@@ -230,7 +231,7 @@ class Gui{
             temp.addRow((query.getTable()).getRow(i));
           }
           maximumWidths = parser.getColumnWidths(temp);
-          gui.textlabels("results", 0, 120, 1407, 470, temp);
+          gui.textlabels("results", 50, 160, 1300, 450, temp);
           myTextarea.setText(parser.formatData(temp));
   }
 }

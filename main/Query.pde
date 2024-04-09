@@ -1,9 +1,11 @@
 //Yue Pan
 class Query{
   Table returnTable = null;
+  Table returnSortedTable = null;
   
-  Query(Table table){               // expects Table to be passed
+  Query(Table table, Table sortedTable){               // expects Table to be passed
     returnTable = table.copy();
+    returnSortedTable = sortedTable.copy();
   }
   
   /**
@@ -104,36 +106,9 @@ class Query{
    */
   void sortByLateness()                  // sorts the attached returnTable by how "late" the arrival time is, jank implementation of difference between day change vs early
   {
-    Table tempTable = this.returnTable;
-    tempTable.addColumn("lateTime", Table.INT);
-    
-    for(TableRow row: tempTable.rows()){
-      if(row.getString("CANCELLED").equals("1"))
-      {
-        row.setInt("lateTime", -99);  // defaulting to top of list
-      }else    // column 14 = actual , column 13 = planned 
-      {
-        if(row.getString("ARR_TIME").equals("") == false && row.getString("CRS_ARR_TIME").equals("") == false)
-        {
-          int actualArrivalTime = Integer.parseInt(row.getString("ARR_TIME"));
-          int plannedArrivalTime = Integer.parseInt(row.getString("CRS_ARR_TIME"));
-          
-          int difference = actualArrivalTime - plannedArrivalTime;
-          if(difference < 0)
-          {
-            if(actualArrivalTime < 500 && plannedArrivalTime >= 2200)    // if the difference changed days
-            {
-              difference = actualArrivalTime + 2400 - plannedArrivalTime;
-            }
-          }
-          row.setInt("lateTime", difference);
-        }
-      }
-    }
-    
-    tempTable.sort("lateTime");
-    tempTable.removeColumn("lateTime");
-    returnTable = tempTable;
+
+     returnTable = returnSortedTable;
+
   }
   
   
@@ -244,13 +219,15 @@ class FilterThread extends Thread {
     *  @return table of matching rows
     */
 Table filterTable(Table table, String targetExpression, int targetColumn, int numThreads) {
-    Queue<TableRow> rowsQueue = new ConcurrentLinkedQueue<>();
+    ArrayList<Queue<TableRow>> threadQueues = new ArrayList<>();
     ArrayList<FilterThread> threads = new ArrayList<>();
     int rowsPerThread = table.getRowCount() / numThreads;
     int startIndex = 0;
     int endIndex = rowsPerThread;
 
     for (int i = 0; i < numThreads; i++) {
+        Queue<TableRow> rowsQueue = new ConcurrentLinkedQueue<>();
+        threadQueues.add(rowsQueue);
         if (i == numThreads - 1) {
             endIndex = table.getRowCount();
         }
@@ -270,6 +247,11 @@ Table filterTable(Table table, String targetExpression, int targetColumn, int nu
             e.printStackTrace();
         }
     }
+    
+    Queue<TableRow> finalQueue = new ConcurrentLinkedQueue<>();
+    for (Queue<TableRow> queue : threadQueues) {
+        finalQueue.addAll(queue);
+    }
 
     // Create a new table and add rows from the queue
     Table tempReturnTable = table.copy();
@@ -277,7 +259,7 @@ Table filterTable(Table table, String targetExpression, int targetColumn, int nu
     //debugging prints
     println("starting final join"); 
     println(System.currentTimeMillis());
-    tempReturnTable.addRows(new Table(rowsQueue));
+    tempReturnTable.addRows(new Table(finalQueue));
     println("finished");
     println(System.currentTimeMillis());
 
@@ -309,8 +291,13 @@ class DateSearchThread extends Thread {
             TableRow row = table.getRow(i);
             try {
                 String dateString = row.getString(0);
+                if(dateString.contains(" "))
+                {
+                  String[] tempArray= dateString.split(" ");
+                  dateString = tempArray[0];
+                }
                 if (!dateString.isEmpty()) {
-                    Date rowDate = new SimpleDateFormat("MM/dd/yyyy HH:mm").parse(dateString);
+                    Date rowDate = new SimpleDateFormat("MM/dd/yyyy").parse(dateString);
                     if (!rowDate.before(startDate) && !rowDate.after(endDate)) {
                         rowsQueue.add(row);
                     }
@@ -333,13 +320,15 @@ Table searchDatesThreads(Table table, String input) throws Exception {
     Date startDate = new SimpleDateFormat("MM/dd/yy").parse(dateArray[0]);
     Date endDate = new SimpleDateFormat("MM/dd/yy").parse(dateArray[1]);
 
-    Queue<TableRow> rowsQueue = new ConcurrentLinkedQueue<>();
+    ArrayList<Queue<TableRow>> threadQueues = new ArrayList<>();
     ArrayList<DateSearchThread> threads = new ArrayList<>();
     int rowsPerThread = table.getRowCount() / 4;
     int startIndex = 0;
     int endIndex = rowsPerThread;
     
     for (int i = 0; i < 4; i++) {
+      Queue<TableRow> rowsQueue = new ConcurrentLinkedQueue<>();
+      threadQueues.add(rowsQueue);
       if (i == 4 - 1) {
             endIndex = table.getRowCount();
         }
@@ -359,10 +348,15 @@ Table searchDatesThreads(Table table, String input) throws Exception {
         }
     }
 
+    Queue<TableRow> finalQueue = new ConcurrentLinkedQueue<>();
+    for (Queue<TableRow> queue : threadQueues) {
+        finalQueue.addAll(queue);
+    }
+
     // Create a new table and add rows from the queue
     Table tempTable = table.copy();
     tempTable.clearRows();
-    tempTable.addRows(new Table(rowsQueue));
+    tempTable.addRows(new Table(finalQueue));
     println("Date query finished");
     return tempTable;
 }

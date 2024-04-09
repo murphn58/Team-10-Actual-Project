@@ -33,26 +33,27 @@ class Widget {
     else if (event == SUBMIT_BUTTON)   // For submit button
     {     
       image(submitImg, x, y);          // Submit Image, not rectangle
-         height = 70;                  // Height that works for specific image
-         width = 70;                   // Width that works for specific image
+         height = 80;                  // Height that works for specific image
+         width = 80;                   // Width that works for specific image
     }
     else if (event == RESET_BUTTON)    // For reset button
     {     
       image(resetImg, x, y);          // Reset Image, not rectangle
-         height = 50;                 // Height that works for specific image
-         width = 50;                  // Width that works for specific image
+         height = 60;                 // Height that works for specific image
+         width = 60;                  // Width that works for specific image
     }
     else{                             // Or if it's any other button
          fill(widgetColor);
          stroke(lineColor);
-         rect(x, y, width, height);
+         rect(x, y, width, height,5);
          fill(labelColor);
          textAlign(LEFT, BOTTOM);
          textSize(16);
          text(label, x + 10, y + height - 10);
     }
   }
-  
+ 
+ // anna - this method is called when the mouse cursor is over the widget, sets the labelColor to white  
   void mouseOver() { 
     labelColor = color(255);
     //lineColor = color(255);
@@ -62,7 +63,7 @@ class Widget {
     labelColor = color(0); 
     //lineColor = color(0);
   }
-  
+// checking if mouse falls within the boundaries of the widget  
   int getEvent(int mX, int mY){
      if (mX > x && mX < x + width && mY > y && mY < y + height){
         return event;

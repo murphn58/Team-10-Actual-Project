@@ -7,7 +7,7 @@ import java.text.SimpleDateFormat;
 Chart myChart;
 int[] maximumWidths;
 Parse parser;
-Table table;
+Table table, sortedTable;
 
 //ELLA 3/4/24
 PFont title; 
@@ -23,7 +23,7 @@ PFont lineGraphKey;
 String titleText;
 Boolean homeScr = true;
 
-// cloud background - SADHBH
+//  background - ELLA
 PImage bgImg;
 
 // declaring image variables - NIAMH 30/3/24
@@ -78,14 +78,15 @@ ArrayList<Widget> widgetList;
 ArrayList<Widget> textboxButtons;
 final int FORWARD_BUTTON = 11;
 final int BACKWARD_BUTTON = 12;
-
+final int SORT_BUTTON = 13;
 
 void setup() {
   cp5 = new ControlP5(this);      
   size(1407, 946);
 
   // loading different images for the different backgrounds - NIAMH 4/4/24
-  bgImg = loadImage("bgImgWithHeading.png");
+  bgImg = loadImage("backgroundCroppedDarker.jpg");
+  bgImg.resize(1407,946);
   whiteBgImg = loadImage("whiteBgImgWithHeading.png");   
 
   // Fixing fonts - SADHBH 5/4/24
@@ -94,29 +95,32 @@ void setup() {
   // YUE PAN 
   parser = new Parse();
   table = parser.createTable("flights_full.csv"); // "flights_full.csv"
+  sortedTable = parser.createTable("flights_full_sorted.csv");
 
   maximumWidths = parser.getColumnWidths(table);
   gui = new Gui();                    
   maximumWidths = parser.getColumnWidths(table);
   myTextlabel = cp5.addTextlabel("columns");
-  gui.textlabels("results", 0, 120, 1407, 470, table);
-  gui.textBox("results", 0, 120, 1407, 470, table);
+  gui.textlabels("results",  50, 160, 1300, 450, table);
+  gui.textBox("results",  50, 160, 1300, 450, table);
   
   // loading images - NIAMH 30/3/24
   houseImg = loadImage("house.png");    // loading in house png to replace home button
   houseImg.resize(55, 40);              // resizing house 
   submitImg = loadImage("submit.png");  // loading in submit png to replace submit button
-  submitImg.resize(70, 70);             // resizing submit button
+  submitImg.resize(80, 80);             // resizing submit button
   resetImg = loadImage("reset.png");    // loading in reset png to replace reset button
-  resetImg.resize(50, 50);              // resizing reset button
-  
+  resetImg.resize(60, 60);              // resizing reset button
+ 
+  // widgets edited by Ella 9/4/24
   // Interactive buttons - ANNA
+  // initialising the buttons
   // changing colors to cater for color bliindness - SADHBH 3/4/24
   // changing size/location of buttons - SADHBH 5/4/24
   Widget widget1, widget2, widget3, widget4, widget5, widget6, homeWidget, submitWidget, resetWidget;
-  widget1 = new Widget(40, 60, 180, 40, "Airline", color(250, 148, 148), myFont, EVENT_BUTTON1);
-  widget2 = new Widget(260, 60, 180, 40, "Airport", color(250, 88, 88), myFont, EVENT_BUTTON2);
-  widget3 = new Widget(480, 60, 180, 40, "Date", color(250, 48, 48), myFont, EVENT_BUTTON3);
+  widget1 = new Widget(40, 55, 180, 50, "Date", color(250, 148, 148), myFont, EVENT_BUTTON3);
+  widget2 = new Widget(430, 55, 180, 50, "Airport", color(250, 88, 88), myFont, EVENT_BUTTON2);
+  widget3 = new Widget(880, 55, 180, 50, "Airline", color(250, 48, 48), myFont, EVENT_BUTTON1);
   widget4 = new Widget(140, 640, 200, 55, "Pie Chart", color(160, 188, 244), myFont, EVENT_BUTTON4);
   widget5 = new Widget(590, 640, 200, 55, "Line Graph", color(88, 138, 244), myFont, EVENT_BUTTON5);
   widget6 = new Widget(1040, 640, 200, 55, "Bar Graph", color(52, 114, 244), myFont, EVENT_BUTTON6);
@@ -137,17 +141,19 @@ void setup() {
   widgetList.add(resetWidget);
   
   //Text Box Buttons - YUE
-  Widget forwardButton, backButton;
+  Widget forwardButton, backButton, sortButton;
   textboxButtons = new ArrayList<Widget>();
   forwardButton = new Widget(1140, 600, 75, 25, ">>>", color(52, 114, 244), myFont, FORWARD_BUTTON);
-  backButton = new Widget(1060, 600, 75, 25, "<<<", color(52, 114, 244), myFont, BACKWARD_BUTTON);
+  backButton = new Widget(1060, 600, 75, 25, "<<<", color(52, 114, 244), myFont, BACKWARD_BUTTON); //<>// //<>//
+  sortButton = new Widget(1120, 65, 75, 40, "Sort", color(52, 114, 244), myFont, SORT_BUTTON); //<>// //<>//
   textboxButtons.add(forwardButton);
   textboxButtons.add(backButton);
-  
+  textboxButtons.add(sortButton); //<>// //<>//
+   //<>// //<>//
   // ELLA
   pieScreen  = new Screen(color(0), widgetList);
   homeScreen = new Screen(widgetList);
-  query = new Query(table);
+  query = new Query(table, sortedTable);
  
   // NIAMH 27/03/24
   mouseImg = loadImage("plane.png");   // load image to replace mouse
@@ -156,17 +162,17 @@ void setup() {
   
   // YUE
   cp5.setAutoDraw(false);
-  
-  // initialising Textbox data for large tables
+   //<>// //<>//
+  // initialising Textbox data for large tables //<>// //<>//
   if(query.getCount() > 10000)
   {
          int totalPages = (int) Math.ceil((double)query.getCount()/ MAXIMUM_LINES);
-          int startIndex = gui.returnIndex();
-          int endIndex = startIndex + MAXIMUM_LINES;
+          int startIndex = gui.returnIndex(); //<>// //<>//
+          int endIndex = startIndex + MAXIMUM_LINES; //<>// //<>//
           if( gui.returnCurrentPage() >= totalPages)
           {
-            endIndex = query.getCount();
-          }
+            endIndex = query.getCount(); //<>// //<>//
+          } //<>// //<>//
           Table temp = table.copy();
           temp.clearRows();
           for(int i = startIndex; i < endIndex ; i++)
@@ -174,15 +180,15 @@ void setup() {
             temp.addRow((query.getTable()).getRow(i));
           }
           maximumWidths = parser.getColumnWidths(temp);
-          gui.textlabels("results", 0, 120, 1407, 470, temp);
+          gui.textlabels("results", 50, 160, 1300, 450, temp);
           myTextarea.setText(parser.formatData(temp));
   }
   ellipseMode(RADIUS);  // Set ellipseMode to RADIUS
    
 }
 
-
-void draw(){    
+ //<>// //<>//
+void draw(){     //<>// //<>//
     homeScreen.draw();
 
     // font - SADHBH 
@@ -207,6 +213,9 @@ void draw(){
         Widget aWidget = (Widget)widgetList.get(i);
         aWidget.draw();
         }
+        
+           Widget sortWidget = (Widget)textboxButtons.get(2);
+           sortWidget.draw(); 
           
           if(query.getCount() < 10000)
           {
@@ -214,7 +223,7 @@ void draw(){
           myTextarea.show();
           noStroke();
           fill(0);
-          rect(0, 120, 1407, 470);
+          rect(50, 160, 1300, 450);
           cp5.draw();
           //myChart.hide();
           }else
@@ -251,15 +260,15 @@ void draw(){
           
           noStroke();
           fill(0);
-          rect(0, 120, 1407, 470);
+          rect(50, 160, 1300, 450);
           cp5.draw();
             
           }
         
         break;
       
-      case 4:
-        background(whiteBgImg);
+      case 4: //<>// //<>//
+        background(whiteBgImg); //<>// //<>//
         myTextlabel.hide();
         myTextarea.hide();
       
@@ -409,16 +418,19 @@ void draw(){
 
 
 //buttons and textbox - ANNA 18/3/24
+// handles actions triggered when the user clicks on any of the buttons represented
 void mousePressed() {                                                // determines which box has been pressed
-  for (Widget widget : widgetList) {
+  for (Widget widget : widgetList) {                                 // iterates over each widget
     int event = widget.getEvent(mouseX, mouseY);                     // determines if mouse is pressed within the bounds of the widget and returns an event type.
     switch (event) {                                                 // handles different types of events. 
+    
+    //if airline button is pressed
       case EVENT_BUTTON1:
         println("airline");
         if (isAirlineTextboxVisible) {                               // checking isAirlineTextboxVisible 
           hideTextbox("Enter Airline Prefix");                       // if textbox is visible calls hideTextbox function
         } else {
-          showTextbox("Enter Airline Prefix", 40, 80);               // if false calls showTextbox function
+          showTextbox("Enter Airline Prefix", 880, 80);               // if false calls showTextbox function
         }
         
         // ELLA
@@ -430,73 +442,80 @@ void mousePressed() {                                                // determin
 
         break;
         
+     // if airport button is pressed 
       case EVENT_BUTTON2:
         println("airport");
         if (isDestinationTextboxVisible) {
           hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         } else {
-          showTextbox("Enter Origin(O:) or Destination(D:), then Airport", 260, 80);
+          showTextbox("Enter Origin(O:) or Destination(D:), then Airport", 430, 80);
         }
         isDestinationTextboxVisible = !isDestinationTextboxVisible;  // Toggle the visibility status
         homeScr = false;
         break;
-        
+     // if date button is pressed 
       case EVENT_BUTTON3:
         println("date");                                                            
         
         if (isDateTextboxVisible) {
           hideTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)");
         } else {
-          showTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)", 480, 80);
+          showTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)", 40, 80);
         }
         isDateTextboxVisible = !isDateTextboxVisible;                // Toggle the visibility status
         
         homeScr = false;
         
         break;
-      
+        
+     // if pie chart button is pressed 
       case EVENT_BUTTON4:
         tempSwitch = 4;
         println("button 4!");
 
-        hideTextbox("Enter Airline Prefix");
+       /* hideTextbox("Enter Airline Prefix");
         hideTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)");
         hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;
+        */
         hideAllTextBoxes();
         
         homeScr = false;
         
         break;
       
+     // if line graph button is pressed  
       case EVENT_BUTTON5:
         tempSwitch = 5;
         println("button 5!");
 
-        hideTextbox("Enter Airline Prefix");
+       /* hideTextbox("Enter Airline Prefix");
         hideTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)");
         hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
-        isDateTextboxVisible = false;        
+        isDateTextboxVisible = false;   
+        */
         hideAllTextBoxes();
 
         homeScr = false;
         
         break;
       
+      // if bar graph button is pressed 
       case EVENT_BUTTON6:
         tempSwitch = 6;
         println("button 6!");
-
-        hideTextbox("Enter Airline Prefix");
+        
+        /*hideTextbox("Enter Airline Prefix");
         hideTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)");
         hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
-        isDateTextboxVisible = false;        
+        isDateTextboxVisible = false;      
+        */
         hideAllTextBoxes();
         
         homeScr = false;
@@ -513,6 +532,7 @@ void mousePressed() {                                                // determin
 
       //ELLA 18/3/24
       case SUBMIT_BUTTON:
+      gui.resetIndices();
         if( isAirlineTextboxVisible && (cp5.get(Textfield.class,"Enter Airline Prefix").getText()).equals("") == false ){
           String input = cp5.get(Textfield.class,"Enter Airline Prefix").getText();
           query.searchAirline(input);
@@ -559,8 +579,27 @@ void mousePressed() {                                                // determin
         // YUE
         if(query.getCount() < 10000)
         {
-          gui.textlabels("results", 0, 120, 1407, 470, query.getTable());
+          gui.textlabels("results",  50, 160, 1300, 450, query.getTable());
         }
+        if(query.getCount() > 10000)
+  {
+          int totalPages = (int) Math.ceil((double)query.getCount()/ MAXIMUM_LINES);
+          int startIndex = gui.returnIndex();
+          int endIndex = startIndex + MAXIMUM_LINES;
+          if( gui.returnCurrentPage() >= totalPages)
+          {
+            endIndex = query.getCount();
+          }
+          Table temp = table.copy();
+          temp.clearRows();
+          for(int i = startIndex; i < endIndex ; i++)
+          {
+            temp.addRow((query.getTable()).getRow(i));
+          }
+          maximumWidths = parser.getColumnWidths(temp);
+          gui.textlabels("results", 50, 160, 1300, 450, temp);
+          myTextarea.setText(parser.formatData(temp));
+  }
         
         break;
       
@@ -569,7 +608,7 @@ void mousePressed() {                                                // determin
         tempSwitch = 0;                    // switch to homeScreen
         query.reset();
         
-        hideTextbox("search airlines");
+        /*hideTextbox("search airlines");
         hideTextbox("search date");
         hideTextbox("search airport");
         hideTextbox("Enter Airline Prefix");
@@ -579,6 +618,7 @@ void mousePressed() {                                                // determin
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;
+        */
         hideAllTextBoxes();
         
         // YUE
@@ -587,6 +627,26 @@ void mousePressed() {                                                // determin
           String output = parser.formatData(query.getTable());
           myTextarea.setText(output);
         }
+        if(query.getCount() > 10000)
+        {
+          gui.resetIndices();
+         int totalPages = (int) Math.ceil((double)query.getCount()/ MAXIMUM_LINES);
+          int startIndex = gui.returnIndex();
+          int endIndex = startIndex + MAXIMUM_LINES;
+          if( gui.returnCurrentPage() >= totalPages)
+          {
+            endIndex = query.getCount();
+          }
+          Table temp = table.copy();
+          temp.clearRows();
+          for(int i = startIndex; i < endIndex ; i++)
+          {
+            temp.addRow((query.getTable()).getRow(i));
+          }
+          maximumWidths = parser.getColumnWidths(temp);
+          gui.textlabels("results", 50, 160, 1300, 450, temp);
+          myTextarea.setText(parser.formatData(temp));
+  }
         homeScr = true;
 
         break;
@@ -605,6 +665,81 @@ void mousePressed() {                                                // determin
        case BACKWARD_BUTTON:
        gui.textboxBackward();
        break;
+       
+       case SORT_BUTTON:
+       query.sortByLateness();
+
+       println("sort pressed");
+       if( isAirlineTextboxVisible && (cp5.get(Textfield.class,"Enter Airline Prefix").getText()).equals("") == false ){
+          String input = cp5.get(Textfield.class,"Enter Airline Prefix").getText();
+          query.searchAirline(input);
+          if(query.getCount() < 10000){
+            String output = parser.formatData(query.getTable());
+            myTextarea.setText(output);
+          }
+        }else
+        {
+          println("skipped airlines");
+        }
+        
+        if(isDestinationTextboxVisible && (cp5.get(Textfield.class,"Enter Origin(O:) or Destination(D:), then Airport").getText()).equals("") == false ){
+          String input = cp5.get(Textfield.class,"Enter Origin(O:) or Destination(D:), then Airport").getText();
+          query.searchStates(input);
+          if(query.getCount() < 10000)
+          {
+            String output = parser.formatData(query.getTable());
+            myTextarea.setText(output);
+          }
+        }else{
+           println("skipped destinations");
+        }
+
+        if(isDateTextboxVisible && (cp5.get(Textfield.class,"Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)").getText()).equals("") == false ){
+          String input = cp5.get(Textfield.class,"Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)").getText();
+          try{
+            println("entering query with " + input);
+            query.searchDates(input);
+          }
+          catch(Exception e){
+          }
+          if(query.getCount() < 10000)
+          {
+          String output = parser.formatData(query.getTable());
+          myTextarea.setText(output);
+          }
+        }else{
+          println("skipped dates");
+        }
+
+        homeScr = false;       
+        
+        // YUE
+        if(query.getCount() < 10000)
+        {
+          gui.textlabels("results", 50, 160, 1300, 450, query.getTable());
+        }
+        if(query.getCount() > 10000)
+        {  
+          gui.resetIndices();
+         int totalPages = (int) Math.ceil((double)query.getCount()/ MAXIMUM_LINES);
+          int startIndex = gui.returnIndex();
+          int endIndex = startIndex + MAXIMUM_LINES;
+          if( gui.returnCurrentPage() >= totalPages)
+          {
+            endIndex = query.getCount();
+          }
+          Table temp = table.copy();
+          temp.clearRows();
+          for(int i = startIndex; i < endIndex ; i++)
+          {
+            temp.addRow((query.getTable()).getRow(i));
+          }
+          maximumWidths = parser.getColumnWidths(temp);
+          gui.textlabels("results",50, 160, 1300, 450, temp);
+          myTextarea.setText(parser.formatData(temp));
+        }
+        
+       break;
     }
   }
 }
@@ -619,24 +754,34 @@ void mouseMoved() {
       widget.mouseNotOver();
     }
   }
+  for(Widget widget: textboxButtons){
+     int event = widget.getEvent(mouseX, mouseY);
+    if (event != EVENT_NULL) {
+      widget.mouseOver();
+    } else {
+      widget.mouseNotOver();
+    }
+  }
 }
 
 
-// ANNA
+// ANNA - textbox 
+// displaying a new textbox on the screen using the ControlP5 library
 void showTextbox(String name, int x, int y) { 
   cp5.addTextfield(name)              //adding textfile using the ControlP5 library 
      .setPosition(x, 100) 
-     .setSize(200, 20)
+     .setSize(180, 35)
      .setAutoClear(false)             // Disables automatic clearing of the text field
+     .setFont(createFont("Courier New",15))
      .setFocus(true);                 // ready for input upon bein disaplayed
 }
 
-
+// removes the textboxes 
 void hideTextbox(String name) {
   cp5.remove(name);                   // Remove the textfield by its name
 }
 
-
+// removes all the tetxboxes 
 void hideAllTextBoxes() {
     if(isAirlineTextboxVisible== true)
     {
