@@ -1,9 +1,10 @@
 // Pie Chart for Airlines - SADHBH 18/3/24
-// Pie Chart for chose user inputs - SADHBH 28/3/24
+// Pie Chart for chosen user inputs - SADHBH 28/3/24
 // Pie Chart that takes into accountmissing information - SADHBH 2/4/24
 // Pie Chart that displays percentages and makes labels clearer. - SADHBH 3/4/24
-
-
+// Fixing fonts - SADHBH 5/4/24
+// Adding a key - SADHBH 9/4/24
+ 
 import java.util.HashMap;                                                                    // a collection class in Java that stores items in key/value pairs.
 
 class PieChart { 
@@ -19,6 +20,7 @@ class PieChart {
     assignColors();                                                                          // calls assignColors() method.
   }
   
+  
   // Method to count occurrences of each data type in table provided. - SADHBH 18/3/24
   void countData(){
     Table table = query.getTable();
@@ -27,6 +29,7 @@ class PieChart {
       dataCounts.put(rowData, dataCounts.getOrDefault(rowData, 0) + 1);                      // increments count of data in dataCounts HashMap, if data not present, it initializes count to 1. 
     }
   }
+  
   
   // Method assigns color to each airline. - SADHBH 18/3/24
   void assignColors(){
@@ -38,8 +41,9 @@ class PieChart {
     }
   }
   
+  
   // Method to draw pie chart. - SADHBH 18/3/24
-  void draw(float xpos, float ypos, float diameter){
+  void draw(float xpos, float ypos, float diameter, float x){
     float lastAngle = 0;                                                                      // intializes variable to keep track of starting angle for each slice of pie chart.
     int totalRows = table.getRowCount();                                                      // calculates total no. of rows in table.
     
@@ -62,13 +66,15 @@ class PieChart {
         
       // Draw white box background for the label. - SADHBH 3/4/24
       fill(255);  
-      float labelWidth = textWidth(rowData) + 40;                                             // width of the label text plus padding.
+      float labelWidth = 60;                                             // width of the label text plus padding.
       float labelHeight = 38;                                                                 // height of the label box.
-      rect(labelX-10, labelY-20, labelWidth, labelHeight);
+      rect(labelX-8, labelY-22, labelWidth, labelHeight);
         
       // Draw labels of segments. - SADHBH 18/3/24
+      // Fixing fonts - SADHBH 5/4/24
+      PFont pieChartLabel = loadFont("VerdanaPro-CondBoldItalic-48.vlw");
+      textFont(pieChartLabel, 16);
       fill(0);                                                                                // set label color to black.
-      textSize(18);
       text(rowData, labelX, labelY);
       
       // Calculate percentage. - SADHBH 3/4/24
@@ -80,7 +86,6 @@ class PieChart {
       float percentageY = labelY + 15;                                                        // move the percentage text below the label.
       
       // Draw percentage text underneath the label. - SADHBH 3/4/24
-      textSize(18);
       text(percentageLabel, percentageX, percentageY);
     }
     
@@ -92,9 +97,54 @@ class PieChart {
     }
     
     // Prints title of pie chart on screen. - SADHBH 18/3/24
-    PFont pieChartLabel = loadFont("Phosphate-Solid-28.vlw");
+    // Fixing fonts - SADHBH 5/4/24
+    PFont pieChartLabel = loadFont("VerdanaPro-CondBoldItalic-48.vlw");
     textFont(pieChartLabel, 28);
     fill(0);
-    text("Amount of Flights per Airline fulfilling chosen parameters", 320, 90);
-  } 
+    text("Amount Of Flights Per Airline", 500, 100);
+    
+    // Prints key of pie chart on screen. - SADHBH 5/4/24
+    // Fixing fonts - SADHBH 5/4/24
+    drawKey(x);
+    
+  }
+  
+  // Method to draw key for Pie Chart
+  void drawKey(float x) {
+    PFont pieChartKey;
+    float currentY = 400;
+    for(String airline : dataCounts.keySet()){
+      fill(0);
+      String description = getAirlineDescription(airline);
+      
+      pieChartKey = loadFont("VerdanaPro-CondBoldItalic-48.vlw");
+      textFont(pieChartKey, 22);
+      text(airline + " = " + description, x, currentY);
+      if(currentY <= 800){
+        currentY += 20;
+      }
+    }
+    
+    pieChartKey = loadFont("VerdanaPro-CondBoldItalic-48.vlw");
+    textFont(pieChartKey, 40);
+    fill(140, 150, 250);                                                                                                                      
+    text("KEY", 96, 376);                                                           
+    fill(0); 
+  }
+  
+  
+  String getAirlineDescription(String airline){
+    HashMap<String, String> airlineDescriptions = new HashMap<>();
+    airlineDescriptions.put("AA", "American");
+    airlineDescriptions.put("AS", "Alaska");
+    airlineDescriptions.put("B6","JetBlue");
+    airlineDescriptions.put("DL","Delta");
+    airlineDescriptions.put("F9","Frontier");
+    airlineDescriptions.put("G4","Allegiant");
+    airlineDescriptions.put("HA","Hawaiian");
+    airlineDescriptions.put("NK","Spirit");
+    airlineDescriptions.put("UA","United");
+    airlineDescriptions.put("WN","Soutwest");
+    return airlineDescriptions.getOrDefault(airline, "No description available");
+  }
 }
