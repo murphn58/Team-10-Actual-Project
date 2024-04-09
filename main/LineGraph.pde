@@ -7,10 +7,12 @@
 * the line graph before viewing the pie chart, 28/03/24 19:00
 * Other minor edits/improvements made throughout process, by Niamh
 */
+
 class LineGraph { 
-   
+  
     HashMap<String, Integer> dataCount;                                            // HashMap to store the count of occurrences of each data point for this class
     Query query;                                                                   // The Query object used to retrieve data
+    
     
     /** Method to construct a LineGraph object
     * @param query passing in the current query specifications from user 
@@ -20,6 +22,7 @@ class LineGraph {
       dataCount = new HashMap<>();                                                 // Initializes 'dataCount' HashMap 
       countData();                                                                 // Calls dataCount() method which counts occurrences of each data point
     }
+  
     
      /** Method to count occurrences of each airline in data provided
      */
@@ -31,6 +34,7 @@ class LineGraph {
         dataCount.put(destination, dataCount.getOrDefault(destination, 0) + 1);      // Increments count of data points in 'dataCount' HashMap 
       }
      }
+
 
   /** This method draws the key for the state abbreviations below the line graph, 
   * as well as a title by it, and a box around it
@@ -50,7 +54,13 @@ class LineGraph {
     for (String state : dataCount.keySet()) {
         fill(0);                                                                  // Sets text color to black
         String description = getStateDescription(state);                          // Gets the description for the state using my getStateDescription(...) method
+        
+        // Fixing fonts - SADHBH 5/4/24
+        lineGraphKey = loadFont("VerdanaPro-CondBoldItalic-48.vlw");
+        textFont(lineGraphKey, 14);
+        
         text(state + " = " + description, x, currentY);
+        
         if (currentY <= 860)                                                      // If the y-value of the text isn't nearing the bottom of the screen,
         {
           currentY += 20;                                                         // Increments y-co-ordinate for the next label
@@ -61,18 +71,20 @@ class LineGraph {
          x += 200;                    
         }
     }
-     
-    textFont(myFont);                                                             // Sets font for axes labels
+    
+    // Fixing fonts - SADHBH 5/4/24
+    lineGraphKey = loadFont("VerdanaPro-CondBoldItalic-48.vlw");
+    textFont(lineGraphKey, 40);
+    
     fill(140, 150, 250);                                                          // Makes text blue
-    textSize(50);                                                                 // Aligns text to the right
     pushMatrix();                                                                 // Saves the current transformation matrix
     translate(100, 850);                                                          // Translates to the label position
     rotate(-HALF_PI);                                                             // Rotates the text by -90 degrees
     text("KEY", 0, 0);                                                            // Label content specification
     popMatrix();                                                                  // Restores the previous transformation matrix state after applying transformations
     fill(0);                                                                      // Returns font to black
-    textFont(labelsFont);                                                         // Switches back to font for x and y value labels
 }
+
 
   /** This method gets the description for each state abbreviation
   * @param state  description matching label on x-axis 
@@ -137,6 +149,8 @@ String getStateDescription(String state) {
     // Return the description for the given state abbreviation
     return stateDescriptions.getOrDefault(state, "No description available");
 }
+
+
   /** This method draws the line graph, by calling the draw methods I've created 
   * @param x  the x-coordinate of the top-left corner of the graph
   * @param y  the y-coordinate of the top-left corner of the graph
@@ -148,9 +162,14 @@ String getStateDescription(String state) {
         drawLines(x, y, w, h);                                                    // Draws lines and dots representing data points, using my drawLines(..) method
         drawLabels(x, y, w, h);                                                   // Draws labels and dashes, using my drawLabels(...) method
         drawKey(x);                                                               // Draws key at bottom of screen using my drawKey(...) method
-        textFont(myFont);
-        text("Amount of Flights to Each Destination Available", 380, 90);         // Draws title above graph
+        
+        // Fixing fonts - SADHBH 5/4/24
+        PFont LineGraphTitle = loadFont("VerdanaPro-CondBoldItalic-48.vlw");
+        textFont(LineGraphTitle, 28);
+        text("Amount Of Flights To Each Destination Available", 420, 100);        // Draws title above graph
+    
     }
+    
     
 /** This method specifies how the axes of the graph should be drawn
 * @param x  the x-coordinate of the top-left corner of the graph
@@ -163,6 +182,7 @@ String getStateDescription(String state) {
         line(x, y + h, x + w, y + h);                                             // Specifies x-axis
         line(x, y, x, y + h);                                                     // Specifies y-axis
     }
+   
     
 /** This method specifies how the dots and the line, connecting
 *   the dots, on the line graph should be drawn
@@ -194,6 +214,7 @@ String getStateDescription(String state) {
         endShape();                                                                        // Ends the defining of the shape
     }
     
+    
 /** This method draws the labels and dashes line graph 
 * @param x  the x-coordinate of the top-left corner of the graph
 * @param y  the y-coordinate of the top-left corner of the graph
@@ -210,26 +231,33 @@ String getStateDescription(String state) {
         {
           float labelX = x - 35;                                                  // X-co-ordinate for the labels, positioned to the left of the y-axis
           float labelY = y + h - map(i, 0, maxValue, 0, h);                       // Y-coordinate for the labels, mapped to the data range
-          labelsFont = loadFont("Phosphate-Solid-15.vlw");                        // Loads smaller font for the labels
-          textFont(labelsFont);                                                   // Sets the text font
+          
+          // Fixing fonts - SADHBH 5/4/24
+          labelsFont = loadFont("VerdanaPro-CondBoldItalic-48.vlw");              // Loads smaller font for the labels
+          textFont(labelsFont, 16);                                               // Sets the text font
           text(i, labelX, labelY);                                                // Draws the labels at the calculated coordinates
           
-           // Draw dashes on y-axis
-           float dashX = x;                                                        // X-coordinate for dashes, on the y-axis
-           float dashY = labelY;                                                   // Y-coordinate for dashes, same as label
-           line(dashX, dashY, dashX + 5, dashY);                                   // Draws a horizontal dash
-         }
+          // Draw dashes on y-axis
+          float dashX = x;                                                        // X-coordinate for dashes, on the y-axis
+          float dashY = labelY;                                                   // Y-coordinate for dashes, same as label
+          line(dashX, dashY, dashX + 5, dashY);                                   // Draws a horizontal dash
+        }
          
-       textFont(myFont);                                                          // Sets font for axes labels
-       textSize(23);                                                              // Aligns text to the right
+       // Fixing fonts - SADHBH 5/4/24
+       axesFont = loadFont("VerdanaPro-CondBoldItalic-48.vlw");                 // Loads smaller font for the labels
+       textFont(axesFont, 23);                                                  // Sets the text font
+       
        pushMatrix();                                                              // Saves the current transformation matrix
        translate(50, 460);                                                        // Translates to the label position
        rotate(-HALF_PI);                                                          // Rotates the text by -90 degrees
        text("Number of Flights", 0, 0);                                           // Label content specification
        popMatrix();                                                               // Restores the previous transformation matrix state after applying transformations
-       textFont(labelsFont);                                                      // Switches back to font for x and y value labels
        
-       int i = 0;
+       // Fixing fonts - SADHBH 5/4/24
+       labelsFont = loadFont("VerdanaPro-CondBoldItalic-48.vlw");              // Loads smaller font for the labels
+       textFont(labelsFont, 16);                                               // Sets the text font
+       
+       int i = 0;  
        // Draws labels for x-axis 
        for (String destination : dataCount.keySet()) 
        {
@@ -245,14 +273,14 @@ String getStateDescription(String state) {
           float dashY = y + h + 5;                                                         // Sets y-coordinates for the dashes, at the x-axis
           line(dashX, y + h, dashX, dashY);                                                // Draws a vertical line at each label on x-axis
        }
-        
-       textFont(myFont);                                                                   // Sets fon for axes labels
-       textSize(23);                                                                       // Sets size for axes labels
-       text("Destination States Abbreviated", 500, 670);                                   // Label content and size specification
-       textFont(labelsFont);                                                               // Switches back to font for x and y value labels
-
+       
+       // Fixing fonts - SADHBH 5/4/24
+       axesFont = loadFont("VerdanaPro-CondBoldItalic-48.vlw");                   // Loads smaller font for the labels
+       textFont(axesFont, 23);                                                    // Sets the text font                                                                
+       text("Destination States Abbreviated", 500, 680);                          // Label content and size specification
     }
-    
+
+
 /** Method gets the maximum value of the data in the dataCount HashMap being used in the line graph
 */
     float getMaxValue() {
