@@ -111,12 +111,13 @@ void setup() {
   resetImg.resize(50, 50);              // resizing reset button
   
   // Interactive buttons - ANNA
+  // initialising the buttons
   // changing colors to cater for color bliindness - SADHBH 3/4/24
   // changing size/location of buttons - SADHBH 5/4/24
   Widget widget1, widget2, widget3, widget4, widget5, widget6, homeWidget, submitWidget, resetWidget;
-  widget1 = new Widget(40, 60, 180, 40, "Airline", color(250, 148, 148), myFont, EVENT_BUTTON1);
-  widget2 = new Widget(260, 60, 180, 40, "Airport", color(250, 88, 88), myFont, EVENT_BUTTON2);
-  widget3 = new Widget(480, 60, 180, 40, "Date", color(250, 48, 48), myFont, EVENT_BUTTON3);
+  widget1 = new Widget(20, 60, 180, 40, "Airline", color(250, 148, 148), myFont, EVENT_BUTTON1);
+  widget2 = new Widget(450, 60, 180, 40, "Airport", color(250, 88, 88), myFont, EVENT_BUTTON2);
+  widget3 = new Widget(920, 60, 180, 40, "Date", color(250, 48, 48), myFont, EVENT_BUTTON3);
   widget4 = new Widget(140, 640, 200, 55, "Pie Chart", color(160, 188, 244), myFont, EVENT_BUTTON4);
   widget5 = new Widget(590, 640, 200, 55, "Line Graph", color(88, 138, 244), myFont, EVENT_BUTTON5);
   widget6 = new Widget(1040, 640, 200, 55, "Bar Graph", color(52, 114, 244), myFont, EVENT_BUTTON6);
@@ -409,16 +410,19 @@ void draw(){
 
 
 //buttons and textbox - ANNA 18/3/24
+// handles actions triggered when the user clicks on any of the buttons represented
 void mousePressed() {                                                // determines which box has been pressed
-  for (Widget widget : widgetList) {
+  for (Widget widget : widgetList) {                                 // iterates over each widget
     int event = widget.getEvent(mouseX, mouseY);                     // determines if mouse is pressed within the bounds of the widget and returns an event type.
     switch (event) {                                                 // handles different types of events. 
+    
+    //if airline button is pressed
       case EVENT_BUTTON1:
         println("airline");
         if (isAirlineTextboxVisible) {                               // checking isAirlineTextboxVisible 
           hideTextbox("Enter Airline Prefix");                       // if textbox is visible calls hideTextbox function
         } else {
-          showTextbox("Enter Airline Prefix", 40, 80);               // if false calls showTextbox function
+          showTextbox("Enter Airline Prefix", 20, 80);               // if false calls showTextbox function
         }
         
         // ELLA
@@ -430,73 +434,80 @@ void mousePressed() {                                                // determin
 
         break;
         
+     // if airport button is pressed 
       case EVENT_BUTTON2:
         println("airport");
         if (isDestinationTextboxVisible) {
           hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         } else {
-          showTextbox("Enter Origin(O:) or Destination(D:), then Airport", 260, 80);
+          showTextbox("Enter Origin(O:) or Destination(D:), then Airport", 450, 80);
         }
         isDestinationTextboxVisible = !isDestinationTextboxVisible;  // Toggle the visibility status
         homeScr = false;
         break;
-        
+     // if date button is pressed 
       case EVENT_BUTTON3:
         println("date");                                                            
         
         if (isDateTextboxVisible) {
           hideTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)");
         } else {
-          showTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)", 480, 80);
+          showTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)", 920, 80);
         }
         isDateTextboxVisible = !isDateTextboxVisible;                // Toggle the visibility status
         
         homeScr = false;
         
         break;
-      
+        
+     // if pie chart button is pressed 
       case EVENT_BUTTON4:
         tempSwitch = 4;
         println("button 4!");
 
-        hideTextbox("Enter Airline Prefix");
+       /* hideTextbox("Enter Airline Prefix");
         hideTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)");
         hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;
+        */
         hideAllTextBoxes();
         
         homeScr = false;
         
         break;
       
+     // if line graph button is pressed  
       case EVENT_BUTTON5:
         tempSwitch = 5;
         println("button 5!");
 
-        hideTextbox("Enter Airline Prefix");
+       /* hideTextbox("Enter Airline Prefix");
         hideTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)");
         hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
-        isDateTextboxVisible = false;        
+        isDateTextboxVisible = false;   
+        */
         hideAllTextBoxes();
 
         homeScr = false;
         
         break;
       
+      // if bar graph button is pressed 
       case EVENT_BUTTON6:
         tempSwitch = 6;
         println("button 6!");
-
-        hideTextbox("Enter Airline Prefix");
+        
+        /*hideTextbox("Enter Airline Prefix");
         hideTextbox("Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)");
         hideTextbox("Enter Origin(O:) or Destination(D:), then Airport");
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
-        isDateTextboxVisible = false;        
+        isDateTextboxVisible = false;      
+        */
         hideAllTextBoxes();
         
         homeScr = false;
@@ -569,7 +580,7 @@ void mousePressed() {                                                // determin
         tempSwitch = 0;                    // switch to homeScreen
         query.reset();
         
-        hideTextbox("search airlines");
+        /*hideTextbox("search airlines");
         hideTextbox("search date");
         hideTextbox("search airport");
         hideTextbox("Enter Airline Prefix");
@@ -579,6 +590,7 @@ void mousePressed() {                                                // determin
         isAirlineTextboxVisible = false;
         isDestinationTextboxVisible = false;
         isDateTextboxVisible = false;
+        */
         hideAllTextBoxes();
         
         // YUE
@@ -622,21 +634,23 @@ void mouseMoved() {
 }
 
 
-// ANNA
+// ANNA - textbox 
+// displaying a new textbox on the screen using the ControlP5 library
 void showTextbox(String name, int x, int y) { 
   cp5.addTextfield(name)              //adding textfile using the ControlP5 library 
      .setPosition(x, 100) 
-     .setSize(200, 20)
+     .setSize(180, 35)
      .setAutoClear(false)             // Disables automatic clearing of the text field
+     .setFont(createFont("Courier New",15))
      .setFocus(true);                 // ready for input upon bein disaplayed
 }
 
-
+// removes the textboxes 
 void hideTextbox(String name) {
   cp5.remove(name);                   // Remove the textfield by its name
 }
 
-
+// removes all the tetxboxes 
 void hideAllTextBoxes() {
     if(isAirlineTextboxVisible== true)
     {
