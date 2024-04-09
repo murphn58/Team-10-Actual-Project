@@ -45,7 +45,7 @@ class Widget {
     else{                             // Or if it's any other button
          fill(widgetColor);
          stroke(lineColor);
-         rect(x, y, width, height);
+         rect(x, y, width, height,5);
          fill(labelColor);
          textAlign(LEFT, BOTTOM);
          textSize(16);
