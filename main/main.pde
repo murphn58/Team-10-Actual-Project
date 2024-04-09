@@ -139,8 +139,8 @@ void setup() {
   //Text Box Buttons - YUE
   Widget forwardButton, backButton;
   textboxButtons = new ArrayList<Widget>();
-  forwardButton = new Widget(1140, 610, 75, 20, ">>>", color(52, 114, 244), myFont, FORWARD_BUTTON);
-  backButton = new Widget(1060, 610, 75, 20, "<<<", color(52, 114, 244), myFont, BACKWARD_BUTTON);
+  forwardButton = new Widget(1140, 600, 75, 25, ">>>", color(52, 114, 244), myFont, FORWARD_BUTTON);
+  backButton = new Widget(1060, 600, 75, 25, "<<<", color(52, 114, 244), myFont, BACKWARD_BUTTON);
   textboxButtons.add(forwardButton);
   textboxButtons.add(backButton);
   
@@ -196,7 +196,7 @@ void draw(){
     
     else{
         // edited main to show table only when interacting with query buttons - ELLA 3/4/24 
-        textFont(myFont);  //<>// //<>// //<>// //<>// //<>// //<>//
+        textFont(myFont);  //<>// //<>// //<>// //<>// //<>// //<>// //<>//
     
     // ELLA and YUE 20/3/24
     switch(tempSwitch)
@@ -271,12 +271,12 @@ void draw(){
         ellipseMode(RADIUS);
         
         Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
-        aWidget.draw(); //<>// //<>//
+        aWidget.draw(); //<>// //<>// //<>//
         
-        break; //<>// //<>//
-        //<>// //<>//
-      case 5: //<>// //<>//
-        background(whiteBgImg); //<>// //<>//
+        break; //<>// //<>// //<>//
+        //<>// //<>// //<>//
+      case 5: //<>// //<>// //<>//
+        background(whiteBgImg); //<>// //<>// //<>//
         myTextlabel.hide();
         myTextarea.hide();
       
