@@ -52,7 +52,8 @@ class Widget {
          text(label, x + 10, y + height - 10);
     }
   }
-  
+ 
+ // anna - this method is called when the mouse cursor is over the widget, sets the labelColor to white  
   void mouseOver() { 
     labelColor = color(255);
     //lineColor = color(255);
@@ -62,7 +63,7 @@ class Widget {
     labelColor = color(0); 
     //lineColor = color(0);
   }
-  
+// checking if mouse falls within the boundaries of the widget  
   int getEvent(int mX, int mY){
      if (mX > x && mX < x + width && mY > y && mY < y + height){
         return event;
