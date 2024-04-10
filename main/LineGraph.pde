@@ -23,6 +23,8 @@ class LineGraph {
       countData();                                                                 // Calls dataCount() method which counts occurrences of each data point
     }
   
+  
+  
     
      /** Method to count occurrences of each airline in data provided
      */
@@ -34,6 +36,8 @@ class LineGraph {
         dataCount.put(destination, dataCount.getOrDefault(destination, 0) + 1);      // Increments count of data points in 'dataCount' HashMap 
       }
      }
+
+
 
 
   /** This method draws the key for the state abbreviations below the line graph, 
@@ -86,9 +90,10 @@ class LineGraph {
 }
 
 
+
+
   /** This method gets the description for each state abbreviation
-  * @param state  description matching label on x-axis 
-  */
+  * @param state  description matching label on x-axis */
 String getStateDescription(String state) {
     // Define the descriptions for each state abbreviation
     HashMap<String, String> stateDescriptions = new HashMap<>();
@@ -151,6 +156,8 @@ String getStateDescription(String state) {
 }
 
 
+
+
   /** This method draws the line graph, by calling the draw methods I've created 
   * @param x  the x-coordinate of the top-left corner of the graph
   * @param y  the y-coordinate of the top-left corner of the graph
@@ -171,6 +178,8 @@ String getStateDescription(String state) {
     }
     
     
+    
+    
 /** This method specifies how the axes of the graph should be drawn
 * @param x  the x-coordinate of the top-left corner of the graph
 * @param y  the y-coordinate of the top-left corner of the graph
@@ -183,6 +192,8 @@ String getStateDescription(String state) {
         line(x, y, x, y + h);                                                     // Specifies y-axis
     }
    
+    
+    
     
 /** This method specifies how the dots and the line, connecting
 *   the dots, on the line graph should be drawn
@@ -213,6 +224,8 @@ String getStateDescription(String state) {
         }
         endShape();                                                                        // Ends the defining of the shape
     }
+   
+    
     
     
 /** This method draws the labels and dashes line graph 
@@ -281,8 +294,9 @@ String getStateDescription(String state) {
     }
 
 
-/** Method gets the maximum value of the data in the dataCount HashMap being used in the line graph
-*/
+
+
+/** Method gets the maximum value of the data in the dataCount HashMap being used in the line graph */
     float getMaxValue() {
         int maxValue = 0;                                                         // Initialises the maximum value as 0
         // Iterates through the values in the dataCount map

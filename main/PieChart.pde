@@ -21,6 +21,8 @@ class PieChart {
   }
   
   
+  
+  
   // Method to count occurrences of each data type in table provided. - SADHBH 18/3/24
   void countData(){
     Table table = query.getTable();
@@ -29,6 +31,8 @@ class PieChart {
       dataCounts.put(rowData, dataCounts.getOrDefault(rowData, 0) + 1);                      // increments count of data in dataCounts HashMap, if data not present, it initializes count to 1. 
     }
   }
+  
+  
   
   
   // Method assigns color to each airline. - SADHBH 18/3/24
@@ -40,6 +44,8 @@ class PieChart {
       index++;
     }
   }
+  
+  
   
   
   // Method to draw pie chart. - SADHBH 18/3/24
@@ -92,8 +98,8 @@ class PieChart {
     // Shade the remaining portion with grey when not all segments in user query. - SADHBH 2/4/24
     if (sumCounts < totalRows) {
       fill(200);  
-      float remainingAngle = radians(map(totalRows - sumCounts, 0, totalRows, 0, 360));
-      arc(xpos, ypos, diameter, diameter, lastAngle, lastAngle + remainingAngle);
+      float remainingAngle = radians(map(totalRows - sumCounts, 0, totalRows, 0, 360));       
+      arc(xpos, ypos, diameter, diameter, lastAngle, lastAngle + remainingAngle);                
     }
     
     // Prints title of pie chart on screen. - SADHBH 18/3/24
@@ -105,37 +111,43 @@ class PieChart {
     
     // Prints key of pie chart on screen. - SADHBH 5/4/24
     // Fixing fonts - SADHBH 5/4/24
-    drawKey(x);
+    drawKey(x);                                                                                                              
     
   }
   
-  // Method to draw key for Pie Chart
+  
+  
+ 
+  // Method to draw key for Pie Chart with abbreviations of the airlines - SADHBH 9/4/24
   void drawKey(float x) {
-    PFont pieChartKey;
-    float currentY = 400;
-    for(String airline : dataCounts.keySet()){
+    PFont pieChartKey;                                                                        // declares the variable for the font for the pie chart key.                                              
+    float currentY = 400;                                                                     // sets initial y-coordinates of the first item in the key.     
+    for(String airline : dataCounts.keySet()){                                                // loop through each airline abbreviation in the dataCounts HashMap.
       fill(0);
-      String description = getAirlineDescription(airline);
+      String description = getAirlineDescription(airline);                                    // retrieves the description for the current airline abbreviation.              
       
       pieChartKey = loadFont("VerdanaPro-CondBoldItalic-48.vlw");
       textFont(pieChartKey, 22);
-      text(airline + " = " + description, x, currentY);
-      if(currentY <= 800){
-        currentY += 20;
+      text(airline + " = " + description, x, currentY);                                       // display the abbreviation and its corresponding description at the specified x,y co-ordinates.   
+      if(currentY <= 800){                                                                    // check if y-coordinate is within the key boundary. 
+        currentY += 20;                                                                       // increment the current y-coordinate for the next item in the key.                     
       }
     }
     
     pieChartKey = loadFont("VerdanaPro-CondBoldItalic-48.vlw");
     textFont(pieChartKey, 40);
     fill(140, 150, 250);                                                                                                                      
-    text("KEY", 96, 376);                                                           
+    text("KEY", 96, 376);                                                                                                  
     fill(0); 
   }
   
   
+  
+  // Method to retrieve the description of an airline based on its abbreviation - SADHBH 9/4/24
   String getAirlineDescription(String airline){
-    HashMap<String, String> airlineDescriptions = new HashMap<>();
-    airlineDescriptions.put("AA", "American");
+    HashMap<String, String> airlineDescriptions = new HashMap<>();                            // create HashMap with airline abbreviations and descriptions.         
+                                                                                              // populate the HashMap with the airline abbreviations and descriptions.
+    airlineDescriptions.put("AA", "American"); 
     airlineDescriptions.put("AS", "Alaska");
     airlineDescriptions.put("B6","JetBlue");
     airlineDescriptions.put("DL","Delta");
@@ -145,6 +157,6 @@ class PieChart {
     airlineDescriptions.put("NK","Spirit");
     airlineDescriptions.put("UA","United");
     airlineDescriptions.put("WN","Soutwest");
-    return airlineDescriptions.getOrDefault(airline, "No description available");
+    return airlineDescriptions.getOrDefault(airline, "No description available");             // return description for provided airline abbreviation, or default message if not found.
   }
 }
