@@ -1,0 +1,1165 @@
+commit 3d9f4252d53ec474b028b73000248ea729e29e16
+Merge: 5c64bfc 4852d4b
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Wed Apr 10 10:00:07 2024 +0100
+
+    Merge pull request #59 from murphn58/niamhBranch3
+    
+    Niamh branch3
+
+commit 4852d4be9708e319d57d48507d0ee8697bb24217
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Wed Apr 10 00:29:21 2024 +0100
+
+    Final Design Changes
+    
+    !!!!Final version (other than maybe comments)!!!!
+
+commit db593360ce58224bae155254fb249cc63177cbcf
+Merge: 8e976b5 5c64bfc
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Tue Apr 9 23:19:29 2024 +0100
+
+    Merge branch 'main' into niamhBranch3
+
+commit 5c64bfc454ea17636edcaefdd8d48c732b6ccbc0
+Merge: 0812998 c57f30b
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Tue Apr 9 23:13:10 2024 +0100
+
+    Merge pull request #58 from murphn58/EllaForReal
+    
+    Ella for real
+
+commit c57f30be61c71568580b7a40e2cd71551838d0bc
+Author: whizzibble <nimhaoel@tcd.ie>
+Date:   Tue Apr 9 23:09:53 2024 +0100
+
+    background
+    
+    background changed, search buttons swapped around and table edited
+
+commit 537826520b0e01b6758398478cb33bb464be6a67
+Author: whizzibble <nimhaoel@tcd.ie>
+Date:   Tue Apr 9 23:01:37 2024 +0100
+
+    new
+
+commit 0812998e2dfaa7331db69efae65f967df56d9687
+Merge: e62f2a3 c4ca765
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Tue Apr 9 22:06:30 2024 +0100
+
+    Merge pull request #56 from murphn58/p-yue-patch-1
+    
+    Update README.md
+
+commit c4ca7653e387daf594a9228e4106dd2b46edb401
+Author: p-yue <163211270+p-yue@users.noreply.github.com>
+Date:   Tue Apr 9 17:40:16 2024 +0100
+
+    Update README.md
+
+commit 314a55e14675381b9ed4cc166b5c68beb4037d80
+Author: p-yue <163211270+p-yue@users.noreply.github.com>
+Date:   Tue Apr 9 17:30:39 2024 +0100
+
+    Update README.md
+
+commit 0b99a2528711aa19c60c382df8b89fb20fc0b8d3
+Author: p-yue <163211270+p-yue@users.noreply.github.com>
+Date:   Tue Apr 9 17:19:06 2024 +0100
+
+    Update README.md
+
+commit e62f2a38a2254c1ea6080aa3b711531a8ff8fe31
+Merge: 337aee8 4701aea
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Tue Apr 9 16:43:26 2024 +0100
+
+    Merge pull request #55 from p-yue/main
+    
+    Added Sort
+
+commit 4701aea52c67815eeaecd5c434175c4983ae314c
+Merge: b3c2347 337aee8
+Author: p-yue <163211270+p-yue@users.noreply.github.com>
+Date:   Tue Apr 9 16:40:49 2024 +0100
+
+    Merge branch 'murphn58:main' into main
+
+commit b3c2347f88390e559a56a9a1468ec92fc01004e6
+Author: Yue Pan <panyu@tcd.ie>
+Date:   Tue Apr 9 16:38:46 2024 +0100
+
+    Added Sort
+
+commit 8e976b5cfaa20c5fb1e6ec090475f1f505df03b0
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Tue Apr 9 15:19:28 2024 +0100
+
+    update ds
+
+commit 337aee8add0977ead12c6b5527c0a2d821c3143a
+Merge: 3797c0c a964afb
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Tue Apr 9 15:19:08 2024 +0100
+
+    Merge pull request #54 from murphn58/annaNewbranch2
+    
+    changes
+
+commit a964afb871761388832e2dbee352fc6b04ba8422
+Author: xuea04 <163134227+xuea04@users.noreply.github.com>
+Date:   Tue Apr 9 15:16:16 2024 +0100
+
+    changes
+
+commit 3797c0c9500637ab6de0fb138a68db5595180dea
+Merge: 0466b86 599a0b8
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Tue Apr 9 11:49:12 2024 +0100
+
+    Merge pull request #53 from murphn58/niamhBranch3
+    
+    fix back and forward buttons
+
+commit 599a0b898a9c15e22328b63d1bdf71ae4ea16e0a
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Tue Apr 9 11:48:05 2024 +0100
+
+    fix back and forward buttons
+
+commit 0466b8665bb0ce4a8d73c82ecda449e135daf0cf
+Merge: b17aa9e 7ec7b87
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Tue Apr 9 11:35:32 2024 +0100
+
+    Merge pull request #52 from murphn58/aoife1
+    
+    changes
+
+commit 7ec7b87e4c05e09c5f0b1c181bef65eb92feda26
+Author: mahona8 <mahona8@tcd.ie>
+Date:   Tue Apr 9 11:34:32 2024 +0100
+
+    changes
+
+commit b17aa9ea488b75e619c128fece8bece10594f4d0
+Merge: cabdb03 b1515bb
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Tue Apr 9 10:43:28 2024 +0100
+
+    Merge pull request #51 from murphn58/SadhbhBranch8
+    
+    changes
+
+commit b1515bb1d0497e274df2bce725b33596fc158459
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Tue Apr 9 10:36:20 2024 +0100
+
+    changes
+
+commit cabdb03899ee7a76c113c83331604305d20a4c93
+Merge: 3dbb275 4219287
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Mon Apr 8 15:18:45 2024 +0100
+
+    Merge pull request #50 from p-yue/main
+    
+    fixed merge conflict, added comments
+
+commit 4219287a8223178f9e633ceec1ce56be9d050c36
+Author: Yue Pan <panyu@tcd.ie>
+Date:   Mon Apr 8 15:14:36 2024 +0100
+
+    fixed merge conflict, added comments
+
+commit 3dbb275c883fa983a22f870f2443ff1a759203a1
+Merge: 3b19253 5519d8a
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Sat Apr 6 11:24:51 2024 +0100
+
+    Merge pull request #49 from p-yue/main
+    
+    Thread for Bigger data sets
+
+commit 5519d8a15b0a67c3e0c15530010dcf4524122685
+Merge: 269fa24 3b19253
+Author: Yue Pan <panyu@tcd.ie>
+Date:   Fri Apr 5 22:30:49 2024 +0100
+
+    multi-threading for Queries, updated table with buttons for bigger data sets
+
+commit 269fa245936218fd27c56d96aef7be13d06971c1
+Author: Yue Pan <panyu@tcd.ie>
+Date:   Fri Apr 5 22:23:09 2024 +0100
+
+    threads for Querym buttons for textbox for big queries
+
+commit 3b192536d9e1c6ba1c9b3c10541ae8bcbd87e940
+Merge: 453f5cc edc7a93
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Fri Apr 5 18:55:02 2024 +0100
+
+    Merge pull request #48 from murphn58/niamhBranch2
+    
+    Graph fixes
+
+commit edc7a93a4e442122e6645c0ef1ef13cc36c0a512
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Fri Apr 5 18:30:07 2024 +0100
+
+    Graph fixes
+
+commit 453f5cc480234f3f800af667791dadb39f3b29a7
+Merge: 067f14a 6f54b82
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Fri Apr 5 11:01:57 2024 +0100
+
+    Merge pull request #46 from murphn58/niamhBranch2
+    
+    Niamh branch2
+
+commit 6f54b829c42aaa4766a564df275a89564f76fa4a
+Merge: c44e0e5 067f14a
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Fri Apr 5 11:01:22 2024 +0100
+
+    Merge branch 'main' into niamhBranch2
+
+commit c44e0e51f684b33622510519890086b31b70abb0
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Fri Apr 5 01:45:10 2024 +0100
+
+    Comments to my work and changes/fixes to the line graph class
+
+commit e0ecc7f66b4f8a058ff96baae62ee5e70bf25ddf
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Fri Apr 5 00:03:25 2024 +0100
+
+    comments
+
+commit 28a1a1a8208d83a3f904f5f900e6b71e67d05802
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Apr 4 23:45:09 2024 +0100
+
+    positioning fixes
+
+commit 067f14a5d50f072d70d07c6b670eb5a7e37f758a
+Merge: a3c73ca 9d524ac
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Apr 4 23:44:27 2024 +0100
+
+    Merge pull request #44 from p-yue/main
+    
+    Just comments
+
+commit 9d524ac416ca5a282b7198b210270a7d65f34ce3
+Author: Yue Pan <panyu@tcd.ie>
+Date:   Thu Apr 4 23:42:28 2024 +0100
+
+    temp solution for large files?
+
+commit 433675f0ebe48a2a6d74129a0c4e546b7d8e03fc
+Author: Yue Pan <panyu@tcd.ie>
+Date:   Thu Apr 4 22:26:40 2024 +0100
+
+    comments
+
+commit a3c73ca124719cce637c8ed7e7e7a2751466fe45
+Merge: c7fa75b 1a1c37c
+Author: mahona8 <147732509+mahona8@users.noreply.github.com>
+Date:   Thu Apr 4 17:12:01 2024 +0100
+
+    Merge pull request #43 from murphn58/SadhbhsBranch6
+    
+    Sadhbhs branch6
+
+commit 1a1c37c5d5ddfede34e92f6b89481b40e5bc644b
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Apr 4 17:09:24 2024 +0100
+
+    changes
+
+commit 9cec72ecfeab1b8998cb8d974e71c3d3b561f7bd
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Apr 4 17:08:18 2024 +0100
+
+    Changes
+
+commit c7fa75bafbca8fcb0e5dd8422f8e8aa07666974e
+Merge: 3f35dce 67f5368
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Thu Apr 4 16:19:39 2024 +0100
+
+    Merge pull request #42 from murphn58/niamhBranch2
+    
+    fixing pie chart
+
+commit 67f5368350cea3493f119ca9e55e016bd3c033a3
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Apr 4 16:18:47 2024 +0100
+
+    fixing pie chart
+
+commit 3f35dce98f58cfbc072ae3b5c9132a9668dbf2d7
+Merge: f2afebc 645ef82
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Thu Apr 4 14:42:48 2024 +0100
+
+    Merge pull request #41 from murphn58/niamhBranch2
+    
+    Niamh branch2
+
+commit 645ef82e8a8f2b0d2ebc008294d0543dfb806992
+Merge: cad8a8c f2afebc
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Thu Apr 4 14:42:41 2024 +0100
+
+    Merge branch 'main' into niamhBranch2
+
+commit cad8a8ceba275b35ed25da51e5cfde48cb778141
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Apr 4 14:37:47 2024 +0100
+
+    Background Changes
+
+commit 8a0fbb1db7249c7f65eefba720502c393f67ea5a
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Apr 4 13:51:41 2024 +0100
+
+    background changes
+
+commit f2afebcb613c8cb1619f3dee1c71b87a643c58b4
+Merge: b1f45e4 2eb404b
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Apr 4 13:36:42 2024 +0100
+
+    Merge pull request #40 from murphn58/Ella2Branch
+    
+    Ella2 branch
+
+commit 6f9db1cfffe6696145fe05d4ea84f33102d3cb14
+Merge: bf161f4 b1f45e4
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Apr 4 13:34:24 2024 +0100
+
+    Merge branch 'main' into niamhBranch2
+
+commit bf161f40a327938761e885e6749d6170fb376f26
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Apr 4 13:34:03 2024 +0100
+
+    jkiokvjbhguiyugh
+
+commit 2eb404b4bcefe1a8f45c1cdaf349b8eea16b77b2
+Merge: 1854797 b1f45e4
+Author: whizzibble <nimhaoel@tcd.ie>
+Date:   Thu Apr 4 13:32:22 2024 +0100
+
+    Merge branch 'main' into Ella2Branch
+
+commit 3f6f60f522cf3b3d7d570e9de3e5d85aa079eebc
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Apr 4 13:27:33 2024 +0100
+
+    bg changes
+
+commit 38a654632f5cfbb9718b87d00c87dad289ef5712
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Apr 4 13:27:21 2024 +0100
+
+    bg changes
+
+commit 185479717f0a29ed39c4d6bcee0156d3be6adcc9
+Author: whizzibble <nimhaoel@tcd.ie>
+Date:   Thu Apr 4 12:57:51 2024 +0100
+
+    updated
+
+commit b1f45e4cebe033d73918e7ddfb2ecb84ebfd35a6
+Merge: 7f36599 3dd0d2a
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Apr 4 12:07:49 2024 +0100
+
+    Merge pull request #38 from murphn58/SadhbhsBranch4
+    
+    Sadhbhs branch4
+
+commit 3dd0d2a06fb5ce33dbc9e59def448b977f9a06df
+Merge: 3a49a70 6948dcb
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Apr 4 12:00:41 2024 +0100
+
+    Merge branch 'SadhbhsBranch4' of https://github.com/murphn58/Team-10-Actual-Project into SadhbhsBranch4
+
+commit 3a49a70cfc73aeabe0191661fb19e8aaff41bc89
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Apr 4 12:00:05 2024 +0100
+
+    changes
+
+commit 861c3e64641835f189747821868609782fc74d87
+Author: whizzibble <nimhaoel@tcd.ie>
+Date:   Thu Apr 4 11:54:31 2024 +0100
+
+    Hide text box
+    
+    Hides the txt box unless query buttons are pressed
+
+commit 8cc74f2f650b5c7695286b44c6872632696d5054
+Merge: e1ec224 7f36599
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Apr 4 11:34:37 2024 +0100
+
+    Merge branch 'main' into niamhBranch2
+
+commit 7f365996d4d71713a5adfaa08320374a0c18a72a
+Merge: d3f7121 ee2f792
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Apr 4 11:32:47 2024 +0100
+
+    Merge pull request #35 from p-yue/main
+    
+    cursor fix, +summary pie Chart at home
+
+commit 6948dcbbd465a1167af350393742c1686fd46837
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Apr 4 11:30:57 2024 +0100
+
+    changes
+
+commit a9ab67d28334a82c5ff06d9a992f9eeee8c41bb4
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Apr 4 10:08:53 2024 +0100
+
+    changes for Universal Design
+
+commit 6504020f4ab299a8183d27956623a1003e56db89
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Wed Apr 3 22:20:46 2024 +0100
+
+    changes to pie chart
+
+commit ee2f792d7c916b0799f945a6dcaa1213728693b9
+Author: Yue Pan <panyu@tcd.ie>
+Date:   Wed Apr 3 21:28:36 2024 +0100
+
+    cursor fix, +summary pie Chart at home
+
+commit e1ec224bacb0bd4549417600d97a65afcc2a5d7e
+Merge: dba9084 d3f7121
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Tue Apr 2 12:02:58 2024 +0100
+
+    Merge branch 'main' into niamhBranch2
+
+commit d3f7121c917cb6f851c20a394cb5c5556c784fb1
+Merge: 72e4ea0 566f691
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Tue Apr 2 12:01:44 2024 +0100
+
+    Merge pull request #30 from p-yue/main
+    
+    code changes in main to fix bugs
+
+commit 566f691dcb609e9debdaf16cce7ff84348981aae
+Merge: 398fc5a 72e4ea0
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Tue Apr 2 12:01:38 2024 +0100
+
+    Merge branch 'main' into main
+
+commit dba90843e0040954b688f11d10b3e9447226d9fb
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Tue Apr 2 11:58:31 2024 +0100
+
+    ..
+
+commit 72e4ea01b094949af9d413125a7d1713a9cb27e0
+Merge: 82ff55f 9d8bf38
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Tue Apr 2 11:56:59 2024 +0100
+
+    Merge pull request #32 from murphn58/niamhBranch2
+    
+    Niamh branch2
+
+commit 82ff55f5988326df27fc9ea73b48620efc4a978f
+Merge: 787b8a0 873db91
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Tue Apr 2 11:56:35 2024 +0100
+
+    Merge pull request #33 from murphn58/aoifemahon2
+    
+    changes
+
+commit 873db91d4b4b8da8a2fd320d69042cbe50f619e2
+Author: mahona8 <mahona8@tcd.ie>
+Date:   Tue Apr 2 11:53:26 2024 +0100
+
+    changes
+
+commit 9d8bf38511ccff195c81b7da3491c3be60a9fc5b
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Mon Apr 1 20:08:58 2024 +0100
+
+    fix
+
+commit 466c612f9a52d5153d2eef8c7ab88441e4fc4185
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Mon Apr 1 19:43:59 2024 +0100
+
+    button images
+
+commit 9e3870d40ad44688da4919b278859821b7cd658e
+Merge: 9ea3644 787b8a0
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Mar 28 19:20:49 2024 +0000
+
+    Merge branch 'main' into niamhBranch2
+
+commit 787b8a001fe2f39a2a84fa22ac32e1c8a00e869b
+Merge: 6a954b2 164f566
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Mar 28 17:41:01 2024 +0000
+
+    Merge pull request #31 from murphn58/SadhbhsBranch3
+    
+    Sadhbhs branch3
+
+commit 164f566cc7c376ff5f2f908be536add873db04c8
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Mar 28 17:39:36 2024 +0000
+
+    changes
+
+commit 4414ede91be4476930d8acd81b1ca60ae18599d1
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Mar 28 17:35:51 2024 +0000
+
+    changes
+
+commit 28ea1f91af914e2fb1ff814d12c4a81ed2c00957
+Merge: 37178cf 6a954b2
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Mar 28 17:32:19 2024 +0000
+
+    Merge branch 'main' of https://github.com/murphn58/Team-10-Actual-Project
+
+commit 6a954b22998486071cacccb885fa677fd299f2dc
+Merge: d049add 4741c1d
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Thu Mar 28 17:30:45 2024 +0000
+
+    Merge pull request #29 from murphn58/annaNewBranch
+    
+    Anna new branch
+
+commit 4741c1d2a191a646b2f135a210dd21549a57659b
+Merge: d191892 d049add
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Thu Mar 28 17:30:37 2024 +0000
+
+    Merge branch 'main' into annaNewBranch
+
+commit 9ea36444165d96f0e599d55d0a079283374d5c0d
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Mar 28 17:28:07 2024 +0000
+
+    house
+
+commit 398fc5a51ca4e0c76806788e1f00772697667385
+Author: Yue Pan <panyu@ITSERV.SCSS.TCD.IE>
+Date:   Thu Mar 28 17:25:33 2024 +0000
+
+    code changes in main to fix bugs
+
+commit d1918923cfb54e8e704ecfdc368cac2118768506
+Author: xuea04 <163134227+xuea04@users.noreply.github.com>
+Date:   Thu Mar 28 17:25:01 2024 +0000
+
+    changes
+
+commit 0849742bd4d0ec99ace3142c77394c850a12434e
+Author: xuea04 <163134227+xuea04@users.noreply.github.com>
+Date:   Thu Mar 28 16:37:12 2024 +0000
+
+    changes
+
+commit 2bfe0e0030d7cc43f385be2fbce55451d089c75f
+Merge: fd79825 d049add
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Mar 28 11:34:59 2024 +0000
+
+    Merge branch 'main' into niamhBranch2
+
+commit fd79825c85ed2a92c1b1349cfe59dcbaa90476fc
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Mar 28 11:33:49 2024 +0000
+
+    fix
+
+commit d049add5c856a7200183a1e13f346a7c2b4d504f
+Merge: 2590927 b68c644
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Mar 28 11:32:54 2024 +0000
+
+    Merge pull request #27 from murphn58/SadhbhsBranch2
+    
+    Sadhbhs branch2
+
+commit b68c644105d528609c94cdde354c0f4f50d9fb2c
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Mar 28 11:31:27 2024 +0000
+
+    changes to UI
+
+commit 5723cb1710116792833f86272e2607a9978b5b8f
+Merge: 1e06b27 b249c9d
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Mar 28 11:07:52 2024 +0000
+
+    Merge branch 'SadhbhsBranch2' of https://github.com/murphn58/Team-10-Actual-Project into SadhbhsBranch2
+
+commit 1e06b27c082d40f397c1a131fb1af1a3e9f040fb
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Mar 28 11:07:34 2024 +0000
+
+    Delete main16235555937620773365.autosave
+
+commit 2590927a011e536e6d1e11f4279b2068d4923771
+Merge: 251697d b249c9d
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Mar 28 11:07:06 2024 +0000
+
+    Merge pull request #26 from murphn58/SadhbhsBranch2
+    
+    Sadhbhs branch2
+
+commit b249c9d135e0f3a7ca973fdbf6c11be38cd87728
+Merge: 27c3b00 251697d
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Mar 28 11:06:57 2024 +0000
+
+    Merge branch 'main' into SadhbhsBranch2
+
+commit 27c3b00a352e1265a043edd3621a0ec5b8dc0e49
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Thu Mar 28 10:48:30 2024 +0000
+
+    Delete main/main16235555937620773365.autosave
+
+commit 996499fb72e3d59890103110a478f52789af7fd0
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Mar 28 10:47:45 2024 +0000
+
+    changes to piechart
+
+commit c50088bcb077373e902f8ad6bedd403243bfd397
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Mar 28 10:47:38 2024 +0000
+
+    changes to piechart
+
+commit 37178cf90175dc20799c5d097cee3cb17f054d5a
+Merge: 9f50b8f 251697d
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Mar 28 10:18:09 2024 +0000
+
+    Merge branch 'main' of https://github.com/murphn58/Team-10-Actual-Project
+
+commit 251697de4307bb09a68dc635ac1b86928b506f94
+Merge: f02c1bc ffd264e
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Thu Mar 28 10:16:13 2024 +0000
+
+    Merge pull request #25 from murphn58/niamhBranch2
+    
+    New Line Graph when query specified
+
+commit ffd264ec2716a950dd95f4416d88378f9dd64b1d
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Wed Mar 27 22:09:45 2024 +0000
+
+    New Line Graph when query specified
+    
+    When the query/queries is/are submitted and the Line Graph button is pressed, a Line Graph showing the amount of flights for each airline (or if an airline is specified just for that airline) within in the specified dates and/or specified originating/landing airport is shown.
+
+commit 9f50b8f7f7c2e3cb06afeafc3cb46f246b885935
+Merge: d609f1f f02c1bc
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Wed Mar 27 16:38:10 2024 +0000
+
+    Merge branch 'main' of https://github.com/murphn58/Team-10-Actual-Project
+
+commit f02c1bcf4887628aca04f22167f06075c9bb0e1d
+Merge: 3e6e0d0 c9f4537
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Wed Mar 27 16:37:37 2024 +0000
+
+    Merge pull request #23 from murphn58/ELLABranch
+    
+    Change homeButton
+
+commit c9f4537a38bdc3a1f73dfbe159d1d92a50741011
+Author: whizzibble <nimhaoel@tcd.ie>
+Date:   Wed Mar 27 16:34:55 2024 +0000
+
+    Change homeButton
+
+commit d609f1fcef5bef4e2cbb8274f4c5b8232a09356d
+Merge: 8013f06 3e6e0d0
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Wed Mar 27 16:28:20 2024 +0000
+
+    Merge branch 'main' of https://github.com/murphn58/Team-10-Actual-Project
+
+commit 8013f0605e47ed05ff914369ea717d2ff1f28a04
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Wed Mar 27 16:28:16 2024 +0000
+
+    Delete Query13014694891020401851.autosave
+
+commit 3e6e0d0a83fc4ac41201d5e9e140fe7850339e45
+Merge: c0aa9ae 77b0a6e
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Wed Mar 27 16:27:55 2024 +0000
+
+    Merge pull request #22 from murphn58/niamhBranch2
+    
+    Niamh branch2
+
+commit 77b0a6e08510cf8340f6277035683195b8a8d7fc
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Wed Mar 27 16:25:52 2024 +0000
+
+    Plane image as mouse (changes to main)
+
+commit 3c3d122f13539f4f06b35379fc4271d0c79705b6
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Wed Mar 27 16:25:24 2024 +0000
+
+    Delete Query13014694891020401851.autosave
+
+commit c212b6b54d2410ec158a2e92b8fe706af364dc50
+Merge: 3c99f60 c0aa9ae
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Wed Mar 27 16:22:36 2024 +0000
+
+    Merge branch 'main' into niamhBranch2
+
+commit c0aa9ae91523201932348f5180ff3b9ad3320134
+Merge: e65eefc 1e82823
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Wed Mar 27 16:21:53 2024 +0000
+
+    Merge pull request #21 from murphn58/EllaNewBranch
+    
+    Ella new branch
+
+commit 3c99f6041f399dd4ad59bb7792e83b15b47e038f
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Wed Mar 27 16:21:40 2024 +0000
+
+    plane image
+
+commit 1e82823ba4fb24fcccb6261c1f5fdaeb8ed39273
+Author: whizzibble <nimhaoel@tcd.ie>
+Date:   Wed Mar 27 16:20:30 2024 +0000
+
+    visual formatting changes
+
+commit cb3b6a7a55d37918508ac2ea38bfbafc0f4bc8ba
+Author: whizzibble <nimhaoel@tcd.ie>
+Date:   Wed Mar 27 16:01:08 2024 +0000
+
+    changes to implement textboxes
+
+commit e65eefcfd1c03202eeb0825d02effedd7298f1b2
+Merge: 2f869ae 9126abc
+Author: whizzibble <161756509+whizzibble@users.noreply.github.com>
+Date:   Wed Mar 27 14:12:22 2024 +0000
+
+    Merge pull request #20 from murphn58/annaNewBranch
+    
+    Update main.pde
+
+commit 9126abc3c1c80bd3dd4e47d97858cf620199065c
+Author: xuea04 <163134227+xuea04@users.noreply.github.com>
+Date:   Wed Mar 27 14:05:58 2024 +0000
+
+    Update main.pde
+
+commit 2f869ae2745d23b6cd2e908da25039d74e04d80f
+Merge: e2e7bb5 a3d620d
+Author: whizzibble <161756509+whizzibble@users.noreply.github.com>
+Date:   Wed Mar 27 13:26:44 2024 +0000
+
+    Merge pull request #19 from p-yue/main
+    
+    date range query. main boilerplate for util.Date
+
+commit a3d620d03ba10376b287a28c7dfe0babc9589bca
+Author: Yue Pan <panyu@tcd.ie>
+Date:   Wed Mar 27 13:06:00 2024 +0000
+
+    date range query. Main boilerplate update
+
+commit e2e7bb5c80be23333f899d14fa6effff8420fbb7
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Tue Mar 26 12:12:53 2024 +0000
+
+    Line Graph Fix
+    
+    The old version of the code caused a Null Pointer Exception if the Line Graph button was pressed before the Pie Chart one, so I've made a few changes so this doesn't happen
+
+commit 28f4cf7663d611b7852bdfed8cd6aed7c1f14821
+Merge: 6f06bc6 8e2e750
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Tue Mar 26 10:29:26 2024 +0000
+
+    Merge pull request #18 from p-yue/main
+    
+    initial Query Logic, removed blank screens file(mistakenly created), …
+
+commit 8e2e750f2f947079e732929e267305b1908765e4
+Author: Yue Pan <panyu@tcd.ie>
+Date:   Sat Mar 23 20:12:49 2024 +0000
+
+    initial Query Logic, removed blank screens file(mistakenly created), main now shows textbox on default with better visibility.
+
+commit 6f06bc6d2bbb586bea9c5ea6c926f1394a4f0a4b
+Merge: 18d243f 4a0a649
+Author: whizzibble <161756509+whizzibble@users.noreply.github.com>
+Date:   Thu Mar 21 17:12:12 2024 +0000
+
+    Merge pull request #17 from p-yue/main
+    
+    Template for next week
+
+commit 4a0a649b710385eeb07bb9e8929fda127f49a00e
+Author: Yue Pan <panyu@ITSERV.SCSS.TCD.IE>
+Date:   Thu Mar 21 16:51:40 2024 +0000
+
+    added missing screen
+
+commit 4f3a4b17eb1336b4e87e2bbac51b11dfb7743032
+Author: Yue Pan <panyu@ITSERV.SCSS.TCD.IE>
+Date:   Thu Mar 21 16:50:18 2024 +0000
+
+    template for next week
+
+commit 18d243f7cf7e9df7270dc7d69e82f59a643a67e2
+Merge: 05f96af af69ca6
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Thu Mar 21 15:04:06 2024 +0000
+
+    Merge pull request #16 from murphn58/ScreenSElla
+    
+    updated main
+
+commit af69ca6cf486e534c550e29e065d588590f4130c
+Author: whizzibble <161756509+whizzibble@users.noreply.github.com>
+Date:   Thu Mar 21 14:34:05 2024 +0000
+
+    updated main
+
+commit 05f96af2ff79814226a29abc56b991c857adbe4f
+Merge: 5ae042a 634f0ef
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Thu Mar 21 12:07:04 2024 +0000
+
+    Merge pull request #15 from murphn58/annaXue
+    
+    Anna xue
+
+commit 634f0ef9894a2857e2bd962e9a283196fc8cab3f
+Merge: a5b02ae 5ae042a
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Thu Mar 21 12:06:37 2024 +0000
+
+    Merge branch 'main' into annaXue
+
+commit a5b02ae8f82c38738772cc85b2bbd5c743c08194
+Author: xuea04 <163134227+xuea04@users.noreply.github.com>
+Date:   Thu Mar 21 12:04:28 2024 +0000
+
+    changes
+
+commit 396e813305171468b0f43ed2a2a43c53a0248c99
+Author: xuea04 <163134227+xuea04@users.noreply.github.com>
+Date:   Thu Mar 21 11:54:22 2024 +0000
+
+    Update .DS_Store
+
+commit 5ae042a325d889df521fee498480179534dba33d
+Merge: 4f398fa b4e9d40
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Thu Mar 21 11:49:44 2024 +0000
+
+    Merge pull request #13 from murphn58/sadhbhBranch
+    
+    Sadhbh branch
+
+commit b4e9d405b3e06470466031fe49cff81132049006
+Merge: 04e10bd d30911e
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Mar 21 11:47:19 2024 +0000
+
+    Merge branch 'sadhbhBranch' of https://github.com/murphn58/Team-10-Actual-Project into sadhbhBranch
+
+commit 04e10bd064e1ddd8542e985f349e479a1a0f6481
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Mar 21 11:47:01 2024 +0000
+
+    aoifes changes
+
+commit 4f398fadd7ca50e54980d48ecc730e7ebb9e9965
+Merge: 6f6cfbd 36c62bc
+Author: xuea04 <163134227+xuea04@users.noreply.github.com>
+Date:   Thu Mar 21 11:26:23 2024 +0000
+
+    Merge pull request #11 from murphn58/sadhbh-mcglinn-patch-2
+    
+    Delete pieChart.pde
+
+commit 6f6cfbd3b5f2e232c6e0fabed44e7aec0f177249
+Merge: 0a023f7 8d9eb3f
+Author: xuea04 <163134227+xuea04@users.noreply.github.com>
+Date:   Thu Mar 21 11:26:11 2024 +0000
+
+    Merge pull request #12 from murphn58/sadhbh-mcglinn-patch-3
+    
+    Delete sketch.properties
+
+commit 8d9eb3f3333b3b8777216a0d78ff136f31c7b443
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Thu Mar 21 11:25:19 2024 +0000
+
+    Delete sketch.properties
+
+commit 36c62bc6c0f05656013d1106ad9bf2d0b29f8bb8
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Thu Mar 21 11:24:58 2024 +0000
+
+    Delete pieChart.pde
+
+commit 0a023f7d33e00134e44d358e71c78d120459d41d
+Merge: b18745d a88c98e
+Author: xuea04 <163134227+xuea04@users.noreply.github.com>
+Date:   Thu Mar 21 11:24:31 2024 +0000
+
+    Merge pull request #10 from murphn58/sadhbh-mcglinn-patch-1
+    
+    Delete main/Buttons.pde
+
+commit a88c98ec018139328ced5cf1e422efaf9751266a
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Thu Mar 21 11:23:40 2024 +0000
+
+    Delete main/Buttons.pde
+
+commit b18745d4d93d4a50b0a07028896f97375f19a3df
+Merge: 5d5daa0 d30911e
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Thu Mar 21 11:23:03 2024 +0000
+
+    Merge pull request #9 from murphn58/sadhbhBranch
+    
+    Niamhs LineGraph class added
+
+commit d30911e707172c537e66c856968476250d41c2e5
+Merge: 2db6597 5d5daa0
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Thu Mar 21 11:22:23 2024 +0000
+
+    Merge branch 'main' into sadhbhBranch
+
+commit 2db659783577452efc81cd5c6462976887d1afed
+Merge: 42c6f8c 2bfd737
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Mar 21 11:12:43 2024 +0000
+
+    Merge branch 'sadhbhBranch' of https://github.com/murphn58/Team-10-Actual-Project into sadhbhBranch
+
+commit 2bfd737f34f2b6c15c71ca2f3fd59ef326d61254
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Thu Mar 21 11:11:15 2024 +0000
+
+    Delete main/Gui.pde
+
+commit 42c6f8c1c41220fc52ea020207aec01f1ddfe460
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Mar 21 11:09:15 2024 +0000
+
+    Niamhs changes
+
+commit 86661eb33b11c3ab5a80b288d21b5641ffb397d9
+Merge: 465e4d2 1005ee2
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Thu Mar 21 11:07:16 2024 +0000
+
+    Merge branch 'sadhbhBranch' of https://github.com/murphn58/Team-10-Actual-Project into sadhbhBranch
+
+commit b84719c8f5953b67351ced2bcbd094c1184de035
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Mar 21 11:06:45 2024 +0000
+
+    niamhs changes
+
+commit 544cc6c5923a73c25d6f3ca436bf2b63ee656239
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Mar 21 10:21:24 2024 +0000
+
+    changes
+
+commit a79195f6f66a10db1cd824aab16ed959d5a34c81
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Thu Mar 21 10:19:47 2024 +0000
+
+    changes
+
+commit 5d5daa003508629f2ccb909e3ffa0f93a8d15d49
+Merge: 36cc123 651c792
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Wed Mar 20 16:24:34 2024 +0000
+
+    Merge pull request #7 from murphn58/annaXue
+    
+    Anna xue
+
+commit 651c792d32e79cb352ebbf9ce2d6d4674d8614c6
+Merge: b5273eb 36cc123
+Author: sadhbh-mcglinn <163134223+sadhbh-mcglinn@users.noreply.github.com>
+Date:   Wed Mar 20 16:23:11 2024 +0000
+
+    Merge branch 'main' into annaXue
+
+commit b5273ebf3b8294770045813a6c07da736900c4ce
+Author: xuea04 <163134227+xuea04@users.noreply.github.com>
+Date:   Wed Mar 20 16:18:04 2024 +0000
+
+    changes
+
+commit 465e4d2b641a6373d25d3c0aa62822ef4e8444cc
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Wed Mar 20 16:06:55 2024 +0000
+
+    no changes
+
+commit 36cc123ba6ce3a579e1258e277a8520f5e5bdbe2
+Merge: 194e399 1005ee2
+Author: whizzibble <161756509+whizzibble@users.noreply.github.com>
+Date:   Wed Mar 20 16:05:04 2024 +0000
+
+    Merge pull request #6 from murphn58/sadhbhBranch
+    
+    Sadhbh branch merging to main
+
+commit 1005ee2f1a1dede6c307c75904a749f46adc7c98
+Merge: cee8526 194e399
+Author: whizzibble <161756509+whizzibble@users.noreply.github.com>
+Date:   Wed Mar 20 16:03:18 2024 +0000
+
+    Merge branch 'main' into sadhbhBranch
+
+commit cee85265a45048a2097df838deb6455b7a42fc42
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Wed Mar 20 15:47:24 2024 +0000
+
+    changes
+
+commit 6ccbe463de3278c8ac6750d894254b77089e90d3
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Wed Mar 20 15:18:42 2024 +0000
+
+    CHANGES TO MAIN
+
+commit 5b4789b882f02ffd24f55c8009c509d292cd651c
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Wed Mar 20 14:55:42 2024 +0000
+
+    changes
+
+commit 90bd219d1b790781ff8834c407836c124d720496
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Wed Mar 20 14:50:15 2024 +0000
+
+    file changes
+
+commit ebab39b2831058bd7323108c3b1ab086729b1358
+Author: sadhbh-mcglinn <smcglinn@tcd.ie>
+Date:   Wed Mar 20 14:49:28 2024 +0000
+
+    changes
+
+commit 194e39907aa99d040ff210e30db2db9c4e7e01bb
+Merge: eec6c74 f8d128e
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Wed Mar 20 14:32:30 2024 +0000
+
+    Merge pull request #3 from murphn58/niamhBranch
+    
+    GUI.pde
+
+commit f8d128ea506ae67a156f94c82a111a2a7fa477ca
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Wed Mar 20 14:31:01 2024 +0000
+
+    GUI.pde
+
+commit eec6c745aa99988be97d5f5ef220139cfb6b1f6f
+Merge: 3d937e3 30e5b19
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Tue Mar 19 12:18:00 2024 +0000
+
+    Merge pull request #2 from p-yue/main
+    
+    Textbox *REQUIRES CONTROLP5 LIBRARY*
+
+commit 0a1e7d8e779e44915aec704b5da0783871a7cfce
+Author: xuea04 <163134227+xuea04@users.noreply.github.com>
+Date:   Mon Mar 18 23:34:48 2024 +0000
+
+    Update pieChart.pde
+
+commit 7fd81e5b365a5e270de2aadcbacc1a2cc751768c
+Author: xuea04 <163134227+xuea04@users.noreply.github.com>
+Date:   Mon Mar 18 23:31:12 2024 +0000
+
+    Add files via upload
+
+commit 30e5b1957532a8a86d58fbc520b80db73c139df8
+Author: Yue Pan <panyu@tcd.ie>
+Date:   Sat Mar 16 21:22:40 2024 +0000
+
+    example ControlP5 usage
+
+commit 7678805ca4a04340b4f330991cdbbda49b8363e8
+Author: Yue Pan <panyu@tcd.ie>
+Date:   Sat Mar 16 21:09:11 2024 +0000
+
+    textbox implemented, Parse updated, main added temp switch statement for changing scenes
+
+commit 3d937e3b8929bd3f022f2730c5b039222c5ff920
+Merge: 389b82c 090655a
+Author: whizzibble <161756509+whizzibble@users.noreply.github.com>
+Date:   Fri Mar 15 11:15:52 2024 +0000
+
+    Merge pull request #1 from murphn58/niamhBranch
+    
+    Working Combined Code
+
+commit 090655ad697eeac2a4bb13c35c292747744d25b4
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Fri Mar 15 11:05:08 2024 +0000
+
+    Working Combined Code
+
+commit 389b82ca4094bb2cbc31fe0e2189b42936c63590
+Author: murphn58 <163134059+murphn58@users.noreply.github.com>
+Date:   Fri Mar 15 10:59:14 2024 +0000
+
+    Initial commit
