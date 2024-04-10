@@ -1,8 +1,9 @@
-/* Yue Pan, Basic textbox with columns,9pm 16/03/2024
+/* Basic textbox with columns - YUE PAN 9pm 16/03/2024
 
 use monospaced fonts since in Parse formatData() relies on spaces and assumes letters are all equal width to left align each column
 
 */
+
 final int MAXIMUM_LINES = 30;
 
 class Gui{
