@@ -43,7 +43,7 @@ class LineGraph {
   */
     void drawKey(float x) {
     float rectWidth = 1135;                                                         // Declares width of table big enough to contain all states 
-    float rectHeight = 200;                                                         // Declares length of table big enough to contain all states 
+    float rectHeight = 185;                                                         // Declares length of table big enough to contain all states 
     // Draws rectangle around the key
     noFill();                                                                       // Removes filling in for rectangle so it's just an outline
     rect(x, 695, rectWidth, rectHeight);                                            // Creates rectangle around key
@@ -277,7 +277,7 @@ String getStateDescription(String state) {
        // Fixing fonts - SADHBH 5/4/24
        axesFont = loadFont("VerdanaPro-CondBoldItalic-48.vlw");                   // Loads smaller font for the labels
        textFont(axesFont, 23);                                                    // Sets the text font                                                                
-       text("Destination States Abbreviated", 500, 680);                          // Label content and size specification
+       text("Destination States Abbreviated", 500, 670);                          // Label content and size specification
     }
 
 

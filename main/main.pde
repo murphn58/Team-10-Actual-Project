@@ -117,17 +117,19 @@ void setup() {
   // initialising the buttons
   // changing colors to cater for color bliindness - SADHBH 3/4/24
   // changing size/location of buttons - SADHBH 5/4/24
+  // button colours changed to better suit new background image - Niamh 09/04/24 23:50
   Widget widget1, widget2, widget3, widget4, widget5, widget6, homeWidget, submitWidget, resetWidget;
-  widget1 = new Widget(40, 55, 180, 50, "Date", color(250, 148, 148), myFont, EVENT_BUTTON3);
-  widget2 = new Widget(430, 55, 180, 50, "Airport", color(250, 88, 88), myFont, EVENT_BUTTON2);
-  widget3 = new Widget(880, 55, 180, 50, "Airline", color(250, 48, 48), myFont, EVENT_BUTTON1);
-  widget4 = new Widget(140, 640, 200, 55, "Pie Chart", color(160, 188, 244), myFont, EVENT_BUTTON4);
-  widget5 = new Widget(590, 640, 200, 55, "Line Graph", color(88, 138, 244), myFont, EVENT_BUTTON5);
-  widget6 = new Widget(1040, 640, 200, 55, "Bar Graph", color(52, 114, 244), myFont, EVENT_BUTTON6);
+  widget1 = new Widget(40, 55, 180, 50, "Date", color(80, 130, 244), myFont, EVENT_BUTTON3);
+  widget2 = new Widget(430, 55, 180, 50, "Airport", color(100, 170, 244), myFont, EVENT_BUTTON2);
+  widget3 = new Widget(880, 55, 180, 50, "Airline", color(160, 200, 244), myFont, EVENT_BUTTON1);
+  widget4 = new Widget(140, 640, 200, 55, "Pie Chart", color(230, 88, 88), myFont, EVENT_BUTTON4);
+  widget5 = new Widget(590, 640, 200, 55, "Line Graph", color(250, 123, 123), myFont, EVENT_BUTTON5);
+  widget6 = new Widget(1040, 640, 200, 55, "Bar Graph", color(250, 170, 170), myFont, EVENT_BUTTON6);
+  
   // home, submit, and reset buttons rewritten to work with images, Niamh 01/04/24 13:00
   homeWidget = new Widget(1250, 775,  houseImg, HOME_BUTTON);
-  submitWidget = new Widget(1200, 55, submitImg, SUBMIT_BUTTON);
-  resetWidget = new Widget(1300, 60, resetImg, RESET_BUTTON);
+  submitWidget = new Widget(1200, 45, submitImg, SUBMIT_BUTTON);
+  resetWidget = new Widget(1300, 50, resetImg, RESET_BUTTON);
   
   widgetList = new ArrayList<Widget>();
   widgetList.add(widget1);
@@ -143,9 +145,11 @@ void setup() {
   //Text Box Buttons - YUE
   Widget forwardButton, backButton, sortButton;
   textboxButtons = new ArrayList<Widget>();
-  forwardButton = new Widget(1140, 600, 75, 25, ">>>", color(52, 114, 244), myFont, FORWARD_BUTTON);
-  backButton = new Widget(1060, 600, 75, 25, "<<<", color(52, 114, 244), myFont, BACKWARD_BUTTON); //<>// //<>//
-  sortButton = new Widget(1120, 65, 75, 40, "Sort", color(52, 114, 244), myFont, SORT_BUTTON); //<>// //<>//
+  // button locations, sizes, and colours changed by Niamh 09/04/24 23:45
+  forwardButton = new Widget(1350, 500, 35, 75, ">>", color(150), myFont, FORWARD_BUTTON);
+  backButton = new Widget(10, 500, 35, 75, "<<", color(150), myFont, BACKWARD_BUTTON); //<>//
+  sortButton = new Widget(1255, 120, 60, 30, "SORT", color(150), myFont, SORT_BUTTON); //<>// //<>//
+  
   textboxButtons.add(forwardButton);
   textboxButtons.add(backButton);
   textboxButtons.add(sortButton); //<>// //<>//
