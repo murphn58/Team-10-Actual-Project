@@ -144,51 +144,51 @@ void setup() {
   widgetList.add(widget6);
   
   //Interactive buttons - NIAMH 13/3/24
-  widgetList.add(homeWidget);
-  widgetList.add(submitWidget);
+  widgetList.add(homeWidget); //<>//
+  widgetList.add(submitWidget); //<>//
   widgetList.add(resetWidget);
   
-  //Text Box Buttons - YUE
-  Widget forwardButton, backButton, sortButton;
+  //Text Box Buttons - YUE //<>//
+  Widget forwardButton, backButton, sortButton; //<>//
   textboxButtons = new ArrayList<Widget>();
   // button locations, sizes, and colours changed - NIAMH 09/04/24 23:45
   forwardButton = new Widget(1350, 500, 35, 75, ">>", color(150), myFont, FORWARD_BUTTON);
-  backButton = new Widget(10, 500, 35, 75, "<<", color(150), myFont, BACKWARD_BUTTON); //<>//
-  sortButton = new Widget(1255, 120, 60, 30, "SORT", color(150), myFont, SORT_BUTTON); //<>// //<>//
+  backButton = new Widget(10, 500, 35, 75, "<<", color(150), myFont, BACKWARD_BUTTON); 
+  sortButton = new Widget(1255, 120, 60, 30, "SORT", color(150), myFont, SORT_BUTTON); 
   textboxButtons.add(forwardButton);
   textboxButtons.add(backButton);
-  textboxButtons.add(sortButton); //<>//
- //<>//
+  textboxButtons.add(sortButton); 
+ 
   // ELLA
   pieScreen  = new Screen(color(0), widgetList);
   homeScreen = new Screen(widgetList);
-  
-  query = new Query(table, sortedTable);
+   //<>//
+  query = new Query(table, sortedTable); //<>//
  
   // NIAMH 27/03/24
   mouseImg = loadImage("plane.png");   // load image to replace mouse
-  mouseImg.resize(40, 0);              // resizing size of plane image
-  noCursor();                          // removes default mouse
+  mouseImg.resize(40, 0);              // resizing size of plane image //<>//
+  noCursor();                          // removes default mouse //<>//
   
   // YUE
-  cp5.setAutoDraw(false);
-   //<>//
-  // initialising Textbox data for large tables  //<>//
+  cp5.setAutoDraw(false); //<>//
+    //<>//
+  // initialising Textbox data for large tables  
   if(query.getCount() > 10000)
   {
          int totalPages = (int) Math.ceil((double)query.getCount()/ MAXIMUM_LINES);
-          int startIndex = gui.returnIndex();  //<>//
-          int endIndex = startIndex + MAXIMUM_LINES;  //<>//
+          int startIndex = gui.returnIndex();  
+          int endIndex = startIndex + MAXIMUM_LINES; 
           if( gui.returnCurrentPage() >= totalPages)
           {
-            endIndex = query.getCount();  //<>//
-          }  //<>//
+            endIndex = query.getCount();  
+          }  
           Table temp = table.copy();
           temp.clearRows();
           for(int i = startIndex; i < endIndex ; i++)
           {
-            temp.addRow((query.getTable()).getRow(i));
-          }
+            temp.addRow((query.getTable()).getRow(i)); //<>//
+          } //<>//
           maximumWidths = parser.getColumnWidths(temp);
           gui.textlabels("results", 50, 160, 1300, 450, temp);
           myTextarea.setText(parser.formatData(temp));
@@ -198,14 +198,11 @@ void setup() {
 }
 
 
-
- //<>//
-void draw(){      //<>//
+void draw(){     
     homeScreen.draw();
-
     // font - SADHBH 
     textFont(myFont);
-    
+     //<>//
     // ELLA 3/4/24     
     if(homeScr){ 
       myTextlabel.hide(); 
@@ -217,6 +214,7 @@ void draw(){      //<>//
         textFont(myFont);   //<>//
     
     // ELLA and YUE 20/3/24
+    // displays widgets and table on home screen but graphs when graphs buttons pressed
     switch(tempSwitch)
     {
       case 0:
@@ -256,8 +254,8 @@ void draw(){      //<>//
         
         break;
       
-      case 4:  //<>//
-        background(whiteBgImg);  //<>//
+      case 4:  
+        background(whiteBgImg);  
         myTextlabel.hide();
         myTextarea.hide();
       
@@ -269,12 +267,11 @@ void draw(){      //<>//
         ellipseMode(RADIUS);
         
         Widget aWidget = (Widget)widgetList.get(widgetList.size() - 3);
-        aWidget.draw();  //<>//
-        
-        break; //<>//
-    //<>//
-      case 5:  //<>//
-        background(whiteBgImg); //<>//
+        aWidget.draw();        //<>//
+        break;  //<>//
+    
+      case 5: 
+        background(whiteBgImg); 
         myTextlabel.hide();
         myTextarea.hide();
       
@@ -283,13 +280,12 @@ void draw(){      //<>//
         lineGraph.draw(100, 130, 1200, 500);  // Draws line graph in specified size at specified co-ordinates
       
         Widget bWidget = (Widget)widgetList.get(widgetList.size() - 3);
-        bWidget.draw();
-        
+        bWidget.draw();      //<>//
         break;      
-
-      case 6:
-        background(whiteBgImg);
-        myTextlabel.hide();
+ //<>//
+      case 6: //<>//
+        background(whiteBgImg); //<>//
+        myTextlabel.hide(); //<>//
         myTextarea.hide();
      
         // Creates bar graph based on user query - AOIFE 28/03/24 
@@ -297,8 +293,7 @@ void draw(){      //<>//
         barGraph.draw(400, 200, 1200, 500);
       
         Widget cWidget = (Widget)widgetList.get(widgetList.size() - 3);
-        cWidget.draw();
-        
+        cWidget.draw();        
         break;
 
       case -1:
@@ -402,9 +397,7 @@ void draw(){      //<>//
 }
 
 
-
-
-//buttons and textbox - ANNA 18/3/24
+// buttons and textbox - ANNA 18/3/24
 // handles actions triggered when the user clicks on any of the buttons represented
 void mousePressed() {                                                // determines which box has been pressed
   for (Widget widget : widgetList) {                                 // iterates over each widget
@@ -422,11 +415,9 @@ void mousePressed() {                                                // determin
         
         // ELLA
         homeScr = false;
-
         isAirlineTextboxVisible = !isAirlineTextboxVisible;          // Toggle the visibility status
         isAirlineTextboxVisible = !isAirlineTextboxVisible;          // Toggle the visibility status, negates current value.
         isAirlineTextboxVisible = !isAirlineTextboxVisible;          // Toggle the visibility status
-
         break;
         
      // if airport button is pressed 
@@ -488,18 +479,19 @@ void mousePressed() {                                                // determin
         homeScr = false;
         
         break;
-        
+       // if home button is pressed 
       case HOME_BUTTON:
-        tempSwitch = 0; // Switch to the home screen
-        println("home pressed");
-        
-        homeScr = true;
-        
+        tempSwitch = 0;  // Switch to the home screen
+        println("home pressed");        
+        homeScr = true;        
         break;
 
       //ELLA 18/3/24
+      // if submit button is pressed
       case SUBMIT_BUTTON:
       gui.resetIndices();
+      // determines what textbox has been used
+      
         if( isAirlineTextboxVisible && (cp5.get(Textfield.class,"Enter Airline Prefix").getText()).equals("") == false ){
           String input = cp5.get(Textfield.class,"Enter Airline Prefix").getText();
           query.searchAirline(input);
@@ -544,6 +536,7 @@ void mousePressed() {                                                // determin
         homeScr = false;       
         
         // YUE
+        // formats table depending on size of result
         if(query.getCount() < 10000) {
           gui.textlabels("results",  50, 160, 1300, 450, query.getTable());
         }
@@ -569,11 +562,12 @@ void mousePressed() {                                                // determin
       //ELLA 18/3/24
       case RESET_BUTTON:
         tempSwitch = 0;                    // switch to homeScreen
-        query.reset();
+        query.reset();                     // reset table back to original data table
         
         hideAllTextBoxes();
         
         // YUE
+        // formats table depending on size of result
         if(query.getCount() < 10000) {
           String output = parser.formatData(query.getTable());
           myTextarea.setText(output);
@@ -618,6 +612,8 @@ void mousePressed() {                                                // determin
        query.sortByLateness();
 
        println("sort pressed");
+       
+       // if airline prefix is entered return table with that prefix
        if( isAirlineTextboxVisible && (cp5.get(Textfield.class,"Enter Airline Prefix").getText()).equals("") == false ){
           String input = cp5.get(Textfield.class,"Enter Airline Prefix").getText();
           query.searchAirline(input);
@@ -629,7 +625,8 @@ void mousePressed() {                                                // determin
        else {
           println("skipped airlines");
         }
-        
+       
+       // if airport is entered return table with that airport
        if(isDestinationTextboxVisible && (cp5.get(Textfield.class,"Enter Origin(O:) or Destination(D:), then Airport").getText()).equals("") == false ){
          String input = cp5.get(Textfield.class,"Enter Origin(O:) or Destination(D:), then Airport").getText();
          query.searchStates(input);
@@ -641,7 +638,8 @@ void mousePressed() {                                                // determin
        else{
            println("skipped destinations");
        }
-
+        
+       // if date range is entered return table with that date range
        if(isDateTextboxVisible && (cp5.get(Textfield.class,"Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)").getText()).equals("") == false ){
           String input = cp5.get(Textfield.class,"Enter Date Range (MM/DD/YYYY-MM/DD/YYYY)").getText();
           try{
@@ -662,6 +660,7 @@ void mousePressed() {                                                // determin
        homeScr = false;       
         
         // YUE
+        // formats return table depending on size of results
        if(query.getCount() < 10000) {
           gui.textlabels("results", 50, 160, 1300, 450, query.getTable());
        }
@@ -681,16 +680,14 @@ void mousePressed() {                                                // determin
           maximumWidths = parser.getColumnWidths(temp);
           gui.textlabels("results",50, 160, 1300, 450, temp);
           myTextarea.setText(parser.formatData(temp));
-       }
-        
+       }       
        break;
     }
   }
 }
 
 
-
-
+// if mouse is hovering over widgets highlight them
 void mouseMoved() {
   for (Widget widget : widgetList) {
     int event = widget.getEvent(mouseX, mouseY);
@@ -714,7 +711,6 @@ void mouseMoved() {
 
 
 
-
 // ANNA - textbox 
 // displaying a new textbox on the screen using the ControlP5 library
 void showTextbox(String name, int x, int y) { 
@@ -727,14 +723,10 @@ void showTextbox(String name, int x, int y) {
 }
 
 
-
-
 // removes the textboxes 
 void hideTextbox(String name) {
   cp5.remove(name);                   // Remove the textfield by its name
 }
-
-
 
 
 // removes all the tetxboxes 

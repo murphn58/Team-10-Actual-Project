@@ -20,8 +20,6 @@ class Screen{
   }
   
   
-  
-  
   void draw(){
     if( home == false){                                                            // background and return home button for graphs
       background(screenColour);
@@ -41,7 +39,6 @@ class Screen{
   
    
    
-   
   int getEvent(int mouseX, int mouseY){
     int event =0;                                                   // if ( widget pressed ){ determines outcome, return home etc...}
     for(int i = 0; i<screenWidgets.size(); i++){
@@ -54,16 +51,13 @@ class Screen{
     return EVENT_NULL;
   }
   
-  
-  
+   
   
   void add(Widget w){
     screenWidgets.add(w);
   }
   
-       
-       
-       
+             
   ArrayList getWidgets(){
     return screenWidgets;
   }

@@ -111,30 +111,6 @@ class Query{
 
   }
   
-  
-  /**
-   * Returns a table based on target expression and column
-   * 
-   * @param Table, target expression, target column
-   * @return table
-   */
-   /*
-  Table filterTable(Table table, String targetExpression, int targetColumn)   // returns a table that only contains the target expression in the target column, partially matches from left to right so the full word is not needed
-  {
-     println("copying");
-    Table tempReturnTable = table.copy();
-    tempReturnTable.clearRows();
-      println("done!");
-    
-     println("finding rows");
-    for(TableRow row : table.matchRows(targetExpression + ".*", targetColumn))
-    {
-      tempReturnTable.addRow(row);
-    }
-     print("finished!");
-    return tempReturnTable;
-  }
-   */
   void searchAirline(String airlinePrefix){  
     returnTable = filterTable(returnTable, airlinePrefix, 1, 4);  
  }
