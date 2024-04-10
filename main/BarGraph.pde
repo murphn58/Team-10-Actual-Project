@@ -14,6 +14,8 @@ class BarGraph {
   }
 
 
+
+
   // Method to count occurrences of each airline in data provided
   void countAirlines() {    
     Table table = query.getTable(); // Get the table from the Query object
@@ -23,6 +25,8 @@ class BarGraph {
       airlineCounts.put(airline, airlineCounts.getOrDefault(airline, 0) + 1); // Increments count of airline in airlineCounts HashMap
     }
   }
+
+
 
 
   // Draws the bar graph
@@ -46,6 +50,8 @@ class BarGraph {
   }
 
 
+
+
   // method to draw bars
   void drawBars(float x, float y, float w, float h) {
     float maxValue = getMaxValue(); // Get the maximum value of airline counts
@@ -61,11 +67,15 @@ class BarGraph {
   }
 
 
+
+
   // method to draw axes
   void drawAxes(float x, float y, float w, float h) {
     line(x, y + h, x + (w/2), y + h); // Draw X-axis
     line(x, y, x, y + h); // Draw Y-axis
   }
+
+
 
 
   // method to draw labels and ticks
@@ -127,6 +137,8 @@ class BarGraph {
       line(tickX, y + h, tickX, tickY);
     }
   }
+  
+  
   
   
   // Gets the maximum value of airline counts
