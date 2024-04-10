@@ -36,8 +36,7 @@ class Screen{
       }
     }
   }
-  
-   
+ 
    
   int getEvent(int mouseX, int mouseY){
     int event =0;                                                   // if ( widget pressed ){ determines outcome, return home etc...}
@@ -50,14 +49,13 @@ class Screen{
     }
     return EVENT_NULL;
   }
-  
-   
+
   
   void add(Widget w){
     screenWidgets.add(w);
   }
   
-             
+  
   ArrayList getWidgets(){
     return screenWidgets;
   }
